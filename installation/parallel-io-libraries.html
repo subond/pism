@@ -274,7 +274,8 @@ make install
 28
 29
 30
-31</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c1"># Install NCAR ParallelIO in ~/local/parallelio</span>
+31
+32</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c1"># Install NCAR ParallelIO in ~/local/parallelio</span>
 <span class="c1"># using parallel NetCDF and PnetCDF installed in ~/local/netcdf</span>
 <span class="c1"># and ~/local/pnetcdf. Uses ~/local/build/parallelio</span>
 <span class="c1"># as a build directory.</span>
@@ -283,13 +284,14 @@ make install
 <span class="nv">pnetcdf_prefix</span><span class="o">=</span>~/local/pnetcdf
 
 <span class="nv">url</span><span class="o">=</span>https://github.com/NCAR/ParallelIO.git
+<span class="nv">branch</span><span class="o">=</span>master
 <span class="nv">build</span><span class="o">=</span>~/local/build/parallelio
 <span class="nv">prefix</span><span class="o">=</span><span class="nv">$HOME</span>/local/parallelio
 
 rm -rf <span class="si">${</span><span class="nv">build</span><span class="si">}</span>
 mkdir -p <span class="si">${</span><span class="nv">build</span><span class="si">}</span>/build <span class="si">${</span><span class="nv">build</span><span class="si">}</span>/sources
 
-git clone --depth<span class="o">=</span><span class="m">1</span> -b pio_2_5_1 <span class="si">${</span><span class="nv">url</span><span class="si">}</span> <span class="si">${</span><span class="nv">build</span><span class="si">}</span>/sources
+git clone --depth<span class="o">=</span><span class="m">1</span> -b <span class="si">${</span><span class="nv">branch</span><span class="si">}</span> <span class="si">${</span><span class="nv">url</span><span class="si">}</span> <span class="si">${</span><span class="nv">build</span><span class="si">}</span>/sources
 
 <span class="nb">pushd</span> <span class="si">${</span><span class="nv">build</span><span class="si">}</span>/build
 
@@ -388,9 +390,9 @@ disable ParallelIO features not used by PISM.</p>
       <div class="clearer"></div>
     </div>
     <div class="footer">
-      Git revision v1.0-1873-g7752677c0
-      committed by Torsten Albrecht
-      on 2020-12-16 22:59:52 +0100 |
+      Git revision v1.0-1881-g1cd171918
+      committed by Constantine Khrulev
+      on 2021-01-13 20:11:57 -0900 |
       &copy; 2004--2020, the PISM authors.
       
     </div>
