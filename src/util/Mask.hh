@@ -1,4 +1,4 @@
-// Copyright (C) 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018 Constantine Khroulev and David Maxwell
+// Copyright (C) 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2021 Constantine Khroulev and David Maxwell
 //
 // This file is part of PISM.
 //
@@ -69,7 +69,6 @@ class GeometryCalculator {
 public:
   GeometryCalculator(const Config &config) {
     m_alpha = 1 - config.get_number("constants.ice.density") / config.get_number("constants.sea_water.density");
-    m_is_dry_simulation = config.get_flag("ocean.always_grounded");
     m_icefree_thickness = config.get_number("geometry.ice_free_thickness_standard");
     if (m_icefree_thickness < 0.0) {
       throw RuntimeError::formatted(PISM_ERROR_LOCATION,
