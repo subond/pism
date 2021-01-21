@@ -514,7 +514,7 @@ removed in a later PISM version.</p>
 </p>
 </li>
 <li><p><span class="target" id="config-atmosphere.orographic_precipitation.conversion_time"></span><code class="docutils literal notranslate"><span class="pre">atmosphere.orographic_precipitation.conversion_time</span></code></p>
-<p>Cloud conversion time<dl class="field-list simple">
+<p>Cloud conversion time <span class="math notranslate nohighlight">\(\tau_c\)</span><dl class="field-list simple">
 <dt class="field-odd">Type</dt>
 <dd class="field-odd">number</dd>
 <dt class="field-even">Default value</dt>
@@ -540,7 +540,7 @@ removed in a later PISM version.</p>
 </p>
 </li>
 <li><p><span class="target" id="config-atmosphere.orographic_precipitation.fallout_time"></span><code class="docutils literal notranslate"><span class="pre">atmosphere.orographic_precipitation.fallout_time</span></code></p>
-<p>Fallout time<dl class="field-list simple">
+<p>Fallout time <span class="math notranslate nohighlight">\(\tau_f\)</span><dl class="field-list simple">
 <dt class="field-odd">Type</dt>
 <dd class="field-odd">number</dd>
 <dt class="field-even">Default value</dt>
@@ -553,7 +553,7 @@ removed in a later PISM version.</p>
 </p>
 </li>
 <li><p><span class="target" id="config-atmosphere.orographic_precipitation.grid_size_factor"></span><code class="docutils literal notranslate"><span class="pre">atmosphere.orographic_precipitation.grid_size_factor</span></code></p>
-<p>The spectral grid size is <code class="docutils literal notranslate"><span class="pre">(Z*(grid.Mx</span> <span class="pre">-</span> <span class="pre">1)</span> <span class="pre">+</span> <span class="pre">1,</span> <span class="pre">Z*(grid.My</span> <span class="pre">-</span> <span class="pre">1)</span> <span class="pre">+</span> <span class="pre">1)</span></code> where <code class="docutils literal notranslate"><span class="pre">Z</span></code> is given by this parameter.<dl class="field-list simple">
+<p>The size of the extended grid is <code class="docutils literal notranslate"><span class="pre">(Z*(grid.Mx</span> <span class="pre">-</span> <span class="pre">1)</span> <span class="pre">+</span> <span class="pre">1,</span> <span class="pre">Z*(grid.My</span> <span class="pre">-</span> <span class="pre">1)</span> <span class="pre">+</span> <span class="pre">1)</span></code> where <code class="docutils literal notranslate"><span class="pre">Z</span></code> is given by this parameter.<dl class="field-list simple">
 <dt class="field-odd">Type</dt>
 <dd class="field-odd">integer</dd>
 <dt class="field-even">Default value</dt>
@@ -563,7 +563,7 @@ removed in a later PISM version.</p>
 </p>
 </li>
 <li><p><span class="target" id="config-atmosphere.orographic_precipitation.lapse_rate"></span><code class="docutils literal notranslate"><span class="pre">atmosphere.orographic_precipitation.lapse_rate</span></code></p>
-<p>Lapse rate<dl class="field-list simple">
+<p>Lapse rate <span class="math notranslate nohighlight">\(\gamma\)</span><dl class="field-list simple">
 <dt class="field-odd">Type</dt>
 <dd class="field-odd">number</dd>
 <dt class="field-even">Default value</dt>
@@ -576,7 +576,7 @@ removed in a later PISM version.</p>
 </p>
 </li>
 <li><p><span class="target" id="config-atmosphere.orographic_precipitation.moist_adiabatic_lapse_rate"></span><code class="docutils literal notranslate"><span class="pre">atmosphere.orographic_precipitation.moist_adiabatic_lapse_rate</span></code></p>
-<p>Moist adiabatic lapse rate<dl class="field-list simple">
+<p>Moist adiabatic lapse rate <span class="math notranslate nohighlight">\(\Gamma_m\)</span><dl class="field-list simple">
 <dt class="field-odd">Type</dt>
 <dd class="field-odd">number</dd>
 <dt class="field-even">Default value</dt>
@@ -589,7 +589,7 @@ removed in a later PISM version.</p>
 </p>
 </li>
 <li><p><span class="target" id="config-atmosphere.orographic_precipitation.moist_stability_frequency"></span><code class="docutils literal notranslate"><span class="pre">atmosphere.orographic_precipitation.moist_stability_frequency</span></code></p>
-<p>Moist stability frequency<dl class="field-list simple">
+<p>Moist stability frequency <span class="math notranslate nohighlight">\(N_m\)</span><dl class="field-list simple">
 <dt class="field-odd">Type</dt>
 <dd class="field-odd">number</dd>
 <dt class="field-even">Default value</dt>
@@ -602,7 +602,7 @@ removed in a later PISM version.</p>
 </p>
 </li>
 <li><p><span class="target" id="config-atmosphere.orographic_precipitation.reference_density"></span><code class="docutils literal notranslate"><span class="pre">atmosphere.orographic_precipitation.reference_density</span></code></p>
-<p>Reference density<dl class="field-list simple">
+<p>Reference density <span class="math notranslate nohighlight">\(\rho_{S_{\text{ref}}}\)</span><dl class="field-list simple">
 <dt class="field-odd">Type</dt>
 <dd class="field-odd">number</dd>
 <dt class="field-even">Default value</dt>
@@ -627,6 +627,16 @@ removed in a later PISM version.</p>
 </dl>
 </p>
 </li>
+<li><p><span class="target" id="config-atmosphere.orographic_precipitation.smoothing_standard_deviation"></span><code class="docutils literal notranslate"><span class="pre">atmosphere.orographic_precipitation.smoothing_standard_deviation</span></code></p>
+<p>Standard deviation of the Gaussian filter used to smooth surface elevation or zero if disabled<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd">number</dd>
+<dt class="field-even">Default value</dt>
+<dd class="field-even"><p>0<em> (m)</em></p>
+</dd>
+</dl>
+</p>
+</li>
 <li><p><span class="target" id="config-atmosphere.orographic_precipitation.truncate"></span><code class="docutils literal notranslate"><span class="pre">atmosphere.orographic_precipitation.truncate</span></code></p>
 <p>Truncate precipitation at 0, disallowing negative precipitation values.<dl class="field-list simple">
 <dt class="field-odd">Type</dt>
@@ -641,7 +651,7 @@ removed in a later PISM version.</p>
 </p>
 </li>
 <li><p><span class="target" id="config-atmosphere.orographic_precipitation.water_vapor_scale_height"></span><code class="docutils literal notranslate"><span class="pre">atmosphere.orographic_precipitation.water_vapor_scale_height</span></code></p>
-<p>Water vapor scale height<dl class="field-list simple">
+<p>Water vapor scale height <span class="math notranslate nohighlight">\(H_w\)</span><dl class="field-list simple">
 <dt class="field-odd">Type</dt>
 <dd class="field-odd">number</dd>
 <dt class="field-even">Default value</dt>
@@ -6184,9 +6194,9 @@ removed in a later PISM version.</p>
       <div class="clearer"></div>
     </div>
     <div class="footer">
-      Git revision v1.0-1889-g4d9932e01
+      Git revision v1.0-1894-gd50358b17
       committed by Constantine Khrulev
-      on 2021-01-20 15:18:23 -0900 |
+      on 2021-01-20 15:24:21 -0900 |
       &copy; 2004--2020, the PISM authors.
       
     </div>

@@ -467,11 +467,32 @@ equation 49 in <a class="bibtex reference internal" href="../zzz_references_html
 relates the condensation rate to vertical motion (see the appendix of
 <a class="bibtex reference internal" href="../zzz_references_html.html#smithbarstad2004" id="id13">[5]</a>), <span class="math notranslate nohighlight">\(m\)</span> is the vertical wavenumber (see equation 6 in
 <a class="bibtex reference internal" href="../zzz_references_html.html#smithbarstadbonneau2005" id="id14">[6]</a>), and <span class="math notranslate nohighlight">\(\sigma\)</span> is the intrinsic frequency. The rest of the
-constants are defined in the table below.</p>
+constants are defined below.</p>
 <p>The spatial pattern of precipitation is recovered using an inverse Fourier transform
 followed by post-processing:</p>
 <div class="math notranslate nohighlight" id="equation-eq-orographic-post-processing">
 <span class="eqno">(29)<a class="headerlink" href="#equation-eq-orographic-post-processing" title="Permalink to this equation">¶</a></span>\[P = \max(P_{\text{pre}} + P_{\text{LT}}, 0) \cdot S + P_{\text{post}}.\]</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<ul>
+<li><p>Discontinuities in the surface gradient (e.g. at ice margins) may cause oscillations
+in the computed precipitation field probably due to the Gibbs phenomenon. To address
+this our implementation includes the ability to smooth the surface topography using a
+Gaussian filter. Set
+<a class="reference internal" href="../manual/parameters/index.html#config-atmosphere.orographic_precipitation.smoothing_standard_deviation"><code class="docutils literal notranslate"><span class="pre">atmosphere</span></code>&shy;<code class="docutils literal notranslate"><span class="pre">.orographic_precipitation</span></code>&shy;<code class="docutils literal notranslate"><span class="pre">.smoothing_standard_deviation</span></code></a> to a
+positive number to enable smoothing. Values around <span class="math notranslate nohighlight">\(\Delta x\)</span> appear to be effective.</p></li>
+<li><p>The spectral method used to implement this model requires that the input (i.e.
+surface elevation <span class="math notranslate nohighlight">\(h\)</span>) is periodic in <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span>. To simulate periodic <span class="math notranslate nohighlight">\(h\)</span> the
+implementation uses an extended grid (see
+<a class="reference internal" href="../manual/parameters/index.html#config-atmosphere.orographic_precipitation.grid_size_factor"><code class="docutils literal notranslate"><span class="pre">atmosphere</span></code>&shy;<code class="docutils literal notranslate"><span class="pre">.orographic_precipitation</span></code>&shy;<code class="docutils literal notranslate"><span class="pre">.grid_size_factor</span></code></a>) and pads modeled
+surface elevation with zeros.</p>
+<p>It is worth noting that the resulting precipitation field <span class="math notranslate nohighlight">\(P_{\text{LT}}\)</span> <em>is also
+periodic</em> in <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span> on the <em>extended</em> grid. The appropriate size of this
+extended grid may differ depending on the spatial scale of the domain and values of
+model parameters.</p>
+</li>
+</ul>
+</div>
 <p>It is implemented as a “modifier” that overrides the precipitation field provided by an
 input model. Use it with a model providing air temperatures to get a complete model. For
 example, <code class="docutils literal notranslate"><span class="pre">-atmosphere</span> <span class="pre">yearly_cycle,orographic_precipitation</span> <span class="pre">...</span></code> would use the annual
@@ -483,17 +504,18 @@ with the prefix <code class="docutils literal notranslate"><span class="pre">atm
 <ol class="simple">
 <li><p><a class="reference internal" href="../manual/parameters/index.html#config-atmosphere.orographic_precipitation.background_precip_post"><code class="docutils literal notranslate"><span class="pre">background_precip_post</span></code></a> (0<em> mm/hr</em>) Background precipitation <span class="math notranslate nohighlight">\(P_{\mathrm{post}}\)</span> added after the truncation.</p></li>
 <li><p><a class="reference internal" href="../manual/parameters/index.html#config-atmosphere.orographic_precipitation.background_precip_pre"><code class="docutils literal notranslate"><span class="pre">background_precip_pre</span></code></a> (0<em> mm/hr</em>) Background precipitation <span class="math notranslate nohighlight">\(P_{\mathrm{pre}}\)</span> added before the truncation.</p></li>
-<li><p><a class="reference internal" href="../manual/parameters/index.html#config-atmosphere.orographic_precipitation.conversion_time"><code class="docutils literal notranslate"><span class="pre">conversion_time</span></code></a> (1000<em> s</em>) Cloud conversion time</p></li>
+<li><p><a class="reference internal" href="../manual/parameters/index.html#config-atmosphere.orographic_precipitation.conversion_time"><code class="docutils literal notranslate"><span class="pre">conversion_time</span></code></a> (1000<em> s</em>) Cloud conversion time <span class="math notranslate nohighlight">\(\tau_c\)</span></p></li>
 <li><p><a class="reference internal" href="../manual/parameters/index.html#config-atmosphere.orographic_precipitation.coriolis_latitude"><code class="docutils literal notranslate"><span class="pre">coriolis_latitude</span></code></a> (0<em> degrees_N</em>) Latitude used to compute Coriolis force</p></li>
-<li><p><a class="reference internal" href="../manual/parameters/index.html#config-atmosphere.orographic_precipitation.fallout_time"><code class="docutils literal notranslate"><span class="pre">fallout_time</span></code></a> (1000<em> s</em>) Fallout time</p></li>
-<li><p><a class="reference internal" href="../manual/parameters/index.html#config-atmosphere.orographic_precipitation.grid_size_factor"><code class="docutils literal notranslate"><span class="pre">grid_size_factor</span></code></a> (2) The spectral grid size is <code class="docutils literal notranslate"><span class="pre">(Z*(grid.Mx</span> <span class="pre">-</span> <span class="pre">1)</span> <span class="pre">+</span> <span class="pre">1,</span> <span class="pre">Z*(grid.My</span> <span class="pre">-</span> <span class="pre">1)</span> <span class="pre">+</span> <span class="pre">1)</span></code> where <code class="docutils literal notranslate"><span class="pre">Z</span></code> is given by this parameter.</p></li>
-<li><p><a class="reference internal" href="../manual/parameters/index.html#config-atmosphere.orographic_precipitation.lapse_rate"><code class="docutils literal notranslate"><span class="pre">lapse_rate</span></code></a> (-5.8<em> K / km</em>) Lapse rate</p></li>
-<li><p><a class="reference internal" href="../manual/parameters/index.html#config-atmosphere.orographic_precipitation.moist_adiabatic_lapse_rate"><code class="docutils literal notranslate"><span class="pre">moist_adiabatic_lapse_rate</span></code></a> (-6.5<em> K / km</em>) Moist adiabatic lapse rate</p></li>
-<li><p><a class="reference internal" href="../manual/parameters/index.html#config-atmosphere.orographic_precipitation.moist_stability_frequency"><code class="docutils literal notranslate"><span class="pre">moist_stability_frequency</span></code></a> (0.05<em> 1/s</em>) Moist stability frequency</p></li>
-<li><p><a class="reference internal" href="../manual/parameters/index.html#config-atmosphere.orographic_precipitation.reference_density"><code class="docutils literal notranslate"><span class="pre">reference_density</span></code></a> (0.0074<em> kg m-3</em>) Reference density</p></li>
+<li><p><a class="reference internal" href="../manual/parameters/index.html#config-atmosphere.orographic_precipitation.fallout_time"><code class="docutils literal notranslate"><span class="pre">fallout_time</span></code></a> (1000<em> s</em>) Fallout time <span class="math notranslate nohighlight">\(\tau_f\)</span></p></li>
+<li><p><a class="reference internal" href="../manual/parameters/index.html#config-atmosphere.orographic_precipitation.grid_size_factor"><code class="docutils literal notranslate"><span class="pre">grid_size_factor</span></code></a> (2) The size of the extended grid is <code class="docutils literal notranslate"><span class="pre">(Z*(grid.Mx</span> <span class="pre">-</span> <span class="pre">1)</span> <span class="pre">+</span> <span class="pre">1,</span> <span class="pre">Z*(grid.My</span> <span class="pre">-</span> <span class="pre">1)</span> <span class="pre">+</span> <span class="pre">1)</span></code> where <code class="docutils literal notranslate"><span class="pre">Z</span></code> is given by this parameter.</p></li>
+<li><p><a class="reference internal" href="../manual/parameters/index.html#config-atmosphere.orographic_precipitation.lapse_rate"><code class="docutils literal notranslate"><span class="pre">lapse_rate</span></code></a> (-5.8<em> K / km</em>) Lapse rate <span class="math notranslate nohighlight">\(\gamma\)</span></p></li>
+<li><p><a class="reference internal" href="../manual/parameters/index.html#config-atmosphere.orographic_precipitation.moist_adiabatic_lapse_rate"><code class="docutils literal notranslate"><span class="pre">moist_adiabatic_lapse_rate</span></code></a> (-6.5<em> K / km</em>) Moist adiabatic lapse rate <span class="math notranslate nohighlight">\(\Gamma_m\)</span></p></li>
+<li><p><a class="reference internal" href="../manual/parameters/index.html#config-atmosphere.orographic_precipitation.moist_stability_frequency"><code class="docutils literal notranslate"><span class="pre">moist_stability_frequency</span></code></a> (0.05<em> 1/s</em>) Moist stability frequency <span class="math notranslate nohighlight">\(N_m\)</span></p></li>
+<li><p><a class="reference internal" href="../manual/parameters/index.html#config-atmosphere.orographic_precipitation.reference_density"><code class="docutils literal notranslate"><span class="pre">reference_density</span></code></a> (0.0074<em> kg m-3</em>) Reference density <span class="math notranslate nohighlight">\(\rho_{S_{\text{ref}}}\)</span></p></li>
 <li><p><a class="reference internal" href="../manual/parameters/index.html#config-atmosphere.orographic_precipitation.scale_factor"><code class="docutils literal notranslate"><span class="pre">scale_factor</span></code></a> (1) Precipitation scaling factor <span class="math notranslate nohighlight">\(S\)</span>.</p></li>
+<li><p><a class="reference internal" href="../manual/parameters/index.html#config-atmosphere.orographic_precipitation.smoothing_standard_deviation"><code class="docutils literal notranslate"><span class="pre">smoothing_standard_deviation</span></code></a> (0<em> m</em>) Standard deviation of the Gaussian filter used to smooth surface elevation or zero if disabled</p></li>
 <li><p><a class="reference internal" href="../manual/parameters/index.html#config-atmosphere.orographic_precipitation.truncate"><code class="docutils literal notranslate"><span class="pre">truncate</span></code></a> (true) Truncate precipitation at 0, disallowing negative precipitation values.</p></li>
-<li><p><a class="reference internal" href="../manual/parameters/index.html#config-atmosphere.orographic_precipitation.water_vapor_scale_height"><code class="docutils literal notranslate"><span class="pre">water_vapor_scale_height</span></code></a> (2500<em> m</em>) Water vapor scale height</p></li>
+<li><p><a class="reference internal" href="../manual/parameters/index.html#config-atmosphere.orographic_precipitation.water_vapor_scale_height"><code class="docutils literal notranslate"><span class="pre">water_vapor_scale_height</span></code></a> (2500<em> m</em>) Water vapor scale height <span class="math notranslate nohighlight">\(H_w\)</span></p></li>
 <li><p><a class="reference internal" href="../manual/parameters/index.html#config-atmosphere.orographic_precipitation.wind_direction"><code class="docutils literal notranslate"><span class="pre">wind_direction</span></code></a> (270<em> degrees</em>) The direction the wind is coming from</p></li>
 <li><p><a class="reference internal" href="../manual/parameters/index.html#config-atmosphere.orographic_precipitation.wind_speed"><code class="docutils literal notranslate"><span class="pre">wind_speed</span></code></a> (10<em> m/s</em>) The wind speed.</p></li>
 </ol>
@@ -584,9 +606,9 @@ with the prefix <code class="docutils literal notranslate"><span class="pre">atm
       <div class="clearer"></div>
     </div>
     <div class="footer">
-      Git revision v1.0-1889-g4d9932e01
+      Git revision v1.0-1894-gd50358b17
       committed by Constantine Khrulev
-      on 2021-01-20 15:18:23 -0900 |
+      on 2021-01-20 15:24:21 -0900 |
       &copy; 2004--2020, the PISM authors.
       
     </div>
