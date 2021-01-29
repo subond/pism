@@ -39,9 +39,11 @@
 \newcommand{\T}[1]{ \var{T}{#1} }
 \newcommand{\m}[1]{ \var{m}{#1} }
 \newcommand{\ms}[1]{ \var{m^{*}}{#1} }
-\newcommand{\psw}{p_{\text{ocean}}}
+\newcommand{\psw}{p_{\text{water}}}
 \newcommand{\pice}{p_{\text{ice}}}
-\newcommand{\pmelange}{p_{\text{melange}}}
+\newcommand{\pmelange}{\bar p_{\text{melange}}}
+\newcommand{\rhoi}{\rho_{\text{ice}}}
+\newcommand{\rhow}{\rho_{\text{water}}}
 \newcommand{\n}{\mathbf{n}}
 \newcommand{\nx}{\n_{x}}
 \newcommand{\ny}{\n_{y}}
@@ -54,7 +56,8 @@
 \newcommand{\uppair}[2]{\left\{\begin{matrix} #1 \\ #2 \end{matrix}\right\}}
 \newcommand{\div}{\nabla \cdot}
 \newcommand{\V}{\mathbf{V}}
-\newcommand{\Wtill}{W_{\mathrm{till}}}\end{split}\]</div>
+\newcommand{\Wtill}{W_{\mathrm{till}}}
+\newcommand{\zs}{z_{\text{sea level}}}\end{split}\]</div>
 <div class="section" id="subglacial-hydrology">
 <span id="sec-subhydro"></span><h1>Subglacial hydrology<a class="headerlink" href="#subglacial-hydrology" title="Permalink to this headline">¶</a></h1>
 <p>At the present time, two simple subglacial hydrology models are implemented <em>and
@@ -369,9 +372,9 @@ the width of this strip, which should typically be one or two grid cells.</p></t
       <div class="clearer"></div>
     </div>
     <div class="footer">
-      Git revision v1.0-1903-g7b7126241
+      Git revision v1.0-1914-g1d625ab9e
       committed by Constantine Khrulev
-      on 2021-01-29 13:22:13 -0900 |
+      on 2021-01-29 14:04:18 -0900 |
       &copy; 2004--2020, the PISM authors.
       
     </div>

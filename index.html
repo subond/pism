@@ -32,7 +32,7 @@
       
   <div class="section" id="pism-version-documentation">
 <h1>PISM 1.2 documentation<a class="headerlink" href="#pism-version-documentation" title="Permalink to this headline">¶</a></h1>
-<p>This <em>Manual</em> was built using revision <code class="docutils literal notranslate"><span class="pre">v1.0-1903-g7b7126241</span></code> committed on <code class="docutils literal notranslate"><span class="pre">2021-01-29</span> <span class="pre">13:22:13</span> <span class="pre">-0900</span></code>.</p>
+<p>This <em>Manual</em> was built using revision <code class="docutils literal notranslate"><span class="pre">v1.0-1914-g1d625ab9e</span></code> committed on <code class="docutils literal notranslate"><span class="pre">2021-01-29</span> <span class="pre">14:04:18</span> <span class="pre">-0900</span></code>.</p>
 <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="acknowledgements.html">Acknowledgements</a></li>
@@ -212,7 +212,8 @@
 <li class="toctree-l3"><a class="reference internal" href="climate_forcing/ocean.html#scalar-sub-shelf-mass-flux-offsets">Scalar sub-shelf mass flux offsets</a></li>
 <li class="toctree-l3"><a class="reference internal" href="climate_forcing/ocean.html#scalar-sub-shelf-mass-flux-fraction-offsets">Scalar sub-shelf mass flux fraction offsets</a></li>
 <li class="toctree-l3"><a class="reference internal" href="climate_forcing/ocean.html#two-dimensional-sub-shelf-mass-flux-offsets">Two-dimensional sub-shelf mass flux offsets</a></li>
-<li class="toctree-l3"><a class="reference internal" href="climate_forcing/ocean.html#scalar-melange-back-pressure-fraction">Scalar melange back pressure fraction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="climate_forcing/ocean.html#scalar-melange-back-pressure-offsets">Scalar melange back pressure offsets</a></li>
+<li class="toctree-l3"><a class="reference internal" href="climate_forcing/ocean.html#melange-back-pressure-as-a-fraction-of-pressure-difference">Melange back pressure as a fraction of pressure difference</a></li>
 <li class="toctree-l3"><a class="reference internal" href="climate_forcing/ocean.html#the-caching-modifier">The caching modifier</a></li>
 </ul>
 </li>
@@ -237,8 +238,6 @@
 <li class="toctree-l3"><a class="reference internal" href="technical/ssafd-cfbc.html#id1">Calving front stress boundary condition</a></li>
 <li class="toctree-l3"><a class="reference internal" href="technical/ssafd-cfbc.html#shallow-shelf-approximation">Shallow shelf approximation</a></li>
 <li class="toctree-l3"><a class="reference internal" href="technical/ssafd-cfbc.html#implementing-the-calving-front-boundary-condition">Implementing the calving front boundary condition</a></li>
-<li class="toctree-l3"><a class="reference internal" href="technical/ssafd-cfbc.html#evaluating-the-pressure-difference-term">Evaluating the “pressure difference term”</a></li>
-<li class="toctree-l3"><a class="reference internal" href="technical/ssafd-cfbc.html#modeling-melange-back-pressure">Modeling melange back-pressure</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="technical/bombproof.html">BOMBPROOF, PISM’s numerical scheme for conservation of energy</a><ul>
@@ -364,9 +363,9 @@
       <div class="clearer"></div>
     </div>
     <div class="footer">
-      Git revision v1.0-1903-g7b7126241
+      Git revision v1.0-1914-g1d625ab9e
       committed by Constantine Khrulev
-      on 2021-01-29 13:22:13 -0900 |
+      on 2021-01-29 14:04:18 -0900 |
       &copy; 2004--2020, the PISM authors.
       
     </div>

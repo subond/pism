@@ -3639,6 +3639,36 @@ removed in a later PISM version.</p>
 </dl>
 </p>
 </li>
+<li><p><span class="target" id="config-ocean.delta_MBP.file"></span><code class="docutils literal notranslate"><span class="pre">ocean.delta_MBP.file</span></code></p>
+<p>Name of the file containing melange back-pressure offsets<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd">string</dd>
+<dt class="field-even">Default value</dt>
+<dd class="field-even"><p><em>empty</em></p>
+</dd>
+</dl>
+</p>
+</li>
+<li><p><span class="target" id="config-ocean.delta_MBP.period"></span><code class="docutils literal notranslate"><span class="pre">ocean.delta_MBP.period</span></code></p>
+<p>Length of the period of the climate forcing data (set to zero to disable)<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd">integer</dd>
+<dt class="field-even">Default value</dt>
+<dd class="field-even"><p>0<em> (years)</em></p>
+</dd>
+</dl>
+</p>
+</li>
+<li><p><span class="target" id="config-ocean.delta_MBP.reference_year"></span><code class="docutils literal notranslate"><span class="pre">ocean.delta_MBP.reference_year</span></code></p>
+<p>Reference year to use when <a class="reference internal" href="#config-ocean.delta_MBP.period"><code class="docutils literal notranslate"><span class="pre">ocean</span></code>&shy;<code class="docutils literal notranslate"><span class="pre">.delta_MBP</span></code>&shy;<code class="docutils literal notranslate"><span class="pre">.period</span></code></a> is active<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd">integer</dd>
+<dt class="field-even">Default value</dt>
+<dd class="field-even"><p>0<em> (years)</em></p>
+</dd>
+</dl>
+</p>
+</li>
 <li><p><span class="target" id="config-ocean.delta_T.file"></span><code class="docutils literal notranslate"><span class="pre">ocean.delta_T.file</span></code></p>
 <p>Name of the file containing temperature offsets.<dl class="field-list simple">
 <dt class="field-odd">Type</dt>
@@ -3899,16 +3929,6 @@ removed in a later PISM version.</p>
 </dd>
 <dt class="field-odd">Option</dt>
 <dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">-ocean_given_reference_year</span></code></p>
-</dd>
-</dl>
-</p>
-</li>
-<li><p><span class="target" id="config-ocean.melange_back_pressure_fraction"></span><code class="docutils literal notranslate"><span class="pre">ocean.melange_back_pressure_fraction</span></code></p>
-<p>default melange back pressure fraction<dl class="field-list simple">
-<dt class="field-odd">Type</dt>
-<dd class="field-odd">number</dd>
-<dt class="field-even">Default value</dt>
-<dd class="field-even"><p>0<em> (1)</em></p>
 </dd>
 </dl>
 </p>
@@ -6190,9 +6210,9 @@ removed in a later PISM version.</p>
       <div class="clearer"></div>
     </div>
     <div class="footer">
-      Git revision v1.0-1903-g7b7126241
+      Git revision v1.0-1914-g1d625ab9e
       committed by Constantine Khrulev
-      on 2021-01-29 13:22:13 -0900 |
+      on 2021-01-29 14:04:18 -0900 |
       &copy; 2004--2020, the PISM authors.
       
     </div>

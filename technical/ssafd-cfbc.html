@@ -31,7 +31,34 @@
   <div class="bodywrapper">
     <div class="body" role="main">
       
-  <div class="section" id="calving-front-stress-boundary-condition">
+  <div class="math notranslate nohighlight">
+\[\begin{split}\newcommand{\Diff}[2]{ \frac{\mathrm{d}#1}{\mathrm{d}#2} }
+\newcommand{\diff}[2]{ \frac{\partial #1}{\partial #2} }
+\newcommand{\var}[2]{ {#1}_{\text{#2}} }
+\newcommand{\h}[1]{ \var{h}{#1} }
+\newcommand{\T}[1]{ \var{T}{#1} }
+\newcommand{\m}[1]{ \var{m}{#1} }
+\newcommand{\ms}[1]{ \var{m^{*}}{#1} }
+\newcommand{\psw}{p_{\text{water}}}
+\newcommand{\pice}{p_{\text{ice}}}
+\newcommand{\pmelange}{\bar p_{\text{melange}}}
+\newcommand{\rhoi}{\rho_{\text{ice}}}
+\newcommand{\rhow}{\rho_{\text{water}}}
+\newcommand{\n}{\mathbf{n}}
+\newcommand{\nx}{\n_{x}}
+\newcommand{\ny}{\n_{y}}
+\newcommand{\phimin}{\phi_{\mathrm{min}}}
+\newcommand{\phimax}{\phi_{\mathrm{max}}}
+\newcommand{\bmin}{b_{\mathrm{min}}}
+\newcommand{\bmax}{b_{\mathrm{max}}}
+\newcommand{\bq}{\mathbf{q}}
+\newcommand{\Up}[2]{\operatorname{Up}\left(#1\big|#2\right)}
+\newcommand{\uppair}[2]{\left\{\begin{matrix} #1 \\ #2 \end{matrix}\right\}}
+\newcommand{\div}{\nabla \cdot}
+\newcommand{\V}{\mathbf{V}}
+\newcommand{\Wtill}{W_{\mathrm{till}}}
+\newcommand{\zs}{z_{\text{sea level}}}\end{split}\]</div>
+<div class="section" id="calving-front-stress-boundary-condition">
 <h1><a class="toc-backref" href="#id6">Calving front stress boundary condition</a><a class="headerlink" href="#calving-front-stress-boundary-condition" title="Permalink to this headline">¶</a></h1>
 <div class="contents topic" id="contents">
 <p class="topic-title">Contents</p>
@@ -42,30 +69,12 @@
 <li><p><a class="reference internal" href="#id1" id="id8">Calving front stress boundary condition</a></p></li>
 <li><p><a class="reference internal" href="#shallow-shelf-approximation" id="id9">Shallow shelf approximation</a></p></li>
 <li><p><a class="reference internal" href="#implementing-the-calving-front-boundary-condition" id="id10">Implementing the calving front boundary condition</a></p></li>
-<li><p><a class="reference internal" href="#evaluating-the-pressure-difference-term" id="id11">Evaluating the “pressure difference term”</a></p>
-<ul>
-<li><p><a class="reference internal" href="#floating-case" id="id12">Floating case</a></p></li>
-<li><p><a class="reference internal" href="#grounded-below-sea-level" id="id13">Grounded below sea level</a></p></li>
-<li><p><a class="reference internal" href="#grounded-above-sea-level" id="id14">Grounded above sea level</a></p></li>
-</ul>
-</li>
-<li><p><a class="reference internal" href="#modeling-melange-back-pressure" id="id15">Modeling melange back-pressure</a></p></li>
 </ul>
 </li>
 </ul>
 </div>
 <div class="math notranslate nohighlight">
-\[\newcommand{\diff}[2]{\frac{\partial #1}{\partial #2}}
-\newcommand{\n}{\mathbf{n}}
-\newcommand{\nx}{\n_{x}}
-\newcommand{\ny}{\n_{y}}
-\newcommand{\nz}{\n_{z}}
-\newcommand{\psw}{p_{\text{ocean}}}
-\newcommand{\pmelange}{p_{\text{melange}}}
-\newcommand{\pice}{p_{\text{ice}}}
-\newcommand{\rhoi}{\rho_{\text{ice}}}
-\newcommand{\rhosw}{\rho_{\text{ocean}}}
-\newcommand{\zs}{z_{\text{s}}}
+\[\newcommand{\nz}{\n_{z}}
 \newcommand{\td}[1]{t^{D}_{#1}}
 \newcommand{\D}{\displaystyle}
 \newcommand{\dx}{\Delta x}
@@ -95,43 +104,28 @@
 <tr class="row-even"><td><p><span class="math notranslate nohighlight">\(H = h - b\)</span></p></td>
 <td><p>ice thickness</p></td>
 </tr>
-<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\zs\)</span></p></td>
-<td><p>sea level elevation</p></td>
-</tr>
-<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(g\)</span></p></td>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(g\)</span></p></td>
 <td><p>acceleration due to gravity</p></td>
 </tr>
-<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\rhoi\)</span></p></td>
-<td><p>ice density</p></td>
-</tr>
-<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\rhosw\)</span></p></td>
-<td><p>sea water density</p></td>
-</tr>
-<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\viscosity\)</span></p></td>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\viscosity\)</span></p></td>
 <td><p>vertically-averaged viscosity of ice</p></td>
 </tr>
-<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\n\)</span></p></td>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\n\)</span></p></td>
 <td><p>normal vector</p></td>
 </tr>
-<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(B(T)\)</span></p></td>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(B(T)\)</span></p></td>
 <td><p>ice hardness</p></td>
 </tr>
-<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\pice\)</span></p></td>
-<td><p>pressure due to the weight of a column of ice</p></td>
-</tr>
-<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\psw\)</span></p></td>
-<td><p>pressure due to the weight of a column of seawater</p></td>
-</tr>
-<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(D\)</span></p></td>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(D\)</span></p></td>
 <td><p>strain rate tensor</p></td>
 </tr>
-<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(d_{e}\)</span></p></td>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(d_{e}\)</span></p></td>
 <td><p>effective strain rate</p></td>
 </tr>
-<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(t\)</span></p></td>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(t\)</span></p></td>
 <td><p>Cauchy stress tensor</p></td>
 </tr>
-<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(t^{D}\)</span></p></td>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(t^{D}\)</span></p></td>
 <td><p>deviatoric stress tensor; note <span class="math notranslate nohighlight">\(\td{ij} = t_{ij} + p \delta_{ij}\)</span></p></td>
 </tr>
 </tbody>
@@ -161,7 +155,7 @@ be omitted from the remaining analysis.</p>
 \[ \begin{align}\begin{aligned}p &amp;= p - \td{xx} - \td{yy} - \td{zz}\\&amp;= - t_{zz} - \td{xx} - \td{yy}\\&amp;= \pice - \td{xx} - \td{yy}.\end{aligned}\end{align} \]</div>
 <p>Thus</p>
 <div class="math notranslate nohighlight" id="equation-ssafd-cfbc-1">
-<span class="eqno">(33)<a class="headerlink" href="#equation-ssafd-cfbc-1" title="Permalink to this equation">¶</a></span>\[\begin{split}\begin{array}{rcrcl}
+<span class="eqno">(34)<a class="headerlink" href="#equation-ssafd-cfbc-1" title="Permalink to this equation">¶</a></span>\[\begin{split}\begin{array}{rcrcl}
   (2\td{xx} + \td{yy}) \nx &amp;+&amp; \td{xy} \ny &amp;=&amp; (\pice - \psw) \nx,\\
   \td{xy} \nx &amp;+&amp; (2\td{yy} + \td{xx}) \ny &amp;=&amp; (\pice - \psw) \ny.\\
 \end{array}\end{split}\]</div>
@@ -173,9 +167,9 @@ can define the membrane stress <span class="math notranslate nohighlight">\(N\)<
 <div class="math notranslate nohighlight">
 \[N_{ij} = \int_{b}^{h} t^{D}_{ij} dz = 2\, \bar \viscosity\, H\, D_{ij}.\]</div>
 <p>Here <span class="math notranslate nohighlight">\(\bar \viscosity\)</span> is the vertically-averaged effective viscosity.</p>
-<p>Integrating <a class="reference internal" href="#equation-ssafd-cfbc-1">(33)</a> with respect to <span class="math notranslate nohighlight">\(z\)</span>, we get</p>
+<p>Integrating <a class="reference internal" href="#equation-ssafd-cfbc-1">(34)</a> with respect to <span class="math notranslate nohighlight">\(z\)</span>, we get</p>
 <div class="math notranslate nohighlight" id="equation-ssafd-cfbc-3">
-<span class="eqno">(34)<a class="headerlink" href="#equation-ssafd-cfbc-3" title="Permalink to this equation">¶</a></span>\[\begin{split}\begin{array}{rcrcl}
+<span class="eqno">(35)<a class="headerlink" href="#equation-ssafd-cfbc-3" title="Permalink to this equation">¶</a></span>\[\begin{split}\begin{array}{rcrcl}
   (2N_{xx} + N_{yy}) \nx &amp;+&amp; N_{xy} \ny &amp;=&amp; \displaystyle \int_{b}^{h}(\pice - \psw) dz\, \nx,\\
   N_{xy} \nx &amp;+&amp; (2N_{yy} + N_{xx}) \ny &amp;=&amp; \displaystyle \int_{b}^{h}(\pice - \psw) dz\, \ny.
 \end{array}\end{split}\]</div>
@@ -184,7 +178,7 @@ can define the membrane stress <span class="math notranslate nohighlight">\(N\)<
 <h2><a class="toc-backref" href="#id9">Shallow shelf approximation</a><a class="headerlink" href="#shallow-shelf-approximation" title="Permalink to this headline">¶</a></h2>
 <p>The shallow shelf approximation written in terms of <span class="math notranslate nohighlight">\(N_{ij}\)</span> is</p>
 <div class="math notranslate nohighlight" id="equation-ssafd-cfbc-2">
-<span class="eqno">(35)<a class="headerlink" href="#equation-ssafd-cfbc-2" title="Permalink to this equation">¶</a></span>\[\begin{split}\begin{array}{rcrcl}
+<span class="eqno">(36)<a class="headerlink" href="#equation-ssafd-cfbc-2" title="Permalink to this equation">¶</a></span>\[\begin{split}\begin{array}{rcrcl}
   \D \diff{}{x}(2N_{xx} + N_{yy}) &amp;+&amp; \D \diff{N_{xy}}{y} &amp;=&amp; \D \rho g H \diff{h}{x},\\
   \D \diff{N_{xy}}{x} &amp;+&amp; \D \diff{}{y}(2N_{yy} + N_{xx}) &amp;=&amp; \D \rho g H \diff{h}{y}.
 \end{array}\end{split}\]</div>
@@ -192,9 +186,9 @@ can define the membrane stress <span class="math notranslate nohighlight">\(N\)<
 <div class="section" id="implementing-the-calving-front-boundary-condition">
 <h2><a class="toc-backref" href="#id10">Implementing the calving front boundary condition</a><a class="headerlink" href="#implementing-the-calving-front-boundary-condition" title="Permalink to this headline">¶</a></h2>
 <p>We use centered finite difference approximations in the discretization of the SSA
-<a class="reference internal" href="#equation-ssafd-cfbc-2">(35)</a>. Consider the first equation:</p>
+<a class="reference internal" href="#equation-ssafd-cfbc-2">(36)</a>. Consider the first equation:</p>
 <div class="math notranslate nohighlight" id="equation-ssafd-cfbc-4">
-<span class="eqno">(36)<a class="headerlink" href="#equation-ssafd-cfbc-4" title="Permalink to this equation">¶</a></span>\[\diff{}{x}(2N_{xx} + N_{yy}) + \D \diff{N_{xy}}{y} = \D \rho g H \diff{h}{x}.\]</div>
+<span class="eqno">(37)<a class="headerlink" href="#equation-ssafd-cfbc-4" title="Permalink to this equation">¶</a></span>\[\diff{}{x}(2N_{xx} + N_{yy}) + \D \diff{N_{xy}}{y} = \D \rho g H \diff{h}{x}.\]</div>
 <p>Let <span class="math notranslate nohighlight">\(\tilde F\)</span> be an approximation of <span class="math notranslate nohighlight">\(F\)</span> using a finite-difference scheme. Then the first
 SSA equation is approximated by</p>
 <div class="math notranslate nohighlight">
@@ -202,13 +196,13 @@ SSA equation is approximated by</p>
 \frac1{\dy}\left(\partII_{i,j+\frac12} - \partII_{i,j-\frac12}\right) =
 \rho g H \frac{h_{i+\frac12,j} - h_{i-\frac12,j}}{\dx}.\]</div>
 <p>Now, assume that the cell boundary (face) at <span class="math notranslate nohighlight">\(i+\frac12,j\)</span> is at the
-calving front. Then <span class="math notranslate nohighlight">\(\n = (1,0)\)</span> and from <a class="reference internal" href="#equation-ssafd-cfbc-3">(34)</a> we have</p>
+calving front. Then <span class="math notranslate nohighlight">\(\n = (1,0)\)</span> and from <a class="reference internal" href="#equation-ssafd-cfbc-3">(35)</a> we have</p>
 <div class="math notranslate nohighlight" id="equation-ssafd-cfbc-vertintbdry">
-<span class="eqno">(37)<a class="headerlink" href="#equation-ssafd-cfbc-vertintbdry" title="Permalink to this equation">¶</a></span>\[2N_{xx} + N_{yy} = \int_{b}^{h}(\pice - \psw) dz.\]</div>
-<p>We call the right-hand side of <a class="reference internal" href="#equation-ssafd-cfbc-vertintbdry">(37)</a> the “pressure difference term.”</p>
+<span class="eqno">(38)<a class="headerlink" href="#equation-ssafd-cfbc-vertintbdry" title="Permalink to this equation">¶</a></span>\[2N_{xx} + N_{yy} = \int_{b}^{h}(\pice - \psw) dz.\]</div>
+<p>We call the right-hand side of <a class="reference internal" href="#equation-ssafd-cfbc-vertintbdry">(38)</a> the “pressure difference term.”</p>
 <p>In forming the matrix approximation of the SSA <span id="id4">[<a class="reference internal" href="../zzz_references_html.html#id22"><span>9</span></a>]</span>,
 <span id="id5">[<a class="reference internal" href="../zzz_references_html.html#id443"><span>16</span></a>]</span>, instead of assembling a matrix row corresponding to the
-generic equation <a class="reference internal" href="#equation-ssafd-cfbc-4">(36)</a> we use</p>
+generic equation <a class="reference internal" href="#equation-ssafd-cfbc-4">(37)</a> we use</p>
 <div class="math notranslate nohighlight">
 \[\frac1{\dx}\left(\left[\int_{b}^{h}(\pice - \psw) dz\right]_{i+\frac12,j} - \partI_{i-\frac12,j}\right) +
 \frac1{\dy}\left(\partII_{i,j+\frac12} - \partII_{i,j-\frac12}\right) =
@@ -220,58 +214,6 @@ right-hand side, we get</p>
 \frac1{\dy}\left(\partII_{i,j+\frac12} - \partII_{i,j-\frac12}\right) =
 \rho g H \frac{h_{i+\frac12,j} - h_{i-\frac12,j}}{\dx} + \left[\frac{\int_{b}^{h}(\psw - \pice) dz}{\dx}\right]_{i+\frac12,j}.\]</div>
 <p>The second equation and other cases (<span class="math notranslate nohighlight">\(\n = (-1,0)\)</span>, etc) are treated similarly.</p>
-</div>
-<div class="section" id="evaluating-the-pressure-difference-term">
-<h2><a class="toc-backref" href="#id11">Evaluating the “pressure difference term”</a><a class="headerlink" href="#evaluating-the-pressure-difference-term" title="Permalink to this headline">¶</a></h2>
-<p>For <span class="math notranslate nohighlight">\(z \in [b, h]\)</span> the modeled pressures are</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}\begin{array}{ll}
-\psw &amp;=
-  \begin{cases}
-    0, &amp; z &gt; \zs,\\
-    \rhosw\, g (\zs - z), &amp; z \le \zs,
-  \end{cases}\\
-\pice &amp;= \rhoi\, g (h - z).
-\end{array}\end{split}\]</div>
-<p>Depending on the local geometry <span class="math notranslate nohighlight">\(b\)</span> is either prescribed (grounded case) or is a function
-of the ice thickness and sea level elevation.</p>
-<div class="section" id="floating-case">
-<h3><a class="toc-backref" href="#id12">Floating case</a><a class="headerlink" href="#floating-case" title="Permalink to this headline">¶</a></h3>
-<p>Using the flotation thickness relation <span class="math notranslate nohighlight">\(\rhoi H = \rhosw (\zs - b)\)</span>, which applies to
-floating ice given that <span class="math notranslate nohighlight">\(b\)</span> here denotes the base elevation of the floating ice, we have</p>
-<div class="math notranslate nohighlight">
-\[\int_{b}^{h}(\pice - \psw) dz =
-\frac{1}{2}\, g\, \rhoi \left(H^2 - \frac{\rhoi}{\rhosw} H^2\right)\]</div>
-</div>
-<div class="section" id="grounded-below-sea-level">
-<h3><a class="toc-backref" href="#id13">Grounded below sea level</a><a class="headerlink" href="#grounded-below-sea-level" title="Permalink to this headline">¶</a></h3>
-<p>Because <span class="math notranslate nohighlight">\(b\)</span> denotes both the base elevation of the grounded ice, and the bedrock
-elevation, here <span class="math notranslate nohighlight">\(\rhoi H \ge \rhosw (\zs - b)\)</span>. The integral simplifies to</p>
-<div class="math notranslate nohighlight">
-\[\int_{b}^{h}(\pice - \psw) dz =
-\frac{1}{2}\, g\, \rhoi \left(H^2-\frac{\rhosw}{\rhoi}\, \left(\zs-b\right)^2\right)\]</div>
-<p>This, in fact, applies in both floating and grounded-below-sea-level cases.</p>
-</div>
-<div class="section" id="grounded-above-sea-level">
-<h3><a class="toc-backref" href="#id14">Grounded above sea level</a><a class="headerlink" href="#grounded-above-sea-level" title="Permalink to this headline">¶</a></h3>
-<p>In this case <span class="math notranslate nohighlight">\(\psw = 0\)</span>, so</p>
-<div class="math notranslate nohighlight">
-\[\int_{b}^{h}(\pice - \psw) dz = \frac{1}{2}\, g\, \rhoi\, H^2\]</div>
-</div>
-</div>
-<div class="section" id="modeling-melange-back-pressure">
-<h2><a class="toc-backref" href="#id15">Modeling melange back-pressure</a><a class="headerlink" href="#modeling-melange-back-pressure" title="Permalink to this headline">¶</a></h2>
-<p>Let <span class="math notranslate nohighlight">\(\pmelange\)</span> be the additional melange back-pressure. Then <span class="math notranslate nohighlight">\(\psw \le \psw + \pmelange
-\le \pice\)</span>. Put another way,</p>
-<div class="math notranslate nohighlight" id="equation-ssafd-cfbc-13">
-<span class="eqno">(38)<a class="headerlink" href="#equation-ssafd-cfbc-13" title="Permalink to this equation">¶</a></span>\[0 \le \pmelange \le \pice - \psw.\]</div>
-<p>Let <span class="math notranslate nohighlight">\(\lambda\)</span> be the “melange back-pressure fraction” (or “relative melange pressure”)
-ranging from <span class="math notranslate nohighlight">\(0\)</span> to <span class="math notranslate nohighlight">\(1\)</span>, so that</p>
-<div class="math notranslate nohighlight" id="equation-ssafd-cfbc-14">
-<span class="eqno">(39)<a class="headerlink" href="#equation-ssafd-cfbc-14" title="Permalink to this equation">¶</a></span>\[\pmelange = \lambda \cdot (\pice - \psw).\]</div>
-<p>Then the modified pressure difference term is</p>
-<div class="math notranslate nohighlight" id="equation-ssafd-cfbc-15">
-<span class="eqno">(40)<a class="headerlink" href="#equation-ssafd-cfbc-15" title="Permalink to this equation">¶</a></span>\[ \begin{align}\begin{aligned}\int_{b}^{h}(\pice - (\psw + \pmelange)) dz &amp;= \int_{b}^{h}(\pice - (\psw + \lambda(\pice - \psw)))\, dz\\&amp;= (1 - \lambda) \int_{b}^{h} (\pice - \psw)\, dz.\end{aligned}\end{align} \]</div>
 </div>
 </div>
 
@@ -324,8 +266,6 @@ ranging from <span class="math notranslate nohighlight">\(0\)</span> to <span cl
 <li class="toctree-l3"><a class="reference internal" href="#id1">Calving front stress boundary condition</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#shallow-shelf-approximation">Shallow shelf approximation</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#implementing-the-calving-front-boundary-condition">Implementing the calving front boundary condition</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#evaluating-the-pressure-difference-term">Evaluating the “pressure difference term”</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#modeling-melange-back-pressure">Modeling melange back-pressure</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="bombproof.html">BOMBPROOF, PISM’s numerical scheme for conservation of energy</a></li>
@@ -355,9 +295,9 @@ ranging from <span class="math notranslate nohighlight">\(0\)</span> to <span cl
       <div class="clearer"></div>
     </div>
     <div class="footer">
-      Git revision v1.0-1903-g7b7126241
+      Git revision v1.0-1914-g1d625ab9e
       committed by Constantine Khrulev
-      on 2021-01-29 13:22:13 -0900 |
+      on 2021-01-29 14:04:18 -0900 |
       &copy; 2004--2020, the PISM authors.
       
     </div>

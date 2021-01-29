@@ -55,8 +55,9 @@ sub-shelf mass flux is a “melt rate”.</p>
 <li><p><a class="reference internal" href="#scalar-sub-shelf-mass-flux-offsets" id="id23">Scalar sub-shelf mass flux offsets</a></p></li>
 <li><p><a class="reference internal" href="#scalar-sub-shelf-mass-flux-fraction-offsets" id="id24">Scalar sub-shelf mass flux fraction offsets</a></p></li>
 <li><p><a class="reference internal" href="#two-dimensional-sub-shelf-mass-flux-offsets" id="id25">Two-dimensional sub-shelf mass flux offsets</a></p></li>
-<li><p><a class="reference internal" href="#scalar-melange-back-pressure-fraction" id="id26">Scalar melange back pressure fraction</a></p></li>
-<li><p><a class="reference internal" href="#the-caching-modifier" id="id27">The caching modifier</a></p></li>
+<li><p><a class="reference internal" href="#scalar-melange-back-pressure-offsets" id="id26">Scalar melange back pressure offsets</a></p></li>
+<li><p><a class="reference internal" href="#melange-back-pressure-as-a-fraction-of-pressure-difference" id="id27">Melange back pressure as a fraction of pressure difference</a></p></li>
+<li><p><a class="reference internal" href="#the-caching-modifier" id="id28">The caching modifier</a></p></li>
 </ul>
 </li>
 </ul>
@@ -400,8 +401,30 @@ respectively.</p>
 </li>
 </ul>
 </div>
-<div class="section" id="scalar-melange-back-pressure-fraction">
-<span id="sec-ocean-frac-mbp"></span><h2><a class="toc-backref" href="#id26">Scalar melange back pressure fraction</a><a class="headerlink" href="#scalar-melange-back-pressure-fraction" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="scalar-melange-back-pressure-offsets">
+<span id="sec-ocean-delta-mbp"></span><h2><a class="toc-backref" href="#id26">Scalar melange back pressure offsets</a><a class="headerlink" href="#scalar-melange-back-pressure-offsets" title="Permalink to this headline">¶</a></h2>
+<dl class="field-list simple">
+<dt class="field-odd">Options</dt>
+<dd class="field-odd"><p><code class="option docutils literal notranslate"><span class="pre">-ocean</span> <span class="pre">...,delta_MBP</span></code></p>
+</dd>
+<dt class="field-even">Variables</dt>
+<dd class="field-even"><p><code class="variable docutils literal notranslate"><span class="pre">delta_MBP</span></code> [Pascal]</p>
+</dd>
+<dt class="field-odd">C++ class</dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">pism::ocean::Delta_MBP</span></code></p>
+</dd>
+</dl>
+<p>The scalar time-dependent variable <code class="variable docutils literal notranslate"><span class="pre">delta_MBP</span></code> (units: Pascal) has the meaning of
+<span class="math notranslate nohighlight">\(\bar p_{\text{melange}}\)</span> in <a class="reference internal" href="../manual/modeling-choices/marine/melange.html#sec-model-melange-pressure"><span class="std std-ref">Modeling melange back-pressure</span></a> (equation <a class="reference internal" href="../manual/modeling-choices/marine/melange.html#equation-eq-cfbc-3">(28)</a>).</p>
+<p>This modifier uses the following configuration parameters:</p>
+<ol class="simple">
+<li><p><a class="reference internal" href="../manual/parameters/index.html#config-ocean.delta_MBP.file"><code class="docutils literal notranslate"><span class="pre">file</span></code></a> Name of the file containing melange back-pressure offsets</p></li>
+<li><p><a class="reference internal" href="../manual/parameters/index.html#config-ocean.delta_MBP.period"><code class="docutils literal notranslate"><span class="pre">period</span></code></a> (0<em> years</em>) Length of the period of the climate forcing data (set to zero to disable)</p></li>
+<li><p><a class="reference internal" href="../manual/parameters/index.html#config-ocean.delta_MBP.reference_year"><code class="docutils literal notranslate"><span class="pre">reference_year</span></code></a> (0<em> years</em>) Reference year to use when <a class="reference internal" href="../manual/parameters/index.html#config-ocean.delta_MBP.period"><code class="docutils literal notranslate"><span class="pre">ocean</span></code>&shy;<code class="docutils literal notranslate"><span class="pre">.delta_MBP</span></code>&shy;<code class="docutils literal notranslate"><span class="pre">.period</span></code></a> is active</p></li>
+</ol>
+</div>
+<div class="section" id="melange-back-pressure-as-a-fraction-of-pressure-difference">
+<span id="sec-ocean-frac-mbp"></span><h2><a class="toc-backref" href="#id27">Melange back pressure as a fraction of pressure difference</a><a class="headerlink" href="#melange-back-pressure-as-a-fraction-of-pressure-difference" title="Permalink to this headline">¶</a></h2>
 <dl class="field-list simple">
 <dt class="field-odd">Options</dt>
 <dd class="field-odd"><p><code class="option docutils literal notranslate"><span class="pre">-ocean</span> <span class="pre">...,frac_MBP</span></code></p>
@@ -413,32 +436,26 @@ respectively.</p>
 <dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">pism::ocean::Frac_MBP</span></code></p>
 </dd>
 </dl>
-<p>This modifier implements forcing using melange back pressure fraction (scaling). The
-scalar time-dependent variable <code class="variable docutils literal notranslate"><span class="pre">frac_MBP</span></code> should take on values from 0 to 1; it is
-understood as the fraction of the maximum melange back pressure possible at a given
-location. (We assume that melange back pressure cannot exceed the pressure of the ice
-column at a calving front.)</p>
+<p>This modifier implements forcing using melange back pressure fraction (scaling).</p>
+<p>Here we assume that the total vertically-averaged back pressure at an ice margin cannot
+exceed the vertically-averaged ice pressure at the same location:</p>
+<div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}\bar p_{\text{water}} + \bar p_{\text{melange}} &amp;\le \bar p_{\text{ice}},\, \text{or}\\\bar p_{\text{melange}} &amp;\le \bar p_{\text{ice}} - \bar p_{\text{water}}.\end{aligned}\end{align} \]</div>
+<p>We introduce <span class="math notranslate nohighlight">\(\lambda \in [0, 1]\)</span> such that</p>
+<div class="math notranslate nohighlight">
+\[\bar p_{\text{melange}} = \lambda (\bar p_{\text{ice}} - \bar p_{\text{water}}).\]</div>
+<p>The scalar time-dependent variable <code class="variable docutils literal notranslate"><span class="pre">frac_MBP</span></code> should take on values between 0 and 1
+and has the meaning of <span class="math notranslate nohighlight">\(\lambda\)</span> above.</p>
 <p>Please see <a class="reference internal" href="../manual/modeling-choices/marine/melange.html#sec-model-melange-pressure"><span class="std std-ref">Modeling melange back-pressure</span></a> for details.</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>This modifier <em>scales</em> the melange back pressure fraction provided by an ocean model.
-The default value of <a class="reference internal" href="../manual/parameters/index.html#config-ocean.melange_back_pressure_fraction"><code class="docutils literal notranslate"><span class="pre">ocean</span></code>&shy;<code class="docutils literal notranslate"><span class="pre">.melange_back_pressure_fraction</span></code></a> is zero and
-<em>scaling it does nothing</em>.</p>
-<p>We recommend setting <a class="reference internal" href="../manual/parameters/index.html#config-ocean.melange_back_pressure_fraction"><code class="docutils literal notranslate"><span class="pre">ocean</span></code>&shy;<code class="docutils literal notranslate"><span class="pre">.melange_back_pressure_fraction</span></code></a> to 1.</p>
-</div>
-<p>This modifier takes the following command-line options:</p>
-<ul class="simple">
-<li><p><code class="option docutils literal notranslate"><span class="pre">-ocean_frac_MBP_file</span></code>: specifies the name of the file containing forcing data.
-This file has to contain the <code class="variable docutils literal notranslate"><span class="pre">frac_MBP</span></code> variable using units of “1” (a
-dimensionless parameter)</p></li>
-<li><p><code class="option docutils literal notranslate"><span class="pre">-ocean_frac_MBP_period</span></code> specifies the length of the period of the forcing data, in
-model years; see section <a class="reference internal" href="time.html#sec-periodic-forcing"><span class="std std-ref">Periodic forcing</span></a>.</p></li>
-<li><p><code class="option docutils literal notranslate"><span class="pre">-ocean_frac_MBP_reference_year</span></code> specifies the reference date; see section
-<a class="reference internal" href="time.html#sec-periodic-forcing"><span class="std std-ref">Periodic forcing</span></a>.</p></li>
-</ul>
+<p>This modifier uses the following configuration parameters:</p>
+<ol class="simple">
+<li><p><a class="reference internal" href="../manual/parameters/index.html#config-ocean.frac_MBP.file"><code class="docutils literal notranslate"><span class="pre">file</span></code></a> Name of the file containing melange back-pressure scaling.</p></li>
+<li><p><a class="reference internal" href="../manual/parameters/index.html#config-ocean.frac_MBP.period"><code class="docutils literal notranslate"><span class="pre">period</span></code></a> (0<em> years</em>) Length of the period of the climate forcing data. Set to zero to disable.</p></li>
+<li><p><a class="reference internal" href="../manual/parameters/index.html#config-ocean.frac_MBP.reference_year"><code class="docutils literal notranslate"><span class="pre">reference_year</span></code></a> (0<em> years</em>) Reference year to use when <a class="reference internal" href="../manual/parameters/index.html#config-ocean.frac_MBP.period"><code class="docutils literal notranslate"><span class="pre">ocean</span></code>&shy;<code class="docutils literal notranslate"><span class="pre">.frac_MBP</span></code>&shy;<code class="docutils literal notranslate"><span class="pre">.period</span></code></a> is active.</p></li>
+</ol>
 </div>
 <div class="section" id="the-caching-modifier">
-<span id="sec-ocean-cache"></span><h2><a class="toc-backref" href="#id27">The caching modifier</a><a class="headerlink" href="#the-caching-modifier" title="Permalink to this headline">¶</a></h2>
+<span id="sec-ocean-cache"></span><h2><a class="toc-backref" href="#id28">The caching modifier</a><a class="headerlink" href="#the-caching-modifier" title="Permalink to this headline">¶</a></h2>
 <dl class="field-list simple">
 <dt class="field-odd">Options</dt>
 <dd class="field-odd"><p><code class="option docutils literal notranslate"><span class="pre">-ocean</span> <span class="pre">...,cache</span></code></p>
@@ -520,7 +537,8 @@ updates. PISM may take longer time-steps if the adaptive scheme allows it, thoug
 <li class="toctree-l3"><a class="reference internal" href="#scalar-sub-shelf-mass-flux-offsets">Scalar sub-shelf mass flux offsets</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#scalar-sub-shelf-mass-flux-fraction-offsets">Scalar sub-shelf mass flux fraction offsets</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#two-dimensional-sub-shelf-mass-flux-offsets">Two-dimensional sub-shelf mass flux offsets</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#scalar-melange-back-pressure-fraction">Scalar melange back pressure fraction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#scalar-melange-back-pressure-offsets">Scalar melange back pressure offsets</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#melange-back-pressure-as-a-fraction-of-pressure-difference">Melange back pressure as a fraction of pressure difference</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#the-caching-modifier">The caching modifier</a></li>
 </ul>
 </li>
@@ -548,9 +566,9 @@ updates. PISM may take longer time-steps if the adaptive scheme allows it, thoug
       <div class="clearer"></div>
     </div>
     <div class="footer">
-      Git revision v1.0-1903-g7b7126241
+      Git revision v1.0-1914-g1d625ab9e
       committed by Constantine Khrulev
-      on 2021-01-29 13:22:13 -0900 |
+      on 2021-01-29 14:04:18 -0900 |
       &copy; 2004--2020, the PISM authors.
       
     </div>
