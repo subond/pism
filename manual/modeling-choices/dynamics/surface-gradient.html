@@ -4,15 +4,14 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Surface gradient method &#8212; PISM, a Parallel Ice Sheet Model 1.2 documentation</title>
-    <link rel="stylesheet" href="../../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/alabaster.css" type="text/css" />
     <script id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
     <script src="../../../_static/jquery.js"></script>
     <script src="../../../_static/underscore.js"></script>
     <script src="../../../_static/doctools.js"></script>
-    <script src="../../../_static/language_data.js"></script>
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
@@ -61,7 +60,7 @@ the ice margin and does not recognize choices other than <code class="option doc
 <tbody>
 <tr class="row-even"><td><p><code class="option docutils literal notranslate"><span class="pre">-gradient</span> <span class="pre">mahaffy</span></code></p></td>
 <td><p>This most “standard” way computes the surface slope onto the staggered grid for the
-SIA <a class="bibtex reference internal" href="../../../zzz_references_html.html#mahaffy" id="id1">[76]</a>. It makes <span class="math notranslate nohighlight">\(O(\Delta x^2,\Delta y^2)\)</span> errors. For computations
+SIA <span id="id1">[<a class="reference internal" href="../../../zzz_references_html.html#id271"><span>66</span></a>]</span>. It makes <span class="math notranslate nohighlight">\(O(\Delta x^2,\Delta y^2)\)</span> errors. For computations
 of driving stress on the regular grid, centered differencing is used instead.</p></td>
 </tr>
 <tr class="row-odd"><td><p><code class="option docutils literal notranslate"><span class="pre">-gradient</span> <span class="pre">haseloff</span></code></p></td>
@@ -79,8 +78,8 @@ then differentiate the sum of the thickness and the bed using centered differenc
 <p>Here <span class="math notranslate nohighlight">\(b\)</span> is the bed elevation and <span class="math notranslate nohighlight">\(h\)</span> is the surface elevation. This transformation
 sometimes has the benefits that the surface values of the horizontal velocity and
 vertical velocity, and the driving stress, are better behaved near the margin. See
-<a class="bibtex reference internal" href="../../../zzz_references_html.html#blkcb" id="id2">[29]</a> for technical explanation of this transformation and compare
-<a class="bibtex reference internal" href="../../../zzz_references_html.html#saitomargin" id="id3">[77]</a>. The actual finite difference schemes applied to compute the
+<span id="id2">[<a class="reference internal" href="../../../zzz_references_html.html#id26"><span>57</span></a>]</span> for technical explanation of this transformation and compare
+<span id="id3">[<a class="reference internal" href="../../../zzz_references_html.html#id370"><span>67</span></a>]</span>. The actual finite difference schemes applied to compute the
 surface slope are similar to option <code class="docutils literal notranslate"><span class="pre">mahaffy</span></code>.</p>
 </td>
 </tr>
@@ -177,9 +176,9 @@ margins but should not be used in simulations of marine ice sheets.</p>
       <div class="clearer"></div>
     </div>
     <div class="footer">
-      Git revision v1.0-1895-g81d74cd7d
+      Git revision v1.0-1899-g0da7adcac
       committed by Constantine Khrulev
-      on 2021-01-21 12:57:36 -0900 |
+      on 2021-01-28 16:35:19 -0900 |
       &copy; 2004--2020, the PISM authors.
       
     </div>

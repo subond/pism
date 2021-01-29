@@ -4,15 +4,14 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Earth deformation models &#8212; PISM, a Parallel Ice Sheet Model 1.2 documentation</title>
-    <link rel="stylesheet" href="../../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/alabaster.css" type="text/css" />
     <script id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
     <script src="../../../_static/jquery.js"></script>
     <script src="../../../_static/underscore.js"></script>
     <script src="../../../_static/doctools.js"></script>
-    <script src="../../../_static/language_data.js"></script>
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
@@ -52,11 +51,11 @@ For an example and verification, see Test H in <a class="reference internal" hre
 <div class="section" id="lingle-clark">
 <span id="sec-bed-def-lc"></span><h2>Lingle-Clark<a class="headerlink" href="#lingle-clark" title="Permalink to this headline">¶</a></h2>
 <p>The second model <code class="docutils literal notranslate"><span class="pre">-bed_def</span> <span class="pre">lc</span></code> is much more physical. It is based on papers by Lingle
-and Clark <a class="bibtex reference internal" href="../../../zzz_references_html.html#lingleclark" id="id1">[91]</a> and Bueler and others <a class="bibtex reference internal" href="../../../zzz_references_html.html#blkfastearth" id="id2">[23]</a>. It generalizes
+and Clark <span id="id1">[<a class="reference internal" href="../../../zzz_references_html.html#id255"><span>78</span></a>]</span> and Bueler and others <span id="id2">[<a class="reference internal" href="../../../zzz_references_html.html#id27"><span>31</span></a>]</span>. It generalizes
 and improves the most widely-used earth deformation model in ice sheet modeling, the flat
-earth Elastic Lithosphere Relaxing Asthenosphere (ELRA) model <a class="bibtex reference internal" href="../../../zzz_references_html.html#greve2001" id="id3">[92]</a>. It
+earth Elastic Lithosphere Relaxing Asthenosphere (ELRA) model <span id="id3">[<a class="reference internal" href="../../../zzz_references_html.html#id140"><span>79</span></a>]</span>. It
 imposes essentially no computational burden because the Fast Fourier Transform is used to
-solve the linear differential equation <a class="bibtex reference internal" href="../../../zzz_references_html.html#blkfastearth" id="id4">[23]</a>. When using this model in
+solve the linear differential equation <span id="id4">[<a class="reference internal" href="../../../zzz_references_html.html#id27"><span>31</span></a>]</span>. When using this model in
 PISM, the rate of bed movement (uplift) and the viscous plate displacement are stored in
 the PISM output file and then used to initialize the next part of the run. In fact, if
 gridded “observed” uplift data is available, for instance from a combination of actual
@@ -67,11 +66,11 @@ then this model will initialize so that it starts with the given uplift rate.</p
 model are listed below (they all have the prefix <code class="docutils literal notranslate"><span class="pre">bed.deformation.</span></code>).</p>
 <ol class="simple">
 <li><p><a class="reference internal" href="../../parameters/index.html#config-bed_deformation.lc.elastic_model"><code class="docutils literal notranslate"><span class="pre">lc</span></code>&shy;<code class="docutils literal notranslate"><span class="pre">.elastic_model</span></code></a> (yes) Use the elastic part of the Lingle-Clark bed deformation model.</p></li>
-<li><p><a class="reference internal" href="../../parameters/index.html#config-bed_deformation.lc.grid_size_factor"><code class="docutils literal notranslate"><span class="pre">lc</span></code>&shy;<code class="docutils literal notranslate"><span class="pre">.grid_size_factor</span></code></a> (4) The spectral grid size is <code class="docutils literal notranslate"><span class="pre">(Z*(grid.Mx</span> <span class="pre">-</span> <span class="pre">1)</span> <span class="pre">+</span> <span class="pre">1,</span> <span class="pre">Z*(grid.My</span> <span class="pre">-</span> <span class="pre">1)</span> <span class="pre">+</span> <span class="pre">1)</span></code> where <code class="docutils literal notranslate"><span class="pre">Z</span></code> is given by this parameter. See <a class="bibtex reference internal" href="../../../zzz_references_html.html#lingleclark" id="id5">[91]</a>, <a class="bibtex reference internal" href="../../../zzz_references_html.html#blkfastearth" id="id6">[23]</a>.</p></li>
+<li><p><a class="reference internal" href="../../parameters/index.html#config-bed_deformation.lc.grid_size_factor"><code class="docutils literal notranslate"><span class="pre">lc</span></code>&shy;<code class="docutils literal notranslate"><span class="pre">.grid_size_factor</span></code></a> (4) The spectral grid size is <code class="docutils literal notranslate"><span class="pre">(Z*(grid.Mx</span> <span class="pre">-</span> <span class="pre">1)</span> <span class="pre">+</span> <span class="pre">1,</span> <span class="pre">Z*(grid.My</span> <span class="pre">-</span> <span class="pre">1)</span> <span class="pre">+</span> <span class="pre">1)</span></code> where <code class="docutils literal notranslate"><span class="pre">Z</span></code> is given by this parameter. See <span id="id5">[<a class="reference internal" href="../../../zzz_references_html.html#id255"><span>78</span></a>]</span>, <span id="id6">[<a class="reference internal" href="../../../zzz_references_html.html#id27"><span>31</span></a>]</span>.</p></li>
 <li><p><a class="reference internal" href="../../parameters/index.html#config-bed_deformation.lc.update_interval"><code class="docutils literal notranslate"><span class="pre">lc</span></code>&shy;<code class="docutils literal notranslate"><span class="pre">.update_interval</span></code></a> (10<em> years</em>) Interval between updates of the Lingle-Clark model</p></li>
-<li><p><a class="reference internal" href="../../parameters/index.html#config-bed_deformation.lithosphere_flexural_rigidity"><code class="docutils literal notranslate"><span class="pre">lithosphere_flexural_rigidity</span></code></a> (5e+24<em> Newton meter</em>) lithosphere flexural rigidity used by the bed deformation model. See <a class="bibtex reference internal" href="../../../zzz_references_html.html#lingleclark" id="id7">[91]</a>, <a class="bibtex reference internal" href="../../../zzz_references_html.html#blkfastearth" id="id8">[23]</a></p></li>
-<li><p><a class="reference internal" href="../../parameters/index.html#config-bed_deformation.mantle_density"><code class="docutils literal notranslate"><span class="pre">mantle_density</span></code></a> (3300<em> kg meter-3</em>) half-space (mantle) density used by the bed deformation model. See <a class="bibtex reference internal" href="../../../zzz_references_html.html#lingleclark" id="id9">[91]</a>, <a class="bibtex reference internal" href="../../../zzz_references_html.html#blkfastearth" id="id10">[23]</a></p></li>
-<li><p><a class="reference internal" href="../../parameters/index.html#config-bed_deformation.mantle_viscosity"><code class="docutils literal notranslate"><span class="pre">mantle_viscosity</span></code></a> (1e+21<em> Pascal second</em>) half-space (mantle) viscosity used by the bed deformation model. See <a class="bibtex reference internal" href="../../../zzz_references_html.html#lingleclark" id="id11">[91]</a>, <a class="bibtex reference internal" href="../../../zzz_references_html.html#blkfastearth" id="id12">[23]</a></p></li>
+<li><p><a class="reference internal" href="../../parameters/index.html#config-bed_deformation.lithosphere_flexural_rigidity"><code class="docutils literal notranslate"><span class="pre">lithosphere_flexural_rigidity</span></code></a> (5e+24<em> Newton meter</em>) lithosphere flexural rigidity used by the bed deformation model. See <span id="id7">[<a class="reference internal" href="../../../zzz_references_html.html#id255"><span>78</span></a>]</span>, <span id="id8">[<a class="reference internal" href="../../../zzz_references_html.html#id27"><span>31</span></a>]</span></p></li>
+<li><p><a class="reference internal" href="../../parameters/index.html#config-bed_deformation.mantle_density"><code class="docutils literal notranslate"><span class="pre">mantle_density</span></code></a> (3300<em> kg meter-3</em>) half-space (mantle) density used by the bed deformation model. See <span id="id9">[<a class="reference internal" href="../../../zzz_references_html.html#id255"><span>78</span></a>]</span>, <span id="id10">[<a class="reference internal" href="../../../zzz_references_html.html#id27"><span>31</span></a>]</span></p></li>
+<li><p><a class="reference internal" href="../../parameters/index.html#config-bed_deformation.mantle_viscosity"><code class="docutils literal notranslate"><span class="pre">mantle_viscosity</span></code></a> (1e+21<em> Pascal second</em>) half-space (mantle) viscosity used by the bed deformation model. See <span id="id11">[<a class="reference internal" href="../../../zzz_references_html.html#id255"><span>78</span></a>]</span>, <span id="id12">[<a class="reference internal" href="../../../zzz_references_html.html#id27"><span>31</span></a>]</span></p></li>
 </ol>
 <p>Here are minimal example runs to compare these models:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>mpiexec -n 4 pisms -eisII A -y 8000 -o eisIIA_nobd.nc
@@ -80,7 +79,7 @@ mpiexec -n 4 pisms -eisII A -bed_def lc -y 8000 -o eisIIA_bdlc.nc
 </pre></div>
 </div>
 <p>Compare the <code class="variable docutils literal notranslate"><span class="pre">topg</span></code>, <code class="variable docutils literal notranslate"><span class="pre">usurf</span></code>, and <code class="variable docutils literal notranslate"><span class="pre">dbdt</span></code> variables in the resulting output
-files. See also the comparison done in <a class="bibtex reference internal" href="../../../zzz_references_html.html#blkfastearth" id="id13">[23]</a>.</p>
+files. See also the comparison done in <span id="id13">[<a class="reference internal" href="../../../zzz_references_html.html#id27"><span>31</span></a>]</span>.</p>
 <p>To include “measured” uplift rates during initialization, use the option
 <code class="option docutils literal notranslate"><span class="pre">-uplift_file</span></code> (parameter <a class="reference internal" href="../../parameters/index.html#config-bed_deformation.bed_uplift_file"><code class="docutils literal notranslate"><span class="pre">bed_deformation</span></code>&shy;<code class="docutils literal notranslate"><span class="pre">.bed_uplift_file</span></code></a>) to specify the
 name of the file containing the field <code class="variable docutils literal notranslate"><span class="pre">dbdt</span></code> (CF standard name:
@@ -102,7 +101,7 @@ elevations that are closer to observed values.</p>
 <p class="admonition-title">Warning</p>
 <p>The variable <code class="variable docutils literal notranslate"><span class="pre">viscous_bed_displacement</span></code> does not correspond to any measured
 physical quantity. Do not even attempt to analyze it without a careful reading of
-<a class="bibtex reference internal" href="../../../zzz_references_html.html#blkfastearth" id="id14">[23]</a>.</p>
+<span id="id14">[<a class="reference internal" href="../../../zzz_references_html.html#id27"><span>31</span></a>]</span>.</p>
 <p>Trying to provide a “hand-crafted” <code class="variable docutils literal notranslate"><span class="pre">viscous_bed_displacement</span></code> field to PISM is not
 a good idea.</p>
 <p>Keep in mind that zero <code class="variable docutils literal notranslate"><span class="pre">viscous_bed_displacement</span></code> does <em>not</em> mean that the bed
@@ -195,9 +194,9 @@ deformation model is in equilibrium.</p>
       <div class="clearer"></div>
     </div>
     <div class="footer">
-      Git revision v1.0-1895-g81d74cd7d
+      Git revision v1.0-1899-g0da7adcac
       committed by Constantine Khrulev
-      on 2021-01-21 12:57:36 -0900 |
+      on 2021-01-28 16:35:19 -0900 |
       &copy; 2004--2020, the PISM authors.
       
     </div>

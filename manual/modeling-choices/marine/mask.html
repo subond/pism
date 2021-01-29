@@ -4,15 +4,14 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Flotation criterion, mask, and sea level &#8212; PISM, a Parallel Ice Sheet Model 1.2 documentation</title>
-    <link rel="stylesheet" href="../../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/alabaster.css" type="text/css" />
     <script id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
     <script src="../../../_static/jquery.js"></script>
     <script src="../../../_static/underscore.js"></script>
     <script src="../../../_static/doctools.js"></script>
-    <script src="../../../_static/language_data.js"></script>
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
@@ -36,7 +35,7 @@
 <span id="sec-floatmask"></span><h1>Flotation criterion, mask, and sea level<a class="headerlink" href="#flotation-criterion-mask-and-sea-level" title="Permalink to this headline">¶</a></h1>
 <p>The most basic decision about marine ice sheet dynamics made internally by PISM is whether
 a ice-filled grid cell is floating. That is, PISM applies the “flotation criterion”
-<a class="bibtex reference internal" href="../../../zzz_references_html.html#winkelmannetal2011" id="id1">[33]</a> at every time step and at every grid location to determine whether
+<span id="id1">[<a class="reference internal" href="../../../zzz_references_html.html#id443"><span>16</span></a>]</span> at every time step and at every grid location to determine whether
 the ice is floating on the ocean or not. The result is stored in the <code class="docutils literal notranslate"><span class="pre">mask</span></code> variable.
 The <code class="docutils literal notranslate"><span class="pre">mask</span></code> variable has <code class="docutils literal notranslate"><span class="pre">pism_intent</span></code> = <code class="docutils literal notranslate"><span class="pre">diagnostic</span></code>, and thus it does <em>not</em> need to
 be included in the input file set using the <code class="docutils literal notranslate"><span class="pre">-i</span></code> option.</p>
@@ -163,9 +162,9 @@ step the mask will be updated.</p>
       <div class="clearer"></div>
     </div>
     <div class="footer">
-      Git revision v1.0-1895-g81d74cd7d
+      Git revision v1.0-1899-g0da7adcac
       committed by Constantine Khrulev
-      on 2021-01-21 12:57:36 -0900 |
+      on 2021-01-28 16:35:19 -0900 |
       &copy; 2004--2020, the PISM authors.
       
     </div>

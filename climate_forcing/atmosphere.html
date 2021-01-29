@@ -4,15 +4,14 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Atmosphere model components &#8212; PISM, a Parallel Ice Sheet Model 1.2 documentation</title>
-    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
     <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
-    <script src="../_static/language_data.js"></script>
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -149,7 +148,7 @@ option. Without this option <span class="math notranslate nohighlight">\(A(\math
 </dl>
 <p>This atmosphere model component implements a longitude, latitude, and elevation dependent
 near-surface air temperature parameterization and a cosine yearly cycle described in
-<a class="bibtex reference internal" href="../zzz_references_html.html#faustoetal2009" id="id2">[1]</a> and uses a constant in time ice-equivalent precipitation field (in units
+<span id="id2">[<a class="reference internal" href="../zzz_references_html.html#id107"><span>124</span></a>]</span> and uses a constant in time ice-equivalent precipitation field (in units
 of thickness per time, variable <code class="variable docutils literal notranslate"><span class="pre">precipitation</span></code>) that is read from an input (<code class="docutils literal notranslate"><span class="pre">-i</span></code>)
 file. To read time-independent precipitation from a different file, use the option
 <code class="option docutils literal notranslate"><span class="pre">-atmosphere_searise_greenland_file</span></code>.</p>
@@ -159,7 +158,7 @@ file. To read time-independent precipitation from a different file, use the opti
 <a class="reference internal" href="#sec-atmosphere-precip-scaling"><span class="std std-ref">Precipitation correction using scalar temperature offsets</span></a>, for an implementation of the SeaRISE-Greenland
 formula for precipitation adjustment using air temperature offsets relative to present; a
 7.3% change of precipitation rate for every one degree Celsius of temperature change
-<a class="bibtex reference internal" href="../zzz_references_html.html#huybrechts02" id="id3">[2]</a>.</p>
+<span id="id3">[<a class="reference internal" href="../zzz_references_html.html#id192"><span>30</span></a>]</span>.</p>
 </div>
 <div class="section" id="pik">
 <span id="sec-atmosphere-pik"></span><h2><a class="toc-backref" href="#id20">PIK</a><a class="headerlink" href="#pik" title="Permalink to this headline">¶</a></h2>
@@ -199,16 +198,16 @@ near-surface air temperature.</p></li>
 </thead>
 <tbody>
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">martin</span></code> (default)</p></td>
-<td><p>Uses equation (1) from <a class="bibtex reference internal" href="../zzz_references_html.html#martinetal2011" id="id4">[3]</a> to parameterize mean annual
+<td><p>Uses equation (1) from <span id="id4">[<a class="reference internal" href="../zzz_references_html.html#id276"><span>49</span></a>]</span> to parameterize mean annual
 temperature with <em>no seasonal variation in temperature.</em></p></td>
 </tr>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">huybrechts_dewolde</span></code></p></td>
 <td><p>Mean annual and mean summer temperatures are computed using parameterizations for
-the Antarctic ice sheet described in <a class="bibtex reference internal" href="../zzz_references_html.html#huybrechtsdewolde" id="id5">[4]</a> (equations C1 and C2).</p></td>
+the Antarctic ice sheet described in <span id="id5">[<a class="reference internal" href="../zzz_references_html.html#id195"><span>42</span></a>]</span> (equations C1 and C2).</p></td>
 </tr>
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">martin_huybrechts_dewolde</span></code></p></td>
-<td><p>Hybrid of the two above: mean annual temperature as in <a class="bibtex reference internal" href="../zzz_references_html.html#martinetal2011" id="id6">[3]</a> with
-the amplitude of the annual cycle from <a class="bibtex reference internal" href="../zzz_references_html.html#huybrechtsdewolde" id="id7">[4]</a>.</p></td>
+<td><p>Hybrid of the two above: mean annual temperature as in <span id="id6">[<a class="reference internal" href="../zzz_references_html.html#id276"><span>49</span></a>]</span> with
+the amplitude of the annual cycle from <span id="id7">[<a class="reference internal" href="../zzz_references_html.html#id195"><span>42</span></a>]</span>.</p></td>
 </tr>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">era_interim</span></code></p></td>
 <td><p>Mean annual and mean summer temperatures use parameterizations based on multiple
@@ -341,7 +340,7 @@ time-and-space-dependent scaling factor.</p>
 </dl>
 <p>This modifier implements the SeaRISE-Greenland formula for a precipitation correction from
 present; a 7.3% change of precipitation rate for every one degree Celsius of air
-temperature change <a class="bibtex reference internal" href="../zzz_references_html.html#huybrechts02" id="id8">[2]</a>. See <a class="reference external" href="http://websrv.cs.umt.edu/isis/index.php/Model_Initialization#Greenland">SeaRISE Greenland model initialization</a> for details. The input file should contain air temperature offsets
+temperature change <span id="id8">[<a class="reference internal" href="../zzz_references_html.html#id192"><span>30</span></a>]</span>. See <a class="reference external" href="http://websrv.cs.umt.edu/isis/index.php/Model_Initialization#Greenland">SeaRISE Greenland model initialization</a> for details. The input file should contain air temperature offsets
 in the format used by <code class="docutils literal notranslate"><span class="pre">-atmosphere</span> <span class="pre">...,delta_T</span></code> modifier, see section <a class="reference internal" href="#sec-atmosphere-delta-t"><span class="std std-ref">Scalar temperature offsets</span></a>.</p>
 <p>This mechanisms increases precipitation by <span class="math notranslate nohighlight">\(100(\exp(C) - 1)\)</span> percent for each degree of
 temperature increase, where</p>
@@ -456,17 +455,17 @@ similar, but applies anomalies at the surface level.</p>
 </dd>
 </dl>
 <p>This modifier implements the linear orographic precipitation model described in
-<a class="bibtex reference internal" href="../zzz_references_html.html#smithbarstad2004" id="id9">[5]</a> with a modification incorporating the influence of the Coriolis
-force from <a class="bibtex reference internal" href="../zzz_references_html.html#smithbarstadbonneau2005" id="id10">[6]</a>.</p>
+<span id="id9">[<a class="reference internal" href="../zzz_references_html.html#id38"><span>137</span></a>]</span> with a modification incorporating the influence of the Coriolis
+force from <span id="id10">[<a class="reference internal" href="../zzz_references_html.html#id39"><span>138</span></a>]</span>.</p>
 <p>We compute the Fourier transform of the precipitation field using the formula below (see
-equation 49 in <a class="bibtex reference internal" href="../zzz_references_html.html#smithbarstad2004" id="id11">[5]</a> or equation 3 in <a class="bibtex reference internal" href="../zzz_references_html.html#smithbarstadbonneau2005" id="id12">[6]</a>).</p>
+equation 49 in <span id="id11">[<a class="reference internal" href="../zzz_references_html.html#id38"><span>137</span></a>]</span> or equation 3 in <span id="id12">[<a class="reference internal" href="../zzz_references_html.html#id39"><span>138</span></a>]</span>).</p>
 <div class="math notranslate nohighlight" id="equation-eq-orographic-precipitation">
 <span class="eqno">(28)<a class="headerlink" href="#equation-eq-orographic-precipitation" title="Permalink to this equation">¶</a></span>\[\hat P_{\text{LT}}(k, l) = \frac{C_w i \sigma \hat h(k, l)}
 {(1 - i m H_w) (1 + i \sigma \tau_c) (1 + i \sigma \tau_f)},\]</div>
 <p>where <span class="math notranslate nohighlight">\(h\)</span> is the surface elevation, <span class="math notranslate nohighlight">\(C_w = \rho_{S_{\text{ref}}} \Gamma_m / \gamma\)</span>
 relates the condensation rate to vertical motion (see the appendix of
-<a class="bibtex reference internal" href="../zzz_references_html.html#smithbarstad2004" id="id13">[5]</a>), <span class="math notranslate nohighlight">\(m\)</span> is the vertical wavenumber (see equation 6 in
-<a class="bibtex reference internal" href="../zzz_references_html.html#smithbarstadbonneau2005" id="id14">[6]</a>), and <span class="math notranslate nohighlight">\(\sigma\)</span> is the intrinsic frequency. The rest of the
+<span id="id13">[<a class="reference internal" href="../zzz_references_html.html#id38"><span>137</span></a>]</span>), <span class="math notranslate nohighlight">\(m\)</span> is the vertical wavenumber (see equation 6 in
+<span id="id14">[<a class="reference internal" href="../zzz_references_html.html#id39"><span>138</span></a>]</span>), and <span class="math notranslate nohighlight">\(\sigma\)</span> is the intrinsic frequency. The rest of the
 constants are defined below.</p>
 <p>The spatial pattern of precipitation is recovered using an inverse Fourier transform
 followed by post-processing:</p>
@@ -606,9 +605,9 @@ with the prefix <code class="docutils literal notranslate"><span class="pre">atm
       <div class="clearer"></div>
     </div>
     <div class="footer">
-      Git revision v1.0-1895-g81d74cd7d
+      Git revision v1.0-1899-g0da7adcac
       committed by Constantine Khrulev
-      on 2021-01-21 12:57:36 -0900 |
+      on 2021-01-28 16:35:19 -0900 |
       &copy; 2004--2020, the PISM authors.
       
     </div>

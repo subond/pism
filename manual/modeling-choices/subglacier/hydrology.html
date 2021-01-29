@@ -4,15 +4,14 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Subglacial hydrology &#8212; PISM, a Parallel Ice Sheet Model 1.2 documentation</title>
-    <link rel="stylesheet" href="../../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/alabaster.css" type="text/css" />
     <script id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
     <script src="../../../_static/jquery.js"></script>
     <script src="../../../_static/underscore.js"></script>
     <script src="../../../_static/doctools.js"></script>
-    <script src="../../../_static/language_data.js"></script>
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
@@ -60,7 +59,7 @@
 <span id="sec-subhydro"></span><h1>Subglacial hydrology<a class="headerlink" href="#subglacial-hydrology" title="Permalink to this headline">¶</a></h1>
 <p>At the present time, two simple subglacial hydrology models are implemented <em>and
 documented</em> in PISM, namely <code class="docutils literal notranslate"><span class="pre">-hydrology</span> <span class="pre">null</span></code> (and its modification <code class="docutils literal notranslate"><span class="pre">steady</span></code>) and
-<code class="docutils literal notranslate"><span class="pre">-hydrology</span> <span class="pre">routing</span></code>; see <a class="reference internal" href="#tab-hydrologychoice"><span class="std std-numref">Table 18</span></a> and <a class="bibtex reference internal" href="../../../zzz_references_html.html#buelervanpelt2015" id="id1">[90]</a>.
+<code class="docutils literal notranslate"><span class="pre">-hydrology</span> <span class="pre">routing</span></code>; see <a class="reference internal" href="#tab-hydrologychoice"><span class="std std-numref">Table 18</span></a> and <span id="id1">[<a class="reference internal" href="../../../zzz_references_html.html#id63"><span>74</span></a>]</span>.
 In both models, some of the water in the subglacial layer is stored locally in a layer of
 subglacial till by the hydrology model. In the <code class="docutils literal notranslate"><span class="pre">routing</span></code> model water is conserved by
 horizontally-transporting the excess water (namely <code class="docutils literal notranslate"><span class="pre">bwat</span></code>) according to the gradient of
@@ -90,7 +89,7 @@ for mass accounting, even though <code class="docutils literal notranslate"><spa
 <tr class="row-even"><td><p><code class="option docutils literal notranslate"><span class="pre">-hydrology</span> <span class="pre">null</span></code></p></td>
 <td><p>The default model with only a layer of water stored in till. Not mass conserving in
 the map-plane but much faster than <code class="docutils literal notranslate"><span class="pre">-hydrology</span> <span class="pre">routing</span></code>. Based on “undrained
-plastic bed” model of <a class="bibtex reference internal" href="../../../zzz_references_html.html#tulaczyketal2000b" id="id2">[94]</a>. The only state variable is
+plastic bed” model of <span id="id2">[<a class="reference internal" href="../../../zzz_references_html.html#id421"><span>75</span></a>]</span>. The only state variable is
 <code class="docutils literal notranslate"><span class="pre">tillwat</span></code>.</p></td>
 </tr>
 <tr class="row-odd"><td><p><code class="option docutils literal notranslate"><span class="pre">-hydrology</span> <span class="pre">steady</span></code></p></td>
@@ -156,8 +155,8 @@ with a constant.</p></td>
 specified amount; the configuration parameter <a class="reference internal" href="../../parameters/index.html#config-hydrology.tillwat_max"><code class="docutils literal notranslate"><span class="pre">hydrology</span></code>&shy;<code class="docutils literal notranslate"><span class="pre">.tillwat_max</span></code></a> sets that
 amount. The water is not conserved in the sense that water above the
 <a class="reference internal" href="../../parameters/index.html#config-hydrology.tillwat_max"><code class="docutils literal notranslate"><span class="pre">hydrology</span></code>&shy;<code class="docutils literal notranslate"><span class="pre">.tillwat_max</span></code></a> level is lost permanently. This model is based on the
-“undrained plastic bed” concept of <a class="bibtex reference internal" href="../../../zzz_references_html.html#tulaczyketal2000b" id="id3">[94]</a>; see also
-<a class="bibtex reference internal" href="../../../zzz_references_html.html#bbssasliding" id="id4">[25]</a>.</p>
+“undrained plastic bed” concept of <span id="id3">[<a class="reference internal" href="../../../zzz_references_html.html#id421"><span>75</span></a>]</span>; see also
+<span id="id4">[<a class="reference internal" href="../../../zzz_references_html.html#id22"><span>9</span></a>]</span>.</p>
 <p>In particular, denoting <code class="docutils literal notranslate"><span class="pre">tillwat</span></code> by <span class="math notranslate nohighlight">\(W_{till}\)</span>, the till-stored water layer effective
 thickness evolves by the simple equation</p>
 <div class="math notranslate nohighlight" id="equation-eq-tillwatevolve">
@@ -167,7 +166,7 @@ is the density of fresh water, and <span class="math notranslate nohighlight">\(
 bounds <span class="math notranslate nohighlight">\(0 \le W_{till} \le W_{till}^{max}\)</span> are satisfied.</p>
 <p>This <code class="docutils literal notranslate"><span class="pre">-hydrology</span> <span class="pre">null</span></code> model has been extensively tested in combination with the
 Mohr-Coulomb till (section <a class="reference internal" href="basal-strength.html#sec-basestrength"><span class="std std-ref">Controlling basal strength</span></a>) for modelling ice streaming (see
-<a class="bibtex reference internal" href="../../../zzz_references_html.html#aschwandenadalgeirsdottirkhroulev" id="id5">[62]</a> and <a class="bibtex reference internal" href="../../../zzz_references_html.html#bbssasliding" id="id6">[25]</a>, among others).</p>
+<span id="id5">[<a class="reference internal" href="../../../zzz_references_html.html#id16"><span>1</span></a>]</span> and <span id="id6">[<a class="reference internal" href="../../../zzz_references_html.html#id22"><span>9</span></a>]</span>, among others).</p>
 <div class="section" id="steady-state-flow-model">
 <span id="sec-hydrology-steady"></span><h3>“Steady state flow” model<a class="headerlink" href="#steady-state-flow-model" title="Permalink to this headline">¶</a></h3>
 <p>This model (<code class="docutils literal notranslate"><span class="pre">-hydrology</span> <span class="pre">steady</span></code>) adds an approximation of the subglacial water flux to
@@ -228,14 +227,14 @@ horizontally-transported. An additional state variable <code class="docutils lit
 of the layer of transportable water, is used by <code class="docutils literal notranslate"><span class="pre">routing</span></code>. This transportable water will
 flow in the direction of the negative of the gradient of the modeled hydraulic potential.
 In the <code class="docutils literal notranslate"><span class="pre">routing</span></code> model this potential is calculated by assuming that the transportable
-subglacial water is at the overburden pressure <a class="bibtex reference internal" href="../../../zzz_references_html.html#siegertetal2007" id="id7">[95]</a>. Ultimately the
+subglacial water is at the overburden pressure <span id="id7">[<a class="reference internal" href="../../../zzz_references_html.html#id398"><span>76</span></a>]</span>. Ultimately the
 transportable water will reach the ice sheet grounding line or ice-free-land margin, at
 which point it will be lost. The amount that is lost this way is reported to the user.</p>
 <p>In this model <code class="docutils literal notranslate"><span class="pre">tillwat</span></code> also evolves by equation <a class="reference internal" href="#equation-eq-tillwatevolve">(15)</a>, but several
 additional parameters are used in determining how the transportable water <code class="docutils literal notranslate"><span class="pre">bwat</span></code> flows
 in the model; see <a class="reference internal" href="#tab-hydrologyrouting"><span class="std std-numref">Table 20</span></a>. Specifically, the horizontal
-subglacial water flux is determined by a generalized Darcy flux relation <a class="bibtex reference internal" href="../../../zzz_references_html.html#clarke05" id="id8">[86]</a>,
-<a class="bibtex reference internal" href="../../../zzz_references_html.html#schoofetal2012" id="id9">[96]</a></p>
+subglacial water flux is determined by a generalized Darcy flux relation <span id="id8">[<a class="reference internal" href="../../../zzz_references_html.html#id75"><span>17</span></a>]</span>,
+<span id="id9">[<a class="reference internal" href="../../../zzz_references_html.html#id388"><span>77</span></a>]</span></p>
 <div class="math notranslate nohighlight" id="equation-eq-flux">
 <span class="eqno">(17)<a class="headerlink" href="#equation-eq-flux" title="Permalink to this equation">¶</a></span>\[\bq = - k\, W^\alpha\, |\nabla \psi|^{\beta-2} \nabla \psi\]</div>
 <p>where <span class="math notranslate nohighlight">\(\bq\)</span> is the lateral water flux, <span class="math notranslate nohighlight">\(W=\)</span> <code class="docutils literal notranslate"><span class="pre">bwat</span></code> is the effective thickness of the
@@ -370,9 +369,9 @@ the width of this strip, which should typically be one or two grid cells.</p></t
       <div class="clearer"></div>
     </div>
     <div class="footer">
-      Git revision v1.0-1895-g81d74cd7d
+      Git revision v1.0-1899-g0da7adcac
       committed by Constantine Khrulev
-      on 2021-01-21 12:57:36 -0900 |
+      on 2021-01-28 16:35:19 -0900 |
       &copy; 2004--2020, the PISM authors.
       
     </div>

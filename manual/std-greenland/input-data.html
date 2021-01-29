@@ -4,15 +4,14 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Input data &#8212; PISM, a Parallel Ice Sheet Model 1.2 documentation</title>
-    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
     <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
     <script src="../../_static/jquery.js"></script>
     <script src="../../_static/underscore.js"></script>
     <script src="../../_static/doctools.js"></script>
-    <script src="../../_static/language_data.js"></script>
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -43,14 +42,14 @@ for PISM, do:</p>
 </div>
 <p>The script <code class="docutils literal notranslate"><span class="pre">preprocess.sh</span></code> requires <code class="docutils literal notranslate"><span class="pre">wget</span></code> and also the <a class="reference external" href="http://nco.sourceforge.net/">NetCDF Operators</a>. It
 downloads the version 1.1 of the SeaRISE “master” present-day data set, which contains ice
-thickness and bedrock topography from BEDMAP <a class="bibtex reference internal" href="../../zzz_references_html.html#bamberlayberrygogenini" id="id1">[125]</a>, and modeled
-precipitation and surface mass balance rates from RACMO <a class="bibtex reference internal" href="../../zzz_references_html.html#ettemaetal2009" id="id2">[59]</a>, among
+thickness and bedrock topography from BEDMAP <span id="id1">[<a class="reference internal" href="../../zzz_references_html.html#id32"><span>5</span></a>]</span>, and modeled
+precipitation and surface mass balance rates from RACMO <span id="id2">[<a class="reference internal" href="../../zzz_references_html.html#id102"><span>6</span></a>]</span>, among
 other fields.</p>
 <p>In particular, it creates three new NetCDF files which can be read by PISM. The
 spatially-varying fields, with adjusted metadata, go in <code class="docutils literal notranslate"><span class="pre">pism_Greenland_5km_v1.1.nc</span></code>.
 The other two new files contain famous time-dependent paleo-climate records from ice and
-seabed cores: <code class="docutils literal notranslate"><span class="pre">pism_dT.nc</span></code> has the GRIP temperature record <a class="bibtex reference internal" href="../../zzz_references_html.html#johnsenetalgrip" id="id3">[8]</a> and
-<code class="docutils literal notranslate"><span class="pre">pism_dSL.nc</span></code> has the SPECMAP sea level record <a class="bibtex reference internal" href="../../zzz_references_html.html#imbrieetal1984" id="id4">[9]</a>.</p>
+seabed cores: <code class="docutils literal notranslate"><span class="pre">pism_dT.nc</span></code> has the GRIP temperature record <span id="id3">[<a class="reference internal" href="../../zzz_references_html.html#id207"><span>7</span></a>]</span> and
+<code class="docutils literal notranslate"><span class="pre">pism_dSL.nc</span></code> has the SPECMAP sea level record <span id="id4">[<a class="reference internal" href="../../zzz_references_html.html#id198"><span>8</span></a>]</span>.</p>
 <p>Any of these NetCDF files can be viewed with <code class="docutils literal notranslate"><span class="pre">ncview</span></code> or other NetCDF visualization
 tools; see <a class="reference internal" href="../practical-usage/netcdf-tools.html#tab-netcdfview"><span class="std std-numref">Table 24</span></a>. An application of IDV to the master data set produced
 <a class="reference internal" href="#fig-sr-input"><span class="std std-numref">Fig. 1</span></a>, for example. Use <code class="docutils literal notranslate"><span class="pre">ncdump</span> <span class="pre">-h</span></code> to see the metadata and history of
@@ -149,9 +148,9 @@ respectively, in <code class="docutils literal notranslate"><span class="pre">pi
       <div class="clearer"></div>
     </div>
     <div class="footer">
-      Git revision v1.0-1895-g81d74cd7d
+      Git revision v1.0-1899-g0da7adcac
       committed by Constantine Khrulev
-      on 2021-01-21 12:57:36 -0900 |
+      on 2021-01-28 16:35:19 -0900 |
       &copy; 2004--2020, the PISM authors.
       
     </div>

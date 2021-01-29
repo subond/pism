@@ -4,15 +4,14 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>EISMINT II &#8212; PISM, a Parallel Ice Sheet Model 1.2 documentation</title>
-    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
     <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
     <script src="../../_static/jquery.js"></script>
     <script src="../../_static/underscore.js"></script>
     <script src="../../_static/doctools.js"></script>
-    <script src="../../_static/language_data.js"></script>
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -34,7 +33,7 @@
       
   <div class="section" id="eismint-ii">
 <span id="sec-eismintii"></span><h1>EISMINT II<a class="headerlink" href="#eismint-ii" title="Permalink to this headline">¶</a></h1>
-<p>There are seven experiments described in the published EISMINT II writeup <a class="bibtex reference internal" href="../../zzz_references_html.html#eismint00" id="id1">[21]</a>.
+<p>There are seven experiments described in the published EISMINT II writeup <span id="id1">[<a class="reference internal" href="../../zzz_references_html.html#id94"><span>11</span></a>]</span>.
 They are named A, B, C, D, F, G, and H. They have these common features:</p>
 <ul class="simple">
 <li><p>runs are for <span class="math notranslate nohighlight">\(2\times 10^5\)</span> years, with no prescribed time step;</p></li>
@@ -42,16 +41,16 @@ They are named A, B, C, D, F, G, and H. They have these common features:</p>
 <li><p>surface inputs (temperature and mass balance) have angular symmetry around the grid center;</p></li>
 <li><p>the bed is flat and does not move (no isostasy);</p></li>
 <li><p>the temperature in the bedrock is not modeled;</p></li>
-<li><p>only the cold (not polythermal) thermomechanically-coupled SIA is used <a class="bibtex reference internal" href="../../zzz_references_html.html#eismint00" id="id2">[21]</a>; and</p></li>
+<li><p>only the cold (not polythermal) thermomechanically-coupled SIA is used <span id="id2">[<a class="reference internal" href="../../zzz_references_html.html#id94"><span>11</span></a>]</span>; and</p></li>
 <li><p>basal melt rates do not affect the evolution of the ice sheet.</p></li>
 </ul>
 <p>The experiments differ from each other in their various combinations of surface
 temperature and mass balance parameterizations. Experiments H and G involve basal sliding,
-under the physically-dubious SIA sliding rubric (<a class="bibtex reference internal" href="../../zzz_references_html.html#bbssasliding" id="id3">[25]</a>, Appendix B), while the
+under the physically-dubious SIA sliding rubric (<span id="id3">[<a class="reference internal" href="../../zzz_references_html.html#id22"><span>9</span></a>]</span>, Appendix B), while the
 others don’t. Four experiments start with zero ice (A,F,G,H), while the other experiments
 (B,C,D) start from the final state of experiment A.</p>
-<p>In addition to the seven experiments published in <a class="bibtex reference internal" href="../../zzz_references_html.html#eismint00" id="id4">[21]</a>, there were an additional
-five experiments described in the EISMINT II intercomparison description <a class="bibtex reference internal" href="../../zzz_references_html.html#eisiidescribe" id="id5">[108]</a>,
+<p>In addition to the seven experiments published in <span id="id4">[<a class="reference internal" href="../../zzz_references_html.html#id94"><span>11</span></a>]</span>, there were an additional
+five experiments described in the EISMINT II intercomparison description <span id="id5">[<a class="reference internal" href="../../zzz_references_html.html#id93"><span>104</span></a>]</span>,
 labeled E, I, J, K, and L. These experiments share most features listed above, but with
 the following differences. Experiment E is the same as experiment A except that the peak
 of the accumulation, and also the low point of the surface temperature, are shifted by 100
@@ -60,7 +59,7 @@ experiment A. Experiments I and J are similar to experiment A but with non-flat 
 bed topography. Experiments K and L are similar to experiment C but with non-flat “mound”
 bed topography.</p>
 <p>See <a class="reference internal" href="#tab-eisii"><span class="std std-numref">Table 39</span></a> for how to run all EISMINT II experiments in PISM.
-Experiments E – L are only documented in <a class="bibtex reference internal" href="../../zzz_references_html.html#eisiidescribe" id="id6">[108]</a>.</p>
+Experiments E – L are only documented in <span id="id6">[<a class="reference internal" href="../../zzz_references_html.html#id93"><span>104</span></a>]</span>.</p>
 <table class="colwidths-given docutils align-default" id="tab-eisii">
 <caption><span class="caption-number">Table 39 </span><span class="caption-text">Running the EISMINT II experiments in PISM. Use <code class="docutils literal notranslate"><span class="pre">-skip</span> <span class="pre">-skip_max</span> <span class="pre">5</span></code>, on
              the <span class="math notranslate nohighlight">\(61\times 61\)</span> default grid, for significant speedup.</span><a class="headerlink" href="#tab-eisii" title="Permalink to this table">¶</a></caption>
@@ -87,7 +86,7 @@ Experiments E – L are only documented in <a class="bibtex reference internal" 
 <td><p>smaller area of accumulation</p></td>
 </tr>
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">-eisII</span> <span class="pre">F</span> <span class="pre">-Mx</span> <span class="pre">61</span> <span class="pre">-My</span> <span class="pre">61</span> <span class="pre">-Mz</span> <span class="pre">81</span> <span class="pre">-Lz</span> <span class="pre">6000</span> <span class="pre">-y</span> <span class="pre">2e5</span> <span class="pre">-o</span> <span class="pre">eisIIF.nc</span></code></p></td>
-<td><p>colder; famous spokes <a class="bibtex reference internal" href="../../zzz_references_html.html#bbl" id="id7">[26]</a></p></td>
+<td><p>colder; famous spokes <span id="id7">[<a class="reference internal" href="../../zzz_references_html.html#id21"><span>15</span></a>]</span></p></td>
 </tr>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">-eisII</span> <span class="pre">G</span> <span class="pre">-Mx</span> <span class="pre">61</span> <span class="pre">-My</span> <span class="pre">61</span> <span class="pre">-Mz</span> <span class="pre">201</span> <span class="pre">-Lz</span> <span class="pre">5000</span> <span class="pre">-y</span> <span class="pre">2e5</span> <span class="pre">-o</span> <span class="pre">eisIIG.nc</span></code></p></td>
 <td><p>sliding (regardless of temperature)</p></td>
@@ -152,7 +151,7 @@ EISMINT II experiments.</p>
 <tr class="row-even"><td><p><code class="option docutils literal notranslate"><span class="pre">-eisII</span></code></p></td>
 <td><p>A</p></td>
 <td></td>
-<td><p>Choose single character name of EISMINT II <a class="bibtex reference internal" href="../../zzz_references_html.html#eismint00" id="id8">[21]</a> simplified geometry
+<td><p>Choose single character name of EISMINT II <span id="id8">[<a class="reference internal" href="../../zzz_references_html.html#id94"><span>11</span></a>]</span> simplified geometry
 experiment. See <a class="reference internal" href="#tab-eisii"><span class="std std-numref">Table 39</span></a>.</p></td>
 </tr>
 <tr class="row-odd"><td><p><code class="option docutils literal notranslate"><span class="pre">-Mmax</span></code></p></td>
@@ -278,9 +277,9 @@ II default.</p></td>
       <div class="clearer"></div>
     </div>
     <div class="footer">
-      Git revision v1.0-1895-g81d74cd7d
+      Git revision v1.0-1899-g0da7adcac
       committed by Constantine Khrulev
-      on 2021-01-21 12:57:36 -0900 |
+      on 2021-01-28 16:35:19 -0900 |
       &copy; 2004--2020, the PISM authors.
       
     </div>
