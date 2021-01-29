@@ -3574,19 +3574,6 @@ removed in a later PISM version.</p>
 </dl>
 </p>
 </li>
-<li><p><span class="target" id="config-ocean.always_grounded"></span><code class="docutils literal notranslate"><span class="pre">ocean.always_grounded</span></code></p>
-<p>Dry (ocean-less) simulation; ice is considered grounded regardless of ice thickness, bed elevation, and sea level.<dl class="field-list simple">
-<dt class="field-odd">Type</dt>
-<dd class="field-odd">flag</dd>
-<dt class="field-even">Default value</dt>
-<dd class="field-even"><p>no</p>
-</dd>
-<dt class="field-odd">Option</dt>
-<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">-dry</span></code></p>
-</dd>
-</dl>
-</p>
-</li>
 <li><p><span class="target" id="config-ocean.anomaly.file"></span><code class="docutils literal notranslate"><span class="pre">ocean.anomaly.file</span></code></p>
 <p>Name of the file containing shelf basal mass flux offset fields.<dl class="field-list simple">
 <dt class="field-odd">Type</dt>
@@ -4713,6 +4700,16 @@ removed in a later PISM version.</p>
 </dd>
 <dt class="field-odd">Option</dt>
 <dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">-title</span></code></p>
+</dd>
+</dl>
+</p>
+</li>
+<li><p><span class="target" id="config-sea_level.constant.value"></span><code class="docutils literal notranslate"><span class="pre">sea_level.constant.value</span></code></p>
+<p>Sea level elevation used by the <code class="docutils literal notranslate"><span class="pre">constant</span></code> sea level model<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd">number</dd>
+<dt class="field-even">Default value</dt>
+<dd class="field-even"><p>0<em> (meters)</em></p>
 </dd>
 </dl>
 </p>
@@ -6193,9 +6190,9 @@ removed in a later PISM version.</p>
       <div class="clearer"></div>
     </div>
     <div class="footer">
-      Git revision v1.0-1899-g0da7adcac
+      Git revision v1.0-1903-g7b7126241
       committed by Constantine Khrulev
-      on 2021-01-28 16:35:19 -0900 |
+      on 2021-01-29 13:22:13 -0900 |
       &copy; 2004--2020, the PISM authors.
       
     </div>
