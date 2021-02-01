@@ -41,7 +41,7 @@ the assessment of numerical errors is called <em>verification</em>… Validation
 only after verification, otherwise agreement between measured and computed results may
 well be fortuitous.</p>
 <p>P. Wesseling, (2001) <em>Principles of Computational Fluid Dynamics</em>, pp. 560–561
-<span id="id1">[<a class="reference internal" href="../../zzz_references_html.html#id442"><span>107</span></a>]</span></p>
+<span id="id1">[<a class="reference internal" href="../../zzz_references_html.html#id442"><span>108</span></a>]</span></p>
 </div></blockquote>
 <p>Verification is the essentially mathematical task of checking that the predictions of the
 numerical code are close to the predictions of a continuum model, the one which the
@@ -49,7 +49,7 @@ numerical code claims to approximate. It is a crucial task for a code as complic
 PISM. In verification there is no comparison between model output and observations of
 nature. Instead, one compares exact solutions of the continuum model, in circumstances in
 which they are available, to their numerical approximations.</p>
-<p>Reference <span id="id2">[<a class="reference internal" href="../../zzz_references_html.html#id361"><span>108</span></a>]</span> gives a broad discussion of verification and validation in
+<p>Reference <span id="id2">[<a class="reference internal" href="../../zzz_references_html.html#id361"><span>109</span></a>]</span> gives a broad discussion of verification and validation in
 computational fluid dynamics. See <span id="id3">[<a class="reference internal" href="../../zzz_references_html.html#id27"><span>57</span></a>]</span> and <span id="id4">[<a class="reference internal" href="../../zzz_references_html.html#id22"><span>15</span></a>]</span> for discussion of verification
 issues for the isothermal and thermomechanically coupled shallow ice approximation (SIA),
 respectively, and for exact solutions to these models, and <span id="id5">[<a class="reference internal" href="../../zzz_references_html.html#id23"><span>9</span></a>]</span>,
@@ -83,7 +83,7 @@ class of the PISM base class.</p>
 </tr>
 <tr class="row-odd"><td><p>B</p></td>
 <td><p>isothermal SIA, flat bed, zero accumulation</p></td>
-<td><p><span id="id8">[<a class="reference internal" href="../../zzz_references_html.html#id27"><span>57</span></a>]</span>, <span id="id9">[<a class="reference internal" href="../../zzz_references_html.html#id160"><span>94</span></a>]</span></p></td>
+<td><p><span id="id8">[<a class="reference internal" href="../../zzz_references_html.html#id27"><span>57</span></a>]</span>, <span id="id9">[<a class="reference internal" href="../../zzz_references_html.html#id160"><span>95</span></a>]</span></p></td>
 <td><p>similarity solution</p></td>
 </tr>
 <tr class="row-even"><td><p>C</p></td>
@@ -128,7 +128,7 @@ class of the PISM base class.</p>
 </tr>
 <tr class="row-even"><td><p>K</p></td>
 <td><p>pure conduction in ice and bedrock</p></td>
-<td><p><span id="id20">[<a class="reference internal" href="../../zzz_references_html.html#id63"><span>109</span></a>]</span></p></td>
+<td><p><span id="id20">[<a class="reference internal" href="../../zzz_references_html.html#id63"><span>110</span></a>]</span></p></td>
 <td></td>
 </tr>
 <tr class="row-odd"><td><p>L</p></td>
@@ -240,8 +240,8 @@ model runs.</p></li>
 <p>Knowing the error decay rate may give a prediction of how fine a grid is necessary to
 achieve a desired smallness for the numerical error.</p>
 <p>Therefore one must “go down” a grid refinement “path” and measure numerical error for each
-grid <span id="id21">[<a class="reference internal" href="../../zzz_references_html.html#id361"><span>108</span></a>]</span>. The refinement path is defined by a sequence of spatial grid cell sizes
-which decrease toward the refinement limit of zero size <span id="id22">[<a class="reference internal" href="../../zzz_references_html.html#id290"><span>110</span></a>]</span>. In PISM the
+grid <span id="id21">[<a class="reference internal" href="../../zzz_references_html.html#id361"><span>109</span></a>]</span>. The refinement path is defined by a sequence of spatial grid cell sizes
+which decrease toward the refinement limit of zero size <span id="id22">[<a class="reference internal" href="../../zzz_references_html.html#id290"><span>111</span></a>]</span>. In PISM the
 timestep <span class="math notranslate nohighlight">\(\Delta t\)</span> is determined adaptively by a stability criterion (see
 section <a class="reference internal" href="../practical-usage/time-stepping.html#sec-adapt"><span class="std std-ref">Understanding adaptive time-stepping</span></a>). In PISM one specifies the number of grid points, thus the
 grid cell sizes because the overall dimensions of the computational box are normally
@@ -356,9 +356,9 @@ not very smooth at the free boundary <span id="id25">[<a class="reference intern
       <div class="clearer"></div>
     </div>
     <div class="footer">
-      Git revision v1.0-1920-ge9bdb3ace
+      Git revision v1.0-1924-g6e2b3b712
       committed by Constantine Khrulev
-      on 2021-02-01 11:14:49 -0900 |
+      on 2021-02-01 12:40:57 -0900 |
       &copy; 2004--2020, the PISM authors.
       
     </div>
