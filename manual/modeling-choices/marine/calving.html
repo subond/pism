@@ -65,15 +65,15 @@ implemented in PISM.</p>
 calving rate computed by <code class="docutils literal notranslate"><span class="pre">eigen_calving</span></code> or <code class="docutils literal notranslate"><span class="pre">vonmises_calving</span></code>.</p></td>
 </tr>
 <tr class="row-odd"><td><p><code class="option docutils literal notranslate"><span class="pre">-calving</span> <span class="pre">eigen_calving</span></code></p></td>
-<td><p>Physically-based calving parameterization <span id="id1">[<a class="reference internal" href="../../../zzz_references_html.html#id251"><span>82</span></a>]</span>,
-<span id="id2">[<a class="reference internal" href="../../../zzz_references_html.html#id443"><span>16</span></a>]</span>. Whereever the product of principal strain rates is positive,
+<td><p>Physically-based calving parameterization <span id="id1">[<a class="reference internal" href="../../../zzz_references_html.html#id252"><span>82</span></a>]</span>,
+<span id="id2">[<a class="reference internal" href="../../../zzz_references_html.html#id444"><span>16</span></a>]</span>. Whereever the product of principal strain rates is positive,
 the calving rate is proportional to this product.</p></td>
 </tr>
 <tr class="row-even"><td><p><code class="option docutils literal notranslate"><span class="pre">-eigen_calving_K</span></code> (<span class="math notranslate nohighlight">\(m s\)</span>)</p></td>
 <td><p>Sets the proportionality parameter <span class="math notranslate nohighlight">\(K\)</span> in <span class="math notranslate nohighlight">\(\text{m}\,\text{s}\)</span>.</p></td>
 </tr>
 <tr class="row-odd"><td><p><code class="option docutils literal notranslate"><span class="pre">-calving</span> <span class="pre">vonmises_calving</span></code></p></td>
-<td><p>Physically-based calving parameterization <span id="id3">[<a class="reference internal" href="../../../zzz_references_html.html#id287"><span>86</span></a>]</span> that uses the tensile
+<td><p>Physically-based calving parameterization <span id="id3">[<a class="reference internal" href="../../../zzz_references_html.html#id288"><span>86</span></a>]</span> that uses the tensile
 von Mises stresses.</p></td>
 </tr>
 <tr class="row-even"><td><p><code class="option docutils literal notranslate"><span class="pre">-vonmises_calving_sigma_max</span></code> (<span class="math notranslate nohighlight">\(Pa\)</span>)</p></td>
@@ -111,7 +111,7 @@ floating ice.</p></td>
 <div class="section" id="eigen-calving">
 <span id="sec-eigen-calving"></span><h2><a class="toc-backref" href="#id8">Eigen calving</a><a class="headerlink" href="#eigen-calving" title="Permalink to this headline">¶</a></h2>
 <p>PISM-PIK introduced a physically-based 2D-calving parameterization
-<span id="id4">[<a class="reference internal" href="../../../zzz_references_html.html#id251"><span>82</span></a>]</span>. This calving parameterization is turned on in PISM by option
+<span id="id4">[<a class="reference internal" href="../../../zzz_references_html.html#id252"><span>82</span></a>]</span>. This calving parameterization is turned on in PISM by option
 <code class="option docutils literal notranslate"><span class="pre">-calving</span> <span class="pre">eigen_calving</span></code>. Average calving rates, <span class="math notranslate nohighlight">\(c\)</span>, are proportional to the product
 of principal components of the horizontal strain rates, <span class="math notranslate nohighlight">\(\dot{\epsilon}_{_\pm}\)</span>, derived
 from SSA-velocities</p>
@@ -152,7 +152,7 @@ rate.</p>
 shelves, it does not work for outlet glaciers that flow in narrow fjords. Along valleys
 with nearly parallel walls, the transverse component of the velocity is close to zero, and
 the transversal strain rate is therefore also close to zero and noisy.</p>
-<p>Instead of the product of the eigen strain rates, <span id="id5">[<a class="reference internal" href="../../../zzz_references_html.html#id287"><span>86</span></a>]</span> proposes a calving
+<p>Instead of the product of the eigen strain rates, <span id="id5">[<a class="reference internal" href="../../../zzz_references_html.html#id288"><span>86</span></a>]</span> proposes a calving
 law where the calving rate <span class="math notranslate nohighlight">\(c\)</span> is a functionally related to tensile stresses:</p>
 <div class="math notranslate nohighlight" id="equation-eq-calv3">
 <span class="eqno">(22)<a class="headerlink" href="#equation-eq-calv3" title="Permalink to this equation">¶</a></span>\[c = |\mathbf{u}| \frac{\tilde{\sigma}}{\sigma_{max}},\]</div>
@@ -164,7 +164,7 @@ is defined as</p>
 <div class="math notranslate nohighlight" id="equation-eq-calv4">
 <span class="eqno">(23)<a class="headerlink" href="#equation-eq-calv4" title="Permalink to this equation">¶</a></span>\[\tilde{\dot{\epsilon}}_e = \left(\frac{1}{2}\left(\max(0,\dot{\epsilon}_{_+})^2 +
 \max(0,\dot{\epsilon}_{_-})^2\right)\right)^{1/2}.\]</div>
-<p>Following <span id="id6">[<a class="reference internal" href="../../../zzz_references_html.html#id287"><span>86</span></a>]</span> <span class="math notranslate nohighlight">\(\tilde{\sigma}\)</span> is given by</p>
+<p>Following <span id="id6">[<a class="reference internal" href="../../../zzz_references_html.html#id288"><span>86</span></a>]</span> <span class="math notranslate nohighlight">\(\tilde{\sigma}\)</span> is given by</p>
 <div class="math notranslate nohighlight" id="equation-eq-calv5">
 <span class="eqno">(24)<a class="headerlink" href="#equation-eq-calv5" title="Permalink to this equation">¶</a></span>\[\tilde{\sigma} = \sqrt{3} B \tilde{\dot{{\epsilon}}}_e^{1/n},\]</div>
 <p>where <span class="math notranslate nohighlight">\(B\)</span> is the ice hardness.</p>
@@ -295,9 +295,9 @@ prescribed by creating a field with an appropriately decreasing maximum extent.<
       <div class="clearer"></div>
     </div>
     <div class="footer">
-      Git revision v1.0-1919-g60bd56ee2
+      Git revision v1.0-1920-ge9bdb3ace
       committed by Constantine Khrulev
-      on 2021-02-01 10:10:53 -0900 |
+      on 2021-02-01 11:14:49 -0900 |
       &copy; 2004--2020, the PISM authors.
       
     </div>

@@ -34,24 +34,24 @@
   <div class="section" id="choosing-the-stress-balance">
 <span id="sec-stressbalance"></span><h1>Choosing the stress balance<a class="headerlink" href="#choosing-the-stress-balance" title="Permalink to this headline">¶</a></h1>
 <p>The basic stress balance used for all grounded ice in PISM is the non-sliding,
-thermomechanically-coupled SIA <span id="id1">[<a class="reference internal" href="../../../zzz_references_html.html#id21"><span>15</span></a>]</span>. For the vast majority of most ice sheets, as
+thermomechanically-coupled SIA <span id="id1">[<a class="reference internal" href="../../../zzz_references_html.html#id22"><span>15</span></a>]</span>. For the vast majority of most ice sheets, as
 measured by area or volume, this is an appropriate model, which is an <span class="math notranslate nohighlight">\(O(\epsilon^2)\)</span>
 approximation to the Stokes model if <span class="math notranslate nohighlight">\(\epsilon\)</span> is the depth-to-length ratio of the ice
-sheet <span id="id2">[<a class="reference internal" href="../../../zzz_references_html.html#id114"><span>37</span></a>]</span>.</p>
+sheet <span id="id2">[<a class="reference internal" href="../../../zzz_references_html.html#id115"><span>37</span></a>]</span>.</p>
 <p>The shallow shelf approximation (SSA) stress balance applies to floating ice. See the Ross
 ice shelf example in section <a class="reference internal" href="../../validation/ross.html#sec-ross"><span class="std std-ref">An SSA flow model for the Ross Ice Shelf in Antarctica</span></a> for an example in which the SSA is only
 applied to floating ice.</p>
 <p>In PISM the SSA is also used to describe the sliding of grounded ice and the formation of
-ice streams <span id="id3">[<a class="reference internal" href="../../../zzz_references_html.html#id22"><span>9</span></a>]</span>. Specifically for the SSA with “plastic” (Coulomb
+ice streams <span id="id3">[<a class="reference internal" href="../../../zzz_references_html.html#id23"><span>9</span></a>]</span>. Specifically for the SSA with “plastic” (Coulomb
 friction) basal resistance, the locations of ice streams are determined as part of a free
-boundary problem of Schoof <span id="id4">[<a class="reference internal" href="../../../zzz_references_html.html#id385"><span>20</span></a>]</span>, a model for emergent ice streams within a
+boundary problem of Schoof <span id="id4">[<a class="reference internal" href="../../../zzz_references_html.html#id386"><span>20</span></a>]</span>, a model for emergent ice streams within a
 ice sheet and ice shelf system. This model explains ice streams through a combination of
 plastic till failure and SSA stress balance.</p>
 <p>This SSA description of ice streams is the preferred “sliding law” for the SIA
-<span id="id5">[<a class="reference internal" href="../../../zzz_references_html.html#id22"><span>9</span></a>]</span>, <span id="id6">[<a class="reference internal" href="../../../zzz_references_html.html#id443"><span>16</span></a>]</span>. The SSA should be combined with the SIA,
+<span id="id5">[<a class="reference internal" href="../../../zzz_references_html.html#id23"><span>9</span></a>]</span>, <span id="id6">[<a class="reference internal" href="../../../zzz_references_html.html#id444"><span>16</span></a>]</span>. The SSA should be combined with the SIA,
 in this way, in preference to classical SIA sliding laws which make the sliding velocity of ice a
 local function of the basal value of the driving stress. The resulting combination of SIA
-and SSA is a “hybrid” approximation of the Stokes model <span id="id7">[<a class="reference internal" href="../../../zzz_references_html.html#id443"><span>16</span></a>]</span>. Option
+and SSA is a “hybrid” approximation of the Stokes model <span id="id7">[<a class="reference internal" href="../../../zzz_references_html.html#id444"><span>16</span></a>]</span>. Option
 <code class="docutils literal notranslate"><span class="pre">-stress_balance</span> <span class="pre">ssa+sia</span></code> turns on this “hybrid” model. In this use of the SSA as a
 sliding law, floating ice is also subject to the SSA.</p>
 <p><a class="reference internal" href="#tab-stress-balance-choice"><span class="std std-numref">Table 9</span></a> describes the basic choice of stress balance.</p>
@@ -86,8 +86,8 @@ Horizontal ice velocity is constant throughout ice columns.</p></td>
 <tr class="row-even"><td><p><code class="option docutils literal notranslate"><span class="pre">-stress_balance</span> <span class="pre">ssa+sia</span></code></p></td>
 <td><p>The recommended sliding law, which gives the SIA+SSA hybrid stress balance.
 Combines SSA-computed velocity, using pseudo-plastic till, with SIA-computed
-velocity according to the combination in <span id="id8">[<a class="reference internal" href="../../../zzz_references_html.html#id443"><span>16</span></a>]</span>; similar to
-<span id="id9">[<a class="reference internal" href="../../../zzz_references_html.html#id22"><span>9</span></a>]</span>. Floating ice uses SSA only.</p></td>
+velocity according to the combination in <span id="id8">[<a class="reference internal" href="../../../zzz_references_html.html#id444"><span>16</span></a>]</span>; similar to
+<span id="id9">[<a class="reference internal" href="../../../zzz_references_html.html#id23"><span>9</span></a>]</span>. Floating ice uses SSA only.</p></td>
 </tr>
 <tr class="row-odd"><td><p><code class="option docutils literal notranslate"><span class="pre">-stress_balance</span> <span class="pre">prescribed_sliding+sia</span></code></p></td>
 <td><p>Use the constant-in-time prescribed sliding velocity in combination with the
@@ -126,8 +126,8 @@ melt rate which is, primarily, thermodynamically-determined (see <a class="refer
 <td><p>Both finite difference (<code class="docutils literal notranslate"><span class="pre">fd</span></code>; the default) and finite element (<code class="docutils literal notranslate"><span class="pre">fem</span></code>) versions
 of the SSA numerical solver are implemented in PISM. The <code class="docutils literal notranslate"><span class="pre">fd</span></code> solver is the only
 one which allows PIK options (section <a class="reference internal" href="../marine/pik.html#sec-pism-pik"><span class="std std-ref">PIK options for marine ice sheets</span></a>). <code class="docutils literal notranslate"><span class="pre">fd</span></code> uses Picard
-iteration <span id="id10">[<a class="reference internal" href="../../../zzz_references_html.html#id22"><span>9</span></a>]</span>, while <code class="docutils literal notranslate"><span class="pre">fem</span></code> uses a Newton method. The <code class="docutils literal notranslate"><span class="pre">fem</span></code> solver
-has surface velocity inversion capability <span id="id11">[<a class="reference internal" href="../../../zzz_references_html.html#id155"><span>26</span></a>]</span>.</p></td>
+iteration <span id="id10">[<a class="reference internal" href="../../../zzz_references_html.html#id23"><span>9</span></a>]</span>, while <code class="docutils literal notranslate"><span class="pre">fem</span></code> uses a Newton method. The <code class="docutils literal notranslate"><span class="pre">fem</span></code> solver
+has surface velocity inversion capability <span id="id11">[<a class="reference internal" href="../../../zzz_references_html.html#id156"><span>26</span></a>]</span>.</p></td>
 </tr>
 <tr class="row-odd"><td><p><code class="option docutils literal notranslate"><span class="pre">-ssa_eps</span></code> (<span class="math notranslate nohighlight">\(10^{13}\)</span>)</p></td>
 <td><p>The numerical schemes for the SSA compute an effective viscosity <span class="math notranslate nohighlight">\(\nu\)</span> which
@@ -219,7 +219,7 @@ simulation if <span class="math notranslate nohighlight">\(D\)</span> is very la
 comparisons of the “hybrid” model mentioned above to older studies using this
 parameterization.</p>
 </div>
-<p>PISM implements equation 5 from <span id="id12">[<a class="reference internal" href="../../../zzz_references_html.html#id411"><span>62</span></a>]</span>:</p>
+<p>PISM implements equation 5 from <span id="id12">[<a class="reference internal" href="../../../zzz_references_html.html#id412"><span>62</span></a>]</span>:</p>
 <div class="math notranslate nohighlight" id="equation-eq-weertman-sliding">
 <span class="eqno">(4)<a class="headerlink" href="#equation-eq-weertman-sliding" title="Permalink to this equation">¶</a></span>\[\mathbf{u}_s = \frac{2 A_s \beta_c (\rho g H)^{n}}{N - P} |\nabla h|^{n-1} \nabla h.\]</div>
 <table class="colwidths-given docutils align-default" id="tab-weertman-notation">
@@ -274,7 +274,7 @@ ice velocity) or <code class="option docutils literal notranslate"><span class="
 as a sliding law with the deformational flow modeled using the SIA model.</p>
 <p>Use configuration parameters <a class="reference internal" href="../../parameters/index.html#config-stress_balance.weertman_sliding.k"><code class="docutils literal notranslate"><span class="pre">stress_balance</span></code>&shy;<code class="docutils literal notranslate"><span class="pre">.weertman_sliding</span></code>&shy;<code class="docutils literal notranslate"><span class="pre">.k</span></code></a> and
 <a class="reference internal" href="../../parameters/index.html#config-stress_balance.weertman_sliding.A"><code class="docutils literal notranslate"><span class="pre">stress_balance</span></code>&shy;<code class="docutils literal notranslate"><span class="pre">.weertman_sliding</span></code>&shy;<code class="docutils literal notranslate"><span class="pre">.A</span></code></a> tot set <span class="math notranslate nohighlight">\(k\)</span> and <span class="math notranslate nohighlight">\(A_s\)</span>, respectively. Default
-values come from <span id="id13">[<a class="reference internal" href="../../../zzz_references_html.html#id411"><span>62</span></a>]</span>.</p>
+values come from <span id="id13">[<a class="reference internal" href="../../../zzz_references_html.html#id412"><span>62</span></a>]</span>.</p>
 </div>
 </div>
 
@@ -362,9 +362,9 @@ values come from <span id="id13">[<a class="reference internal" href="../../../z
       <div class="clearer"></div>
     </div>
     <div class="footer">
-      Git revision v1.0-1919-g60bd56ee2
+      Git revision v1.0-1920-ge9bdb3ace
       committed by Constantine Khrulev
-      on 2021-02-01 10:10:53 -0900 |
+      on 2021-02-01 11:14:49 -0900 |
       &copy; 2004--2020, the PISM authors.
       
     </div>
