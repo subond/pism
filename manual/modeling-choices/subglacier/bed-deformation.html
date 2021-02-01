@@ -33,8 +33,8 @@
       
   <div class="section" id="earth-deformation-models">
 <span id="sec-beddef"></span><h1>Earth deformation models<a class="headerlink" href="#earth-deformation-models" title="Permalink to this headline">¶</a></h1>
-<p>The option <code class="option docutils literal notranslate"><span class="pre">-bed_def</span></code> <code class="docutils literal notranslate"><span class="pre">[iso,</span> <span class="pre">lc]</span></code> (flag <a class="reference internal" href="../../parameters/index.html#config-bed_deformation.model"><code class="docutils literal notranslate"><span class="pre">bed_deformation</span></code>&shy;<code class="docutils literal notranslate"><span class="pre">.model</span></code></a>) turns one
-of the two available bed deformation models.</p>
+<p>The option <code class="option docutils literal notranslate"><span class="pre">-bed_def</span></code> <code class="docutils literal notranslate"><span class="pre">[iso,</span> <span class="pre">lc,</span> <span class="pre">given]</span></code> (flag <a class="reference internal" href="../../parameters/index.html#config-bed_deformation.model"><code class="docutils literal notranslate"><span class="pre">bed_deformation</span></code>&shy;<code class="docutils literal notranslate"><span class="pre">.model</span></code></a>) turns one
+of the three available bed deformation models.</p>
 <div class="section" id="point-wise-isostasy">
 <span id="sec-bed-def-iso"></span><h2>Point-wise isostasy<a class="headerlink" href="#point-wise-isostasy" title="Permalink to this headline">¶</a></h2>
 <p>The first model <code class="docutils literal notranslate"><span class="pre">-bed_def</span> <span class="pre">iso</span></code>, is instantaneous pointwise isostasy. This model assumes
@@ -65,6 +65,8 @@ then this model will initialize so that it starts with the given uplift rate.</p
 <p>All parameters (except for <a class="reference internal" href="../../parameters/index.html#config-constants.ice.density"><code class="docutils literal notranslate"><span class="pre">constants</span></code>&shy;<code class="docutils literal notranslate"><span class="pre">.ice</span></code>&shy;<code class="docutils literal notranslate"><span class="pre">.density</span></code></a>) controlling the Lingle-Clark
 model are listed below (they all have the prefix <code class="docutils literal notranslate"><span class="pre">bed.deformation.</span></code>).</p>
 <ol class="simple">
+<li><p><a class="reference internal" href="../../parameters/index.html#config-bed_deformation.given.file"><code class="docutils literal notranslate"><span class="pre">given</span></code>&shy;<code class="docutils literal notranslate"><span class="pre">.file</span></code></a> Name of the file containing time-dependent <code class="variable docutils literal notranslate"><span class="pre">topg_delta</span></code>.</p></li>
+<li><p><a class="reference internal" href="../../parameters/index.html#config-bed_deformation.given.reference_file"><code class="docutils literal notranslate"><span class="pre">given</span></code>&shy;<code class="docutils literal notranslate"><span class="pre">.reference_file</span></code></a> Name of the file containing the reference bed topography <code class="variable docutils literal notranslate"><span class="pre">topg</span></code>.</p></li>
 <li><p><a class="reference internal" href="../../parameters/index.html#config-bed_deformation.lc.elastic_model"><code class="docutils literal notranslate"><span class="pre">lc</span></code>&shy;<code class="docutils literal notranslate"><span class="pre">.elastic_model</span></code></a> (yes) Use the elastic part of the Lingle-Clark bed deformation model.</p></li>
 <li><p><a class="reference internal" href="../../parameters/index.html#config-bed_deformation.lc.grid_size_factor"><code class="docutils literal notranslate"><span class="pre">lc</span></code>&shy;<code class="docutils literal notranslate"><span class="pre">.grid_size_factor</span></code></a> (4) The spectral grid size is <code class="docutils literal notranslate"><span class="pre">(Z*(grid.Mx</span> <span class="pre">-</span> <span class="pre">1)</span> <span class="pre">+</span> <span class="pre">1,</span> <span class="pre">Z*(grid.My</span> <span class="pre">-</span> <span class="pre">1)</span> <span class="pre">+</span> <span class="pre">1)</span></code> where <code class="docutils literal notranslate"><span class="pre">Z</span></code> is given by this parameter. See <span id="id5">[<a class="reference internal" href="../../../zzz_references_html.html#id255"><span>78</span></a>]</span>, <span id="id6">[<a class="reference internal" href="../../../zzz_references_html.html#id27"><span>31</span></a>]</span>.</p></li>
 <li><p><a class="reference internal" href="../../parameters/index.html#config-bed_deformation.lc.update_interval"><code class="docutils literal notranslate"><span class="pre">lc</span></code>&shy;<code class="docutils literal notranslate"><span class="pre">.update_interval</span></code></a> (10<em> years</em>) Interval between updates of the Lingle-Clark model</p></li>
@@ -107,6 +109,41 @@ a good idea.</p>
 <p>Keep in mind that zero <code class="variable docutils literal notranslate"><span class="pre">viscous_bed_displacement</span></code> does <em>not</em> mean that the bed
 deformation model is in equilibrium.</p>
 </div>
+</div>
+<div class="section" id="given-bed-deformation-history">
+<span id="sec-bed-def-given"></span><h2>Given bed deformation history<a class="headerlink" href="#given-bed-deformation-history" title="Permalink to this headline">¶</a></h2>
+<p>The last option <code class="docutils literal notranslate"><span class="pre">-bed_def</span> <span class="pre">given</span></code> can be used if a bed deformation history (i.e. bed
+elevation changes relative to a reference topography) is known from an external
+solid-Earth model<a class="footnote-reference brackets" href="#rsl" id="id15">1</a>. This can be useful when running simulations using offline
+coupling to such a model.</p>
+<p>The bed topography <span class="math notranslate nohighlight">\(b\)</span> is set to</p>
+<div class="math notranslate nohighlight">
+\[b(t,x,y) = b_{\text{ref}}(x,y) + \Delta b(t,x,y),\]</div>
+<p>which is a time-dependent version of <a class="reference internal" href="#equation-eq-bedcorrection">(19)</a>.</p>
+<p>This class uses two input files:</p>
+<ol class="arabic simple">
+<li><p>Reference topography <span class="math notranslate nohighlight">\(b_{\text{ref}}(x,y)\)</span> (variable <code class="variable docutils literal notranslate"><span class="pre">topg</span></code>, in meters).</p></li>
+<li><p>Time-dependent history of bed elevation changes <span class="math notranslate nohighlight">\(\Delta b(t,x,y)\)</span> relative to the
+reference topography (variable <code class="variable docutils literal notranslate"><span class="pre">topg_delta</span></code>, in meters).</p></li>
+</ol>
+<p>Use the following configuration parameters (prefix: <code class="docutils literal notranslate"><span class="pre">bed_deformation.given.</span></code>) to set
+them.</p>
+<ol class="simple">
+<li><p><a class="reference internal" href="../../parameters/index.html#config-bed_deformation.given.file"><code class="docutils literal notranslate"><span class="pre">file</span></code></a> Name of the file containing time-dependent <code class="variable docutils literal notranslate"><span class="pre">topg_delta</span></code>.</p></li>
+<li><p><a class="reference internal" href="../../parameters/index.html#config-bed_deformation.given.reference_file"><code class="docutils literal notranslate"><span class="pre">reference_file</span></code></a> Name of the file containing the reference bed topography <code class="variable docutils literal notranslate"><span class="pre">topg</span></code>.</p></li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>It is possible to combine high-resolution reference bed topography with
+low-spatial-frequency bed elevation changes: both files have to use the same grid
+projection and cover the modeling domain but they <strong>do not</strong> have to use the same grid.</p>
+</div>
+<p class="rubric">Footnotes</p>
+<dl class="footnote brackets">
+<dt class="label" id="rsl"><span class="brackets"><a class="fn-backref" href="#id15">1</a></span></dt>
+<dd><p>E.g. a relative sea level model.</p>
+</dd>
+</dl>
 </div>
 </div>
 
@@ -194,9 +231,9 @@ deformation model is in equilibrium.</p>
       <div class="clearer"></div>
     </div>
     <div class="footer">
-      Git revision v1.0-1914-g1d625ab9e
+      Git revision v1.0-1919-g60bd56ee2
       committed by Constantine Khrulev
-      on 2021-01-29 14:04:18 -0900 |
+      on 2021-02-01 10:10:53 -0900 |
       &copy; 2004--2020, the PISM authors.
       
     </div>

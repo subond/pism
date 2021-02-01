@@ -1214,6 +1214,32 @@ removed in a later PISM version.</p>
 </dl>
 </p>
 </li>
+<li><p><span class="target" id="config-bed_deformation.given.file"></span><code class="docutils literal notranslate"><span class="pre">bed_deformation.given.file</span></code></p>
+<p>Name of the file containing time-dependent <code class="variable docutils literal notranslate"><span class="pre">topg_delta</span></code>.<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd">string</dd>
+<dt class="field-even">Default value</dt>
+<dd class="field-even"><p><em>empty</em></p>
+</dd>
+<dt class="field-odd">Option</dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">-topg_delta_file</span></code></p>
+</dd>
+</dl>
+</p>
+</li>
+<li><p><span class="target" id="config-bed_deformation.given.reference_file"></span><code class="docutils literal notranslate"><span class="pre">bed_deformation.given.reference_file</span></code></p>
+<p>Name of the file containing the reference bed topography <code class="variable docutils literal notranslate"><span class="pre">topg</span></code>.<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd">string</dd>
+<dt class="field-even">Default value</dt>
+<dd class="field-even"><p><em>empty</em></p>
+</dd>
+<dt class="field-odd">Option</dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">-topg_reference_file</span></code></p>
+</dd>
+</dl>
+</p>
+</li>
 <li><p><span class="target" id="config-bed_deformation.lc.elastic_model"></span><code class="docutils literal notranslate"><span class="pre">bed_deformation.lc.elastic_model</span></code></p>
 <p>Use the elastic part of the Lingle-Clark bed deformation model.<dl class="field-list simple">
 <dt class="field-odd">Type</dt>
@@ -1278,14 +1304,14 @@ removed in a later PISM version.</p>
 </p>
 </li>
 <li><p><span class="target" id="config-bed_deformation.model"></span><code class="docutils literal notranslate"><span class="pre">bed_deformation.model</span></code></p>
-<p>Selects a bed deformation model to use. <code class="docutils literal notranslate"><span class="pre">iso</span></code> is point-wise isostasy, <code class="docutils literal notranslate"><span class="pre">lc</span></code> is the Lingle-Clark model (see <span id="id25">[<a class="reference internal" href="../../zzz_references_html.html#id255"><span>78</span></a>]</span>, requires <a class="reference external" href="http://www.fftw.org/">FFTW</a>).<dl class="field-list simple">
+<p>Selects a bed deformation model to use. <code class="docutils literal notranslate"><span class="pre">iso</span></code> is point-wise isostasy, <code class="docutils literal notranslate"><span class="pre">lc</span></code> is the Lingle-Clark model (see <span id="id25">[<a class="reference internal" href="../../zzz_references_html.html#id255"><span>78</span></a>]</span>, requires <a class="reference external" href="http://www.fftw.org/">FFTW</a>), <code class="docutils literal notranslate"><span class="pre">given</span></code> uses prescribed bed topography changes read from a file.<dl class="field-list simple">
 <dt class="field-odd">Type</dt>
 <dd class="field-odd">keyword</dd>
 <dt class="field-even">Default value</dt>
 <dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">none</span></code></p>
 </dd>
 <dt class="field-odd">Choices</dt>
-<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">none,</span> <span class="pre">iso,</span> <span class="pre">lc</span></code></p>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">none,</span> <span class="pre">iso,</span> <span class="pre">lc,</span> <span class="pre">given</span></code></p>
 </dd>
 <dt class="field-even">Option</dt>
 <dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">-bed_def</span></code></p>
@@ -6210,9 +6236,9 @@ removed in a later PISM version.</p>
       <div class="clearer"></div>
     </div>
     <div class="footer">
-      Git revision v1.0-1914-g1d625ab9e
+      Git revision v1.0-1919-g60bd56ee2
       committed by Constantine Khrulev
-      on 2021-01-29 14:04:18 -0900 |
+      on 2021-02-01 10:10:53 -0900 |
       &copy; 2004--2020, the PISM authors.
       
     </div>
