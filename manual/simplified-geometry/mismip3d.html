@@ -45,7 +45,7 @@ compare to the numerical results.</p>
 <blockquote>
 <div><p><a class="reference external" href="http://homepages.ulb.ac.be/~fpattyn/mismip3d/">http://homepages.ulb.ac.be/~fpattyn/mismip3d/</a></p>
 </div></blockquote>
-<p>and the results are published in <span id="id1">[<a class="reference internal" href="../../zzz_references_html.html#id265"><span>104</span></a>]</span>.</p>
+<p>and the results are published in <span id="id1">[<a class="reference internal" href="../../zzz_references_html.html#id273"><span>107</span></a>]</span>.</p>
 <p>A complete set of MISMIP3d experiments consists of three runs: Firstly, a flowline
 solution on a linearly-sloped bed, similar to the flowline MISMIP experiments of the
 previous section, is run into a steady state (“standard experiment <code class="docutils literal notranslate"><span class="pre">Stnd</span></code>”). Then the
@@ -75,31 +75,31 @@ corresponds to a free-slip condition for the flow in x-direction. Though this ch
 the symmetric computational domain increases computational cost, it allows us to use
 standard PISM without fixing certain boundary conditions in the code. (That is, it avoids
 the issues addressed in the regional mode of PISM; see section <a class="reference internal" href="../jakobshavn/index.html#sec-jako"><span class="std std-ref">Example: A regional model of the Jakobshavn outlet glacier in Greenland</span></a>.)</p>
-<p>PISM participated in the MISMIP3d intercomparison project <span id="id2">[<a class="reference internal" href="../../zzz_references_html.html#id265"><span>104</span></a>]</span> using version
+<p>PISM participated in the MISMIP3d intercomparison project <span id="id2">[<a class="reference internal" href="../../zzz_references_html.html#id273"><span>107</span></a>]</span> using version
 pism0.5, and the exact results can be reproduced using that version. PISM’s results, and
 the role of resolution and the new subgrid grounding line interpolation scheme are
-discussed in <span id="id3">[<a class="reference internal" href="../../zzz_references_html.html#id109"><span>85</span></a>]</span>.</p>
+discussed in <span id="id3">[<a class="reference internal" href="../../zzz_references_html.html#id117"><span>88</span></a>]</span>.</p>
 <p>We observed a considerable improvement of the results with respect to the absolute
 grounding line positions compared to other models (e.g. the FE reference model Elmer/Ice)
 and to the reversibility when applying the subgrid grounding line interpolation method;
-see <a class="reference internal" href="#fig-subgl"><span class="std std-numref">Fig. 23</span></a>. Furthermore, we observed that only using SSA yields almost
+see <a class="reference internal" href="#fig-subgl"><span class="std std-numref">Fig. 25</span></a>. Furthermore, we observed that only using SSA yields almost
 the same results as the full hybrid SIA+SSA computation for the MISMIP3D (and also the
 MISMIP) experiments, but, when not applying the SIA computation, after a considerably
 shorter computation time (about 10 times shorter). We explain the small and almost
 negligible SIA velocities for the MISMIP(3D) experiments with the comparably small ice
-surface gradients in the MISMIP3d ice geometries. See <a class="reference internal" href="#fig-compsiassa"><span class="std std-numref">Fig. 24</span></a> for a
+surface gradients in the MISMIP3d ice geometries. See <a class="reference internal" href="#fig-compsiassa"><span class="std std-numref">Fig. 26</span></a> for a
 comparison of SSA and SIA velocities in the MISMIP3D geometry. Note that both Figures
-<a class="reference internal" href="#fig-subgl"><span class="std std-numref">Fig. 23</span></a> and <a class="reference internal" href="#fig-compsiassa"><span class="std std-numref">Fig. 24</span></a> were generated with resolution of <span class="math notranslate nohighlight">\(\Delta
+<a class="reference internal" href="#fig-subgl"><span class="std std-numref">Fig. 25</span></a> and <a class="reference internal" href="#fig-compsiassa"><span class="std std-numref">Fig. 26</span></a> were generated with resolution of <span class="math notranslate nohighlight">\(\Delta
 x = \Delta y = 1\)</span> km.</p>
 <div class="figure align-default" id="fig-subgl">
 <img alt="../../_images/mismip3d-subgl.png" src="../../_images/mismip3d-subgl.png" />
-<p class="caption"><span class="caption-number">Fig. 23 </span><span class="caption-text">Comparison between the grounding lines of the higher-amplitude (“<code class="docutils literal notranslate"><span class="pre">P75</span></code>”) MISMIP3d
+<p class="caption"><span class="caption-number">Fig. 25 </span><span class="caption-text">Comparison between the grounding lines of the higher-amplitude (“<code class="docutils literal notranslate"><span class="pre">P75</span></code>”) MISMIP3d
 experiments performed with PISM when using the subgrid grounding line interpolation
 method (left) or not using it (right). In both cases the SIA+SSA hybrid is used.</span><a class="headerlink" href="#fig-subgl" title="Permalink to this image">¶</a></p>
 </div>
 <div class="figure align-default" id="fig-compsiassa">
 <img alt="../../_images/comp-SIA-SSA.png" src="../../_images/comp-SIA-SSA.png" />
-<p class="caption"><span class="caption-number">Fig. 24 </span><span class="caption-text">The SIA velocities are negligible in the MISMIP3d standard experiment (“<code class="docutils literal notranslate"><span class="pre">Stnd</span></code>”). The
+<p class="caption"><span class="caption-number">Fig. 26 </span><span class="caption-text">The SIA velocities are negligible in the MISMIP3d standard experiment (“<code class="docutils literal notranslate"><span class="pre">Stnd</span></code>”). The
 steady state ice geometry is plotted (black) together with the computed SSA velocity
 (red) and SIA velocity (blue). The SIA velocity reaches its maximum value of about
 <span class="math notranslate nohighlight">\(10\)</span> m/a at the grounding line, about two orders of magnitude less than the maximum of
@@ -187,10 +187,10 @@ the SSA velocity.</span><a class="headerlink" href="#fig-compsiassa" title="Perm
       <div class="clearer"></div>
     </div>
     <div class="footer">
-      Git revision v1.0-1924-g6e2b3b712
+      Git revision v1.0-2279-g1b93be09b
       committed by Constantine Khrulev
-      on 2021-02-01 12:40:57 -0900 |
-      &copy; 2004--2020, the PISM authors.
+      on 2021-02-26 15:07:00 -0900 |
+      &copy; 2004--2021, the PISM authors.
       
     </div>
   </body>

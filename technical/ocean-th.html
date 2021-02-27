@@ -15,8 +15,8 @@
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Contributing to PISM" href="../contributing/index.html" />
-    <link rel="prev" title="Release checklist" href="release_checklist.html" />
+    <link rel="next" title="Blatter stress balance solver: technical details" href="blatter-pattyn.html" />
+    <link rel="prev" title="Computing steady-state subglacial water flux" href="steady-hydrology.html" />
    
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
   
@@ -33,14 +33,14 @@
       
   <div class="section" id="three-equation-ocean-model-implementation-details">
 <span id="sec-ocean-th-details"></span><h1>Three-equation ocean model (implementation details)<a class="headerlink" href="#three-equation-ocean-model-implementation-details" title="Permalink to this headline">¶</a></h1>
-<p>This model is based on <span id="id1">[<a class="reference internal" href="../zzz_references_html.html#id163"><span>143</span></a>]</span> and <span id="id2">[<a class="reference internal" href="../zzz_references_html.html#id180"><span>132</span></a>]</span>.</p>
+<p>This model is based on <span id="id1">[<a class="reference internal" href="../zzz_references_html.html#id171"><span>146</span></a>]</span> and <span id="id2">[<a class="reference internal" href="../zzz_references_html.html#id188"><span>135</span></a>]</span>.</p>
 <p>We use equations for the heat and salt flux balance at the base of the shelf to compute
 the temperature at the base of the shelf and the sub-shelf melt rate.</p>
-<p>Following <span id="id3">[<a class="reference internal" href="../zzz_references_html.html#id163"><span>143</span></a>]</span>, let <span class="math notranslate nohighlight">\(Q_T\)</span> be the total heat flux crossing the
+<p>Following <span id="id3">[<a class="reference internal" href="../zzz_references_html.html#id171"><span>146</span></a>]</span>, let <span class="math notranslate nohighlight">\(Q_T\)</span> be the total heat flux crossing the
 interface between the shelf base and the ocean, <span class="math notranslate nohighlight">\(Q_T^B\)</span> be the amount of heat lost by the
 ocean due to melting of glacial ice, and <span class="math notranslate nohighlight">\(Q_T^I\)</span> be the conductive flux into the ice
 column.</p>
-<p><span class="math notranslate nohighlight">\(Q_{T}\)</span> is parameterized by (see <span id="id4">[<a class="reference internal" href="../zzz_references_html.html#id163"><span>143</span></a>]</span>, equation 10):</p>
+<p><span class="math notranslate nohighlight">\(Q_{T}\)</span> is parameterized by (see <span id="id4">[<a class="reference internal" href="../zzz_references_html.html#id171"><span>146</span></a>]</span>, equation 10):</p>
 <div class="math notranslate nohighlight">
 \[Q_{T} = \rho_W\, c_{pW}\, \gamma_{T}\, (T^B - T^W),\]</div>
 <p>where <span class="math notranslate nohighlight">\(\rho_{W}\)</span> is the sea water density, <span class="math notranslate nohighlight">\(c_{pW}\)</span> is the heat capacity of sea water, and
@@ -48,12 +48,12 @@ column.</p>
 <p>We assume that the difference between the basal temperature and adjacent ocean temperature
 <span class="math notranslate nohighlight">\(T^B - T^W\)</span> is well approximated by <span class="math notranslate nohighlight">\(\Theta_B - \Theta_W,\)</span> where <span class="math notranslate nohighlight">\(\Theta_{\cdot}\)</span> is the
 corresponding potential temperature.</p>
-<p><span class="math notranslate nohighlight">\(Q_T^B\)</span> is (see <span id="id5">[<a class="reference internal" href="../zzz_references_html.html#id163"><span>143</span></a>]</span>, equation 11):</p>
+<p><span class="math notranslate nohighlight">\(Q_T^B\)</span> is (see <span id="id5">[<a class="reference internal" href="../zzz_references_html.html#id171"><span>146</span></a>]</span>, equation 11):</p>
 <div class="math notranslate nohighlight">
 \[Q_T^B = \rho_I\, L\, \frac{\partial h}{\partial t},\]</div>
 <p>where <span class="math notranslate nohighlight">\(\rho_I\)</span> is the ice density, <span class="math notranslate nohighlight">\(L\)</span> is the latent heat of fusion, and <span class="math notranslate nohighlight">\(\partial
 h\, /\, \partial t\)</span> is the ice thickening rate (equal to minus the melt rate).</p>
-<p>The conductive flux into the ice column is (<span id="id6">[<a class="reference internal" href="../zzz_references_html.html#id164"><span>141</span></a>]</span>, equation 7):</p>
+<p>The conductive flux into the ice column is (<span id="id6">[<a class="reference internal" href="../zzz_references_html.html#id172"><span>144</span></a>]</span>, equation 7):</p>
 <div class="math notranslate nohighlight">
 \[Q_T^I = \rho_I\, c_{pI}\, \kappa\, T_{\text{grad}},\]</div>
 <p>where <span class="math notranslate nohighlight">\(\rho_I\)</span> is the ice density, <span class="math notranslate nohighlight">\(c_{pI}\)</span> is the heat capacity of ice, <span class="math notranslate nohighlight">\(\kappa\)</span> is the
@@ -68,12 +68,12 @@ base of a column of ice.</p>
 <p>where <span class="math notranslate nohighlight">\(Q_S\)</span> is the total salt flux across the interface, <span class="math notranslate nohighlight">\(Q_S^B\)</span> is the basal salt flux
 (negative for melting), <span class="math notranslate nohighlight">\(Q_S^I = 0\)</span> is the salt flux due to molecular diffusion of salt
 through ice.</p>
-<p><span class="math notranslate nohighlight">\(Q_S\)</span> is parameterized by (<span id="id7">[<a class="reference internal" href="../zzz_references_html.html#id164"><span>141</span></a>]</span>, equation 13)</p>
+<p><span class="math notranslate nohighlight">\(Q_S\)</span> is parameterized by (<span id="id7">[<a class="reference internal" href="../zzz_references_html.html#id172"><span>144</span></a>]</span>, equation 13)</p>
 <div class="math notranslate nohighlight">
 \[Q_S = \rho_W\, \gamma_S\, (S^B - S^W),\]</div>
 <p>where <span class="math notranslate nohighlight">\(\gamma_S\)</span> is a turbulent salt exchange coefficient, <span class="math notranslate nohighlight">\(S^B\)</span> is salinity at the shelf
 base, and <span class="math notranslate nohighlight">\(S^W\)</span> is the salinity of adjacent ocean.</p>
-<p>The basal salt flux <span class="math notranslate nohighlight">\(Q_S^B\)</span> is (<span id="id8">[<a class="reference internal" href="../zzz_references_html.html#id164"><span>141</span></a>]</span>, equation 10)</p>
+<p>The basal salt flux <span class="math notranslate nohighlight">\(Q_S^B\)</span> is (<span id="id8">[<a class="reference internal" href="../zzz_references_html.html#id172"><span>144</span></a>]</span>, equation 10)</p>
 <div class="math notranslate nohighlight">
 \[Q_S^B = \rho_I\, S^B\, {\frac{\partial h}{\partial t}}.\]</div>
 <p>To avoid converting shelf base temperature to shelf base potential temperature and back,
@@ -86,16 +86,16 @@ potential temperature, respectively:</p>
 <p class="admonition-title">Note</p>
 <p>The linearized equation for the freezing point of seawater as a function of salinity
 and pressure (ice thickness) is only valid for salinity ranges from 4 to 40 psu (see
-<span id="id9">[<a class="reference internal" href="../zzz_references_html.html#id180"><span>132</span></a>]</span>).</p>
+<span id="id9">[<a class="reference internal" href="../zzz_references_html.html#id188"><span>135</span></a>]</span>).</p>
 </div>
 <p>The linearization coefficients for the basal temperature <span class="math notranslate nohighlight">\(T^B(S,h)\)</span> are taken from
-<span id="id10">[<a class="reference internal" href="../zzz_references_html.html#id164"><span>141</span></a>]</span>, going back to <span id="id11">[<a class="reference internal" href="../zzz_references_html.html#id113"><span>149</span></a>]</span>.</p>
+<span id="id10">[<a class="reference internal" href="../zzz_references_html.html#id172"><span>144</span></a>]</span>, going back to <span id="id11">[<a class="reference internal" href="../zzz_references_html.html#id121"><span>152</span></a>]</span>.</p>
 <p>Given <span class="math notranslate nohighlight">\(T^B(S,h)\)</span> and a function <span class="math notranslate nohighlight">\(\Theta_T^B(T)\)</span> one can define
 <span class="math notranslate nohighlight">\(\Theta^B_{*}(S,h) = \Theta_T^B\left(T^B(S,h)\right)\)</span>.</p>
 <p>The parameterization <span class="math notranslate nohighlight">\(\Theta^B(S,h)\)</span> used here was produced by linearizing
 <span class="math notranslate nohighlight">\(\Theta^B_{*}(S,h)\)</span> near the melting point. (The definition of <span class="math notranslate nohighlight">\(\Theta_T^B(T)\)</span>, converting
 in situ temperature into potential temperature, was adopted from FESOM
-<span id="id12">[<a class="reference internal" href="../zzz_references_html.html#id436"><span>150</span></a>]</span>).</p>
+<span id="id12">[<a class="reference internal" href="../zzz_references_html.html#id444"><span>153</span></a>]</span>).</p>
 <p>Treating ice thickness, sea water salinity, and sea water potential temperature as “known”
 and choosing an approximation of the temperature gradient at the base <span class="math notranslate nohighlight">\(T_{\text{grad}}\)</span>
 (see below) we can write down a system of equations</p>
@@ -110,7 +110,7 @@ for the sub-shelf melt, sub-shelf freeze-on, and diffusion-only cases.</p>
 <li><p>Melt at the base:</p>
 <div class="math notranslate nohighlight">
 \[T_{\text{grad}} = -\Delta T\, \frac{\partial h\, /\, \partial t}{\kappa}.\]</div>
-<p>See equation 13 in <span id="id13">[<a class="reference internal" href="../zzz_references_html.html#id164"><span>141</span></a>]</span>.</p>
+<p>See equation 13 in <span id="id13">[<a class="reference internal" href="../zzz_references_html.html#id172"><span>144</span></a>]</span>.</p>
 </li>
 <li><p>Freeze on at the base: we assume that</p>
 <div class="math notranslate nohighlight">
@@ -119,7 +119,7 @@ for the sub-shelf melt, sub-shelf freeze-on, and diffusion-only cases.</p>
 <li><p>No melt and no freeze on:</p>
 <div class="math notranslate nohighlight">
 \[T_{\text{grad}} = \frac{\Delta T}{h}.\]</div>
-<p>See <span id="id14">[<a class="reference internal" href="../zzz_references_html.html#id180"><span>132</span></a>]</span>, equation 21.</p>
+<p>See <span id="id14">[<a class="reference internal" href="../zzz_references_html.html#id188"><span>135</span></a>]</span>, equation 21.</p>
 </li>
 </ul>
 <p>One remaining problem is that we cannot compute the basal melt rate without making an
@@ -141,13 +141,13 @@ h}{\partial t}},\)</span> obtaining</p>
       <table style="width: 100%">
         <tr>
           <td style="text-align: left; width: 30%">
-              <a class="reference internal" href="release_checklist.html">Previous</a>
+              <a class="reference internal" href="steady-hydrology.html">Previous</a>
           </td>
           <td style="text-align: center; width: 30%">
               <a class="reference internal" href="index.html">Up</a>
           </td>
           <td style="text-align: right; width: 30%">
-              <a class="reference internal" href="../contributing/index.html">Next</a>
+              <a class="reference internal" href="blatter-pattyn.html">Next</a>
           </td>
         </tr>
       </table>
@@ -177,14 +177,15 @@ h}{\partial t}},\)</span> obtaining</p>
 <li class="toctree-l1"><a class="reference internal" href="../manual/index.html">PISM User’s Manual</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../climate_forcing/index.html">Climate forcing</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">Technical notes</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="release_checklist.html">Release checklist</a></li>
 <li class="toctree-l2"><a class="reference internal" href="cf-standard-names.html">CF standard names used by PISM</a></li>
 <li class="toctree-l2"><a class="reference internal" href="vertchange.html">On the vertical coordinate in PISM, and a critical change of variable</a></li>
 <li class="toctree-l2"><a class="reference internal" href="bed_roughness.html">Using Schoof’s parameterized bed roughness technique in PISM</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ssafd-cfbc.html">Calving front stress boundary condition</a></li>
 <li class="toctree-l2"><a class="reference internal" href="bombproof.html">BOMBPROOF, PISM’s numerical scheme for conservation of energy</a></li>
 <li class="toctree-l2"><a class="reference internal" href="steady-hydrology.html">Computing steady-state subglacial water flux</a></li>
-<li class="toctree-l2"><a class="reference internal" href="release_checklist.html">Release checklist</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Three-equation ocean model (implementation details)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="blatter-pattyn.html">Blatter stress balance solver: technical details</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../contributing/index.html">Contributing to PISM</a></li>
@@ -208,10 +209,10 @@ h}{\partial t}},\)</span> obtaining</p>
       <div class="clearer"></div>
     </div>
     <div class="footer">
-      Git revision v1.0-1924-g6e2b3b712
+      Git revision v1.0-2279-g1b93be09b
       committed by Constantine Khrulev
-      on 2021-02-01 12:40:57 -0900 |
-      &copy; 2004--2020, the PISM authors.
+      on 2021-02-26 15:07:00 -0900 |
+      &copy; 2004--2021, the PISM authors.
       
     </div>
   </body>

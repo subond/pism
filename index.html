@@ -32,7 +32,7 @@
       
   <div class="section" id="pism-version-documentation">
 <h1>PISM 1.2 documentation<a class="headerlink" href="#pism-version-documentation" title="Permalink to this headline">¶</a></h1>
-<p>This <em>Manual</em> was built using revision <code class="docutils literal notranslate"><span class="pre">v1.0-1924-g6e2b3b712</span></code> committed on <code class="docutils literal notranslate"><span class="pre">2021-02-01</span> <span class="pre">12:40:57</span> <span class="pre">-0900</span></code>.</p>
+<p>This <em>Manual</em> was built using revision <code class="docutils literal notranslate"><span class="pre">v1.0-2279-g1b93be09b</span></code> committed on <code class="docutils literal notranslate"><span class="pre">2021-02-26</span> <span class="pre">15:07:00</span> <span class="pre">-0900</span></code>.</p>
 <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="acknowledgements.html">Acknowledgements</a></li>
@@ -78,7 +78,7 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="manual/highlevelview/index.html">Ice dynamics, the PISM view</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="manual/highlevelview/stress-balance-models.html">Two stress balance models: SIA and SSA</a></li>
+<li class="toctree-l3"><a class="reference internal" href="manual/highlevelview/stress-balance-models.html">Stress balance models: SIA, SSA, and the First Order Approximation</a></li>
 <li class="toctree-l3"><a class="reference internal" href="manual/highlevelview/model-hierarchy.html">A hierarchy of simplifying assumptions for grounded ice flow</a></li>
 <li class="toctree-l3"><a class="reference internal" href="manual/highlevelview/evolutionary-vs-diagnostic.html">Evolutionary versus diagnostic modeling</a></li>
 <li class="toctree-l3"><a class="reference internal" href="manual/highlevelview/climate-inputs.html">Climate inputs, and their interface with ice dynamics</a></li>
@@ -220,6 +220,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="technical/index.html">Technical notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="technical/release_checklist.html">Release checklist</a></li>
 <li class="toctree-l2"><a class="reference internal" href="technical/cf-standard-names.html">CF standard names used by PISM</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="technical/cf-standard-names.html#existing-standard-names">Existing standard names</a></li>
 <li class="toctree-l3"><a class="reference internal" href="technical/cf-standard-names.html#proposed-standard-names"><em>Proposed</em> standard names</a></li>
@@ -252,8 +253,17 @@
 <li class="toctree-l3"><a class="reference internal" href="technical/steady-hydrology.html#the-algorithm">The algorithm</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="technical/release_checklist.html">Release checklist</a></li>
 <li class="toctree-l2"><a class="reference internal" href="technical/ocean-th.html">Three-equation ocean model (implementation details)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="technical/blatter-pattyn.html">Blatter stress balance solver: technical details</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="technical/blatter-pattyn.html#notation">Notation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="technical/blatter-pattyn.html#introduction">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="technical/blatter-pattyn.html#weak-form">Weak form</a></li>
+<li class="toctree-l3"><a class="reference internal" href="technical/blatter-pattyn.html#boundary-conditions">Boundary conditions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="technical/blatter-pattyn.html#solver-implementation">Solver implementation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="technical/blatter-pattyn.html#testing-and-verification">Testing and verification</a></li>
+<li class="toctree-l3"><a class="reference internal" href="technical/blatter-pattyn.html#known-issues-and-future-work">Known issues and future work</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="contributing/index.html">Contributing to PISM</a><ul>
@@ -363,10 +373,10 @@
       <div class="clearer"></div>
     </div>
     <div class="footer">
-      Git revision v1.0-1924-g6e2b3b712
+      Git revision v1.0-2279-g1b93be09b
       committed by Constantine Khrulev
-      on 2021-02-01 12:40:57 -0900 |
-      &copy; 2004--2020, the PISM authors.
+      on 2021-02-26 15:07:00 -0900 |
+      &copy; 2004--2021, the PISM authors.
       
     </div>
   </body>

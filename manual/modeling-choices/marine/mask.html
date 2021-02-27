@@ -35,17 +35,17 @@
 <span id="sec-floatmask"></span><h1>Flotation criterion, mask, and sea level<a class="headerlink" href="#flotation-criterion-mask-and-sea-level" title="Permalink to this headline">¶</a></h1>
 <p>The most basic decision about marine ice sheet dynamics made internally by PISM is whether
 a ice-filled grid cell is floating. That is, PISM applies the “flotation criterion”
-<span id="id1">[<a class="reference internal" href="../../../zzz_references_html.html#id444"><span>16</span></a>]</span> at every time step and at every grid location to determine whether
+<span id="id1">[<a class="reference internal" href="../../../zzz_references_html.html#id452"><span>16</span></a>]</span> at every time step and at every grid location to determine whether
 the ice is floating on the ocean or not. The result is stored in the <code class="docutils literal notranslate"><span class="pre">mask</span></code> variable.
 The <code class="docutils literal notranslate"><span class="pre">mask</span></code> variable has <code class="docutils literal notranslate"><span class="pre">pism_intent</span></code> = <code class="docutils literal notranslate"><span class="pre">diagnostic</span></code>, and thus it does <em>not</em> need to
 be included in the input file set using the <code class="docutils literal notranslate"><span class="pre">-i</span></code> option.</p>
-<p>The possible values of the <code class="docutils literal notranslate"><span class="pre">mask</span></code> are given in <a class="reference internal" href="#tab-maskvals"><span class="std std-numref">Table 22</span></a>. The mask
+<p>The possible values of the <code class="docutils literal notranslate"><span class="pre">mask</span></code> are given in <a class="reference internal" href="#tab-maskvals"><span class="std std-numref">Table 23</span></a>. The mask
 does not <em>by itself</em> determine ice dynamics. For instance, even when ice is floating (mask
 value <code class="docutils literal notranslate"><span class="pre">MASK_FLOATING</span></code>), the user must turn on the usual choice for ice shelf dynamics,
 namely the SSA stress balance, by using options <code class="option docutils literal notranslate"><span class="pre">-stress_balance</span> <span class="pre">ssa</span></code> or
 <code class="option docutils literal notranslate"><span class="pre">-stress_balance</span> <span class="pre">ssa+sia</span></code>.</p>
 <table class="colwidths-given docutils align-default" id="tab-maskvals">
-<caption><span class="caption-number">Table 22 </span><span class="caption-text">The PISM mask, in combination with user options, determines the dynamical
+<caption><span class="caption-number">Table 23 </span><span class="caption-text">The PISM mask, in combination with user options, determines the dynamical
              model.</span><a class="headerlink" href="#tab-maskvals" title="Permalink to this table">¶</a></caption>
 <colgroup>
 <col style="width: 50%" />
@@ -162,10 +162,10 @@ step the mask will be updated.</p>
       <div class="clearer"></div>
     </div>
     <div class="footer">
-      Git revision v1.0-1924-g6e2b3b712
+      Git revision v1.0-2279-g1b93be09b
       committed by Constantine Khrulev
-      on 2021-02-01 12:40:57 -0900 |
-      &copy; 2004--2020, the PISM authors.
+      on 2021-02-26 15:07:00 -0900 |
+      &copy; 2004--2021, the PISM authors.
       
     </div>
   </body>

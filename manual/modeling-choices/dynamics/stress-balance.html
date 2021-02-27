@@ -34,26 +34,28 @@
   <div class="section" id="choosing-the-stress-balance">
 <span id="sec-stressbalance"></span><h1>Choosing the stress balance<a class="headerlink" href="#choosing-the-stress-balance" title="Permalink to this headline">¶</a></h1>
 <p>The basic stress balance used for all grounded ice in PISM is the non-sliding,
-thermomechanically-coupled SIA <span id="id1">[<a class="reference internal" href="../../../zzz_references_html.html#id22"><span>15</span></a>]</span>. For the vast majority of most ice sheets, as
+thermomechanically-coupled SIA <span id="id1">[<a class="reference internal" href="../../../zzz_references_html.html#id30"><span>15</span></a>]</span>. For the vast majority of most ice sheets, as
 measured by area or volume, this is an appropriate model, which is an <span class="math notranslate nohighlight">\(O(\epsilon^2)\)</span>
 approximation to the Stokes model if <span class="math notranslate nohighlight">\(\epsilon\)</span> is the depth-to-length ratio of the ice
-sheet <span id="id2">[<a class="reference internal" href="../../../zzz_references_html.html#id115"><span>37</span></a>]</span>.</p>
+sheet <span id="id2">[<a class="reference internal" href="../../../zzz_references_html.html#id123"><span>37</span></a>]</span>.</p>
 <p>The shallow shelf approximation (SSA) stress balance applies to floating ice. See the Ross
 ice shelf example in section <a class="reference internal" href="../../validation/ross.html#sec-ross"><span class="std std-ref">An SSA flow model for the Ross Ice Shelf in Antarctica</span></a> for an example in which the SSA is only
 applied to floating ice.</p>
 <p>In PISM the SSA is also used to describe the sliding of grounded ice and the formation of
-ice streams <span id="id3">[<a class="reference internal" href="../../../zzz_references_html.html#id23"><span>9</span></a>]</span>. Specifically for the SSA with “plastic” (Coulomb
+ice streams <span id="id3">[<a class="reference internal" href="../../../zzz_references_html.html#id31"><span>9</span></a>]</span>. Specifically for the SSA with “plastic” (Coulomb
 friction) basal resistance, the locations of ice streams are determined as part of a free
-boundary problem of Schoof <span id="id4">[<a class="reference internal" href="../../../zzz_references_html.html#id386"><span>20</span></a>]</span>, a model for emergent ice streams within a
+boundary problem of Schoof <span id="id4">[<a class="reference internal" href="../../../zzz_references_html.html#id394"><span>20</span></a>]</span>, a model for emergent ice streams within a
 ice sheet and ice shelf system. This model explains ice streams through a combination of
 plastic till failure and SSA stress balance.</p>
 <p>This SSA description of ice streams is the preferred “sliding law” for the SIA
-<span id="id5">[<a class="reference internal" href="../../../zzz_references_html.html#id23"><span>9</span></a>]</span>, <span id="id6">[<a class="reference internal" href="../../../zzz_references_html.html#id444"><span>16</span></a>]</span>. The SSA should be combined with the SIA,
-in this way, in preference to classical SIA sliding laws which make the sliding velocity of ice a
-local function of the basal value of the driving stress. The resulting combination of SIA
-and SSA is a “hybrid” approximation of the Stokes model <span id="id7">[<a class="reference internal" href="../../../zzz_references_html.html#id444"><span>16</span></a>]</span>. Option
-<code class="docutils literal notranslate"><span class="pre">-stress_balance</span> <span class="pre">ssa+sia</span></code> turns on this “hybrid” model. In this use of the SSA as a
-sliding law, floating ice is also subject to the SSA.</p>
+<span id="id5">[<a class="reference internal" href="../../../zzz_references_html.html#id31"><span>9</span></a>]</span>, <span id="id6">[<a class="reference internal" href="../../../zzz_references_html.html#id452"><span>16</span></a>]</span>. The SSA should be combined with the SIA,
+in this way, in preference to classical SIA sliding laws which make the sliding velocity
+of ice a local function of the basal value of the driving stress. The resulting
+combination of SIA and SSA is a “hybrid” approximation of the Stokes model
+<span id="id7">[<a class="reference internal" href="../../../zzz_references_html.html#id452"><span>16</span></a>]</span>. Option <code class="docutils literal notranslate"><span class="pre">-stress_balance</span> <span class="pre">ssa+sia</span></code> turns on this “hybrid”
+model. In this use of the SSA as a sliding law, floating ice is also subject to the SSA.</p>
+<p>In addition to this, PISM includes an implementation of the first order approximation of
+Stokes equations due to Blatter (<span id="id8">[<a class="reference internal" href="../../../zzz_references_html.html#id54"><span>40</span></a>]</span>, <span id="id9">[<a class="reference internal" href="../../../zzz_references_html.html#id325"><span>41</span></a>]</span>),</p>
 <p><a class="reference internal" href="#tab-stress-balance-choice"><span class="std std-numref">Table 9</span></a> describes the basic choice of stress balance.</p>
 <table class="colwidths-given docutils align-default" id="tab-stress-balance-choice">
 <caption><span class="caption-number">Table 9 </span><span class="caption-text">The basic choice of stress balance</span><a class="headerlink" href="#tab-stress-balance-choice" title="Permalink to this table">¶</a></caption>
@@ -86,22 +88,175 @@ Horizontal ice velocity is constant throughout ice columns.</p></td>
 <tr class="row-even"><td><p><code class="option docutils literal notranslate"><span class="pre">-stress_balance</span> <span class="pre">ssa+sia</span></code></p></td>
 <td><p>The recommended sliding law, which gives the SIA+SSA hybrid stress balance.
 Combines SSA-computed velocity, using pseudo-plastic till, with SIA-computed
-velocity according to the combination in <span id="id8">[<a class="reference internal" href="../../../zzz_references_html.html#id444"><span>16</span></a>]</span>; similar to
-<span id="id9">[<a class="reference internal" href="../../../zzz_references_html.html#id23"><span>9</span></a>]</span>. Floating ice uses SSA only.</p></td>
+velocity according to the combination in <span id="id10">[<a class="reference internal" href="../../../zzz_references_html.html#id452"><span>16</span></a>]</span>; similar to
+<span id="id11">[<a class="reference internal" href="../../../zzz_references_html.html#id31"><span>9</span></a>]</span>. Floating ice uses SSA only.</p></td>
 </tr>
 <tr class="row-odd"><td><p><code class="option docutils literal notranslate"><span class="pre">-stress_balance</span> <span class="pre">prescribed_sliding+sia</span></code></p></td>
 <td><p>Use the constant-in-time prescribed sliding velocity in combination with the
 non-sliding SIA.</p></td>
 </tr>
+<tr class="row-even"><td><p><code class="option docutils literal notranslate"><span class="pre">-stress_balance</span> <span class="pre">blatter</span></code></p></td>
+<td><p>Use the first-order approximation of Stokes equations due to Blatter
+(<span id="id12">[<a class="reference internal" href="../../../zzz_references_html.html#id54"><span>40</span></a>]</span> <span id="id13">[<a class="reference internal" href="../../../zzz_references_html.html#id325"><span>41</span></a>]</span>).</p></td>
+</tr>
 </tbody>
 </table>
+<div class="section" id="controlling-blatter-s-stress-balance-model">
+<span id="sec-blatter"></span><h2>Controlling Blatter’s stress balance model<a class="headerlink" href="#controlling-blatter-s-stress-balance-model" title="Permalink to this headline">¶</a></h2>
+<p>Unlike the rest of PISM, the Blatter solver uses a geometry-following vertical grid (see
+<a class="reference internal" href="../computational/grid.html#fig-grid-vertical-sigma"><span class="std std-numref">Fig. 19</span></a>) to approximate horizontal components of ice velocity.
+The number of vertical “levels” in this grid is controlled by
+<a class="reference internal" href="../../parameters/index.html#config-stress_balance.blatter.Mz"><code class="docutils literal notranslate"><span class="pre">stress_balance</span></code>&shy;<code class="docutils literal notranslate"><span class="pre">.blatter</span></code>&shy;<code class="docutils literal notranslate"><span class="pre">.Mz</span></code></a>.</p>
+<p>The non-linear system resulting from the discretization of PDEs corresponding to Blatter’s
+stress balance model<a class="footnote-reference brackets" href="#bp-fem" id="id14">2</a> is much harder to solve than the one corresponding to the SSA system
+(<span id="id15">[<a class="reference internal" href="../../../zzz_references_html.html#id66"><span>55</span></a>]</span>, <span id="id16">[<a class="reference internal" href="../../../zzz_references_html.html#id7"><span>62</span></a>]</span>) and (at this point) experimentation
+with preconditioner choices seems inevitable. We use PETSc’s command-line options to
+control these choices.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The Blatter solver uses the <code class="docutils literal notranslate"><span class="pre">-bp_</span></code> command-line option prefix.</p>
+<p>Run PISM like this</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pismr -stress_balance blatter <span class="o">[</span>other options<span class="o">]</span> -help <span class="p">|</span> grep <span class="s2">&quot;-bp_&quot;</span>
+</pre></div>
+</div>
+<p>to see the complete list of PETSc option controlling this solver.</p>
+</div>
+<p>The multigrid preconditioner using semi-coarsening in the vertical direction followed by
+further (horizontal) coarsening using algebraic multigrid methods appears to be effective
+<span id="id17">[<a class="reference internal" href="../../../zzz_references_html.html#id7"><span>62</span></a>]</span>. The option combination</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>-bp_pc_type mg -bp_pc_mg_levels M -bp_mg_coarse_pc_type gamg
+</pre></div>
+</div>
+<p>roughly corresponds to this approach. (Unlike <span id="id18">[<a class="reference internal" href="../../../zzz_references_html.html#id7"><span>62</span></a>]</span>, who used a purely
+algebraic approach, these options select a combination of geometric and algebraic
+multigrid preconditioners.)</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><em>External PETSc packages</em> such as Hypre or ML may be useful here, but we have not
+compared their performance to GAMG built into PETSc.</p>
+</div>
+<p>Here <code class="docutils literal notranslate"><span class="pre">-bp_pc_type</span> <span class="pre">mg</span></code> selects the geometric multigrid (MG) preconditioner using
+semi-coarsening in the vertical direction. This method requires building a hierarchy of
+grids, the finest of which is selected using <a class="reference internal" href="../../parameters/index.html#config-grid.Mx"><code class="docutils literal notranslate"><span class="pre">grid</span></code>&shy;<code class="docutils literal notranslate"><span class="pre">.Mx</span></code></a>, <a class="reference internal" href="../../parameters/index.html#config-grid.My"><code class="docutils literal notranslate"><span class="pre">grid</span></code>&shy;<code class="docutils literal notranslate"><span class="pre">.My</span></code></a>,
+<a class="reference internal" href="../../parameters/index.html#config-stress_balance.blatter.Mz"><code class="docutils literal notranslate"><span class="pre">stress_balance</span></code>&shy;<code class="docutils literal notranslate"><span class="pre">.blatter</span></code>&shy;<code class="docutils literal notranslate"><span class="pre">.Mz</span></code></a>.<a class="footnote-reference brackets" href="#semi-coarsening" id="id19">1</a></p>
+<p>To create this hierarchy, PISM starts with the finest grid and builds the next one by
+dividing the number of vertical <em>spaces</em> by a coarsening factor <span class="math notranslate nohighlight">\(C\)</span> (see
+<a class="reference internal" href="../../parameters/index.html#config-stress_balance.blatter.coarsening_factor"><code class="docutils literal notranslate"><span class="pre">stress_balance</span></code>&shy;<code class="docutils literal notranslate"><span class="pre">.blatter</span></code>&shy;<code class="docutils literal notranslate"><span class="pre">.coarsening_factor</span></code></a>). The number of vertical grid levels
+<span class="math notranslate nohighlight">\(N_k\)</span> in the grid number <span class="math notranslate nohighlight">\(k\)</span> in the hierarchy is</p>
+<div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}N_{1} &amp;= \mathtt{stress\_balance.blatter.Mz},\\N_{k} &amp;= (N_{k-1} - 1)\, /\, C + 1.\end{aligned}\end{align} \]</div>
+<p>Then the newly-created grid is coarsened and this process is continued, stopping when the
+desired number <span class="math notranslate nohighlight">\(M\)</span> of grids (MG levels, set using <code class="docutils literal notranslate"><span class="pre">-bp_pc_mg_levels</span> <span class="pre">M</span></code>) is reached.</p>
+<p>For this to work the number of vertical grid levels on the finest grid in the hierarchy
+has to have the form</p>
+<div class="math notranslate nohighlight" id="equation-eq-bp-vertical-grid-size">
+<span class="eqno">(4)<a class="headerlink" href="#equation-eq-bp-vertical-grid-size" title="Permalink to this equation">¶</a></span>\[\mathtt{stress\_balance.blatter.Mz} = A\cdot C^{M - 1} + 1\]</div>
+<p>for some integer <span class="math notranslate nohighlight">\(A\)</span>.</p>
+<table class="colwidths-given docutils align-default" id="tab-blatter-mg-levels">
+<caption><span class="caption-number">Table 10 </span><span class="caption-text">Some vertical grid hierarchies</span><a class="headerlink" href="#tab-blatter-mg-levels" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 75%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Coarsening factor <span class="math notranslate nohighlight">\(C\)</span></p></th>
+<th class="head"><p>Possible sizes of vertical grids in a hierarchy</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(2\)</span></p></td>
+<td><p>2, 3, 5, 9, 17, 33, <strong>65</strong>, 129, 257, 513, 1025, <span class="math notranslate nohighlight">\(\dots\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(3\)</span></p></td>
+<td><p>2, 4, 10, 28, 82, 244, 730, <span class="math notranslate nohighlight">\(\dots\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(4\)</span></p></td>
+<td><p>2, 5, 17, <strong>65</strong>, 257, 1025, <span class="math notranslate nohighlight">\(\dots\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(5\)</span></p></td>
+<td><p>2, 6, 26, 126, 626, 3126, <span class="math notranslate nohighlight">\(\dots\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(6\)</span></p></td>
+<td><p>2, 7, 37, 217, 1297, <span class="math notranslate nohighlight">\(\dots\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(7\)</span></p></td>
+<td><p>2, 8, 50, 344, 2402, <span class="math notranslate nohighlight">\(\dots\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(8\)</span></p></td>
+<td><p>2, 9, <strong>65</strong>, 513, 4097, <span class="math notranslate nohighlight">\(\dots\)</span></p></td>
+</tr>
+</tbody>
+</table>
+<p>By default <span class="math notranslate nohighlight">\(C = 2\)</span>, but <em>aggressive coarsening</em> (i.e. larger values of <span class="math notranslate nohighlight">\(C\)</span>, up to around
+<span class="math notranslate nohighlight">\(8\)</span>) has been observed to work. As highlighted in <a class="reference internal" href="#tab-blatter-mg-levels"><span class="std std-numref">Table 10</span></a>,
+sometimes the same number of vertical grid levels can be achieved using more than one
+combination of the coarsening factor and the number of MG levels.</p>
+<p>For example, we can set up a solver using <span class="math notranslate nohighlight">\(65\)</span> vertical levels and <span class="math notranslate nohighlight">\(3\)</span> MG levels with the
+coarsening factor of <span class="math notranslate nohighlight">\(8\)</span>, or <span class="math notranslate nohighlight">\(4\)</span> MG levels and the factor of <span class="math notranslate nohighlight">\(4\)</span>, or <span class="math notranslate nohighlight">\(7\)</span> MG levels and the
+coarsening factor of <span class="math notranslate nohighlight">\(2\)</span>. In general, the computational cost of an MG preconditioner
+application increases with the number of MG levels, so the first hierarchy (<span class="math notranslate nohighlight">\(2, 9, 65\)</span>,
+<span class="math notranslate nohighlight">\(C=8\)</span>) <em>may</em> be the best choice. <em>However,</em> coarsening that is too aggressive may make a
+less effective preconditioner, requiring more Krylov iterations and increasing the
+computational cost. Again, one may have to experiment to find settings that work best in a
+particular setup.</p>
+<p>Picking the number of vertical levels from <a class="reference internal" href="#tab-blatter-mg-levels"><span class="std std-numref">Table 10</span></a> can be a
+hassle. As an alternative, PISM can <em>increase</em> the number of vertical levels to the
+smallest number that is greater than or equal to <a class="reference internal" href="../../parameters/index.html#config-stress_balance.blatter.Mz"><code class="docutils literal notranslate"><span class="pre">stress_balance</span></code>&shy;<code class="docutils literal notranslate"><span class="pre">.blatter</span></code>&shy;<code class="docutils literal notranslate"><span class="pre">.Mz</span></code></a> and
+has the form <a class="reference internal" href="#equation-eq-bp-vertical-grid-size">(4)</a>.</p>
+<p>Set</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>-bp_pc_type mg <span class="se">\</span>
+-bp_pc_mg_levels M <span class="se">\</span>
+-blatter_n_levels M <span class="se">\</span>
+-blatter_coarsening_factor C <span class="se">\</span>
+-blatter_Mz N
+</pre></div>
+</div>
+<p>to enable this mechanism. In this case PISM will use a fine grid with <em>at least</em> <span class="math notranslate nohighlight">\(N\)</span>
+vertical levels and build a grid hierarchy with <span class="math notranslate nohighlight">\(M\)</span> levels and the coarsening factor <span class="math notranslate nohighlight">\(C\)</span>.</p>
+<p>The coarsest grid in a hierarchy should be as small as possible. Two levels is the minimum
+achievable in the context of the finite element method used to discretize the system (this
+corresponds to a mesh that is just one element thick).</p>
+<p>Note, though, that the multigrid preconditioner, even if it is effective in terms of
+reducing the number of Krylov iterations, may not be the cheapest one <span id="id20">[<a class="reference internal" href="../../../zzz_references_html.html#id10"><span>63</span></a>]</span>:
+there is a trade off between the number of iterations and the cost of a single iteration.
+Other options such as</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>-bp_pc_type bjacobi -bp_sub_pc_type ilu
+</pre></div>
+</div>
+<p>are worth trying as well.</p>
+<div class="section" id="surface-gradient-computation">
+<span id="sec-blatter-gradient"></span><h3>Surface gradient computation<a class="headerlink" href="#surface-gradient-computation" title="Permalink to this headline">¶</a></h3>
+<p>Some synthetic geometry experiments with grounded margins show “checkerboard” artifacts in
+computed ice velocity near steep margins. A similar issue and an attempt to address it are
+described in <span id="id21">[<a class="reference internal" href="../../../zzz_references_html.html#id8"><span>64</span></a>]</span>.</p>
+<p>This implementation takes a different approach: instead of using an “upwinded” finite
+difference approximation of the surface gradient we allow using the <span class="math notranslate nohighlight">\(\eta\)</span> transformation
+described in <a class="reference internal" href="surface-gradient.html#sec-gradient"><span class="std std-ref">Surface gradient method</span></a>. Set <a class="reference internal" href="../../parameters/index.html#config-stress_balance.blatter.use_eta_transform"><code class="docutils literal notranslate"><span class="pre">stress_balance</span></code>&shy;<code class="docutils literal notranslate"><span class="pre">.blatter</span></code>&shy;<code class="docutils literal notranslate"><span class="pre">.use_eta_transform</span></code></a>
+to enable it.</p>
+</div>
+<div class="section" id="list-of-parameters">
+<h3>List of parameters<a class="headerlink" href="#list-of-parameters" title="Permalink to this headline">¶</a></h3>
+<p>Below is the complete list of configuration parameters controlling this solver (prefix:
+<code class="docutils literal notranslate"><span class="pre">stress_balance.blatter.</span></code>):</p>
+<ol class="simple">
+<li><p><a class="reference internal" href="../../parameters/index.html#config-stress_balance.blatter.Glen_exponent"><code class="docutils literal notranslate"><span class="pre">Glen_exponent</span></code></a> (3) Glen exponent in ice flow law for the Blatter stress balance solver</p></li>
+<li><p><a class="reference internal" href="../../parameters/index.html#config-stress_balance.blatter.Mz"><code class="docutils literal notranslate"><span class="pre">Mz</span></code></a> (5) Number of vertical grid levels in the ice</p></li>
+<li><p><a class="reference internal" href="../../parameters/index.html#config-stress_balance.blatter.coarsening_factor"><code class="docutils literal notranslate"><span class="pre">coarsening_factor</span></code></a> (2) Coarsening factor in the <span class="math notranslate nohighlight">\(z\)</span> direction</p></li>
+<li><p><a class="reference internal" href="../../parameters/index.html#config-stress_balance.blatter.enhancement_factor"><code class="docutils literal notranslate"><span class="pre">enhancement_factor</span></code></a> (1) Flow enhancement factor for the Blatter stress balance flow law</p></li>
+<li><p><a class="reference internal" href="../../parameters/index.html#config-stress_balance.blatter.enhancement_factor_interglacial"><code class="docutils literal notranslate"><span class="pre">enhancement_factor_interglacial</span></code></a> (1) Flow enhancement factor for Blatter stress balance solver (<em>not implemented</em>)</p></li>
+<li><p><a class="reference internal" href="../../parameters/index.html#config-stress_balance.blatter.flow_law"><code class="docutils literal notranslate"><span class="pre">flow_law</span></code></a> (<code class="docutils literal notranslate"><span class="pre">gpbld</span></code>) The flow law used by the Blatter-Pattyn stress balance model</p></li>
+<li><p><a class="reference internal" href="../../parameters/index.html#config-stress_balance.blatter.n_levels"><code class="docutils literal notranslate"><span class="pre">n_levels</span></code></a> (0) Choose the number of vertical levels <span class="math notranslate nohighlight">\(M_z\)</span> so that <span class="math notranslate nohighlight">\(M_z \ge\)</span> <a class="reference internal" href="../../parameters/index.html#config-stress_balance.blatter.Mz"><code class="docutils literal notranslate"><span class="pre">stress_balance</span></code>&shy;<code class="docutils literal notranslate"><span class="pre">.blatter</span></code>&shy;<code class="docutils literal notranslate"><span class="pre">.Mz</span></code></a> and allows for this many multigrid levels with the coarsening factor <a class="reference internal" href="../../parameters/index.html#config-stress_balance.blatter.coarsening_factor"><code class="docutils literal notranslate"><span class="pre">stress_balance</span></code>&shy;<code class="docutils literal notranslate"><span class="pre">.blatter</span></code>&shy;<code class="docutils literal notranslate"><span class="pre">.coarsening_factor</span></code></a></p></li>
+<li><p><a class="reference internal" href="../../parameters/index.html#config-stress_balance.blatter.use_eta_transform"><code class="docutils literal notranslate"><span class="pre">use_eta_transform</span></code></a> (no) Use the <span class="math notranslate nohighlight">\(\eta\)</span> transform to improve the accuracy of the surface gradient approximation near grounded margins (see <span id="id22">[<a class="reference internal" href="../../../zzz_references_html.html#id35"><span>57</span></a>]</span> for details).</p></li>
+</ol>
+</div>
+</div>
 <div class="section" id="controlling-the-ssa-stress-balance-model">
 <span id="sec-ssa"></span><h2>Controlling the SSA stress balance model<a class="headerlink" href="#controlling-the-ssa-stress-balance-model" title="Permalink to this headline">¶</a></h2>
 <p>If the SSA stress balance is used, a choice of two solvers is available, namely
-<code class="docutils literal notranslate"><span class="pre">-ssa_method</span> <span class="pre">fd</span></code> (default) or <code class="docutils literal notranslate"><span class="pre">-ssa_method</span> <span class="pre">fem</span></code>. See <a class="reference internal" href="#tab-ssa-usage"><span class="std std-numref">Table 10</span></a>, which
+<code class="docutils literal notranslate"><span class="pre">-ssa_method</span> <span class="pre">fd</span></code> (default) or <code class="docutils literal notranslate"><span class="pre">-ssa_method</span> <span class="pre">fem</span></code>. See <a class="reference internal" href="#tab-ssa-usage"><span class="std std-numref">Table 11</span></a>, which
 describes additional controls on the numerical solution of the stress balance equations.
 If option <code class="docutils literal notranslate"><span class="pre">-ssa_method</span> <span class="pre">fd</span></code> is chosen then several more controls on numerics are
-available; see <a class="reference internal" href="#tab-ssafd-controls"><span class="std std-numref">Table 11</span></a>. If the ice sheet being modeled has any
+available; see <a class="reference internal" href="#tab-ssafd-controls"><span class="std std-numref">Table 12</span></a>. If the ice sheet being modeled has any
 floating ice then the user is advised to read section <a class="reference internal" href="../marine/pik.html#sec-pism-pik"><span class="std std-ref">PIK options for marine ice sheets</span></a> on modeling
 marine ice sheets.</p>
 <p>When using SSA as a “sliding law” one also needs to model the yield stress, or a
@@ -111,7 +266,7 @@ and a (generally) spatially-varying till strength. The amount of stored basal wa
 modeled by the subglacial hydrology model (section <a class="reference internal" href="../subglacier/hydrology.html#sec-subhydro"><span class="std std-ref">Subglacial hydrology</span></a>) based on the basal
 melt rate which is, primarily, thermodynamically-determined (see <a class="reference internal" href="energy-balance.html#sec-energy"><span class="std std-ref">Modeling conservation of energy</span></a>).</p>
 <table class="colwidths-given docutils align-default" id="tab-ssa-usage">
-<caption><span class="caption-number">Table 10 </span><span class="caption-text">Choice of, and controls on, the numerical SSA stress balance.</span><a class="headerlink" href="#tab-ssa-usage" title="Permalink to this table">¶</a></caption>
+<caption><span class="caption-number">Table 11 </span><span class="caption-text">Choice of, and controls on, the numerical SSA stress balance.</span><a class="headerlink" href="#tab-ssa-usage" title="Permalink to this table">¶</a></caption>
 <colgroup>
 <col style="width: 33%" />
 <col style="width: 67%" />
@@ -126,8 +281,8 @@ melt rate which is, primarily, thermodynamically-determined (see <a class="refer
 <td><p>Both finite difference (<code class="docutils literal notranslate"><span class="pre">fd</span></code>; the default) and finite element (<code class="docutils literal notranslate"><span class="pre">fem</span></code>) versions
 of the SSA numerical solver are implemented in PISM. The <code class="docutils literal notranslate"><span class="pre">fd</span></code> solver is the only
 one which allows PIK options (section <a class="reference internal" href="../marine/pik.html#sec-pism-pik"><span class="std std-ref">PIK options for marine ice sheets</span></a>). <code class="docutils literal notranslate"><span class="pre">fd</span></code> uses Picard
-iteration <span id="id10">[<a class="reference internal" href="../../../zzz_references_html.html#id23"><span>9</span></a>]</span>, while <code class="docutils literal notranslate"><span class="pre">fem</span></code> uses a Newton method. The <code class="docutils literal notranslate"><span class="pre">fem</span></code> solver
-has surface velocity inversion capability <span id="id11">[<a class="reference internal" href="../../../zzz_references_html.html#id156"><span>26</span></a>]</span>.</p></td>
+iteration <span id="id23">[<a class="reference internal" href="../../../zzz_references_html.html#id31"><span>9</span></a>]</span>, while <code class="docutils literal notranslate"><span class="pre">fem</span></code> uses a Newton method. The <code class="docutils literal notranslate"><span class="pre">fem</span></code> solver
+has surface velocity inversion capability <span id="id24">[<a class="reference internal" href="../../../zzz_references_html.html#id164"><span>26</span></a>]</span>.</p></td>
 </tr>
 <tr class="row-odd"><td><p><code class="option docutils literal notranslate"><span class="pre">-ssa_eps</span></code> (<span class="math notranslate nohighlight">\(10^{13}\)</span>)</p></td>
 <td><p>The numerical schemes for the SSA compute an effective viscosity <span class="math notranslate nohighlight">\(\nu\)</span> which
@@ -147,7 +302,7 @@ values for <span class="math notranslate nohighlight">\(\nu H\)</span> from <spa
 </tbody>
 </table>
 <table class="colwidths-given docutils align-default" id="tab-ssafd-controls">
-<caption><span class="caption-number">Table 11 </span><span class="caption-text">Controls on the numerical iteration of the <code class="docutils literal notranslate"><span class="pre">-ssa_method</span> <span class="pre">fd</span></code> solver</span><a class="headerlink" href="#tab-ssafd-controls" title="Permalink to this table">¶</a></caption>
+<caption><span class="caption-number">Table 12 </span><span class="caption-text">Controls on the numerical iteration of the <code class="docutils literal notranslate"><span class="pre">-ssa_method</span> <span class="pre">fd</span></code> solver</span><a class="headerlink" href="#tab-ssafd-controls" title="Permalink to this table">¶</a></caption>
 <colgroup>
 <col style="width: 33%" />
 <col style="width: 67%" />
@@ -219,11 +374,11 @@ simulation if <span class="math notranslate nohighlight">\(D\)</span> is very la
 comparisons of the “hybrid” model mentioned above to older studies using this
 parameterization.</p>
 </div>
-<p>PISM implements equation 5 from <span id="id12">[<a class="reference internal" href="../../../zzz_references_html.html#id412"><span>62</span></a>]</span>:</p>
+<p>PISM implements equation 5 from <span id="id25">[<a class="reference internal" href="../../../zzz_references_html.html#id420"><span>65</span></a>]</span>:</p>
 <div class="math notranslate nohighlight" id="equation-eq-weertman-sliding">
-<span class="eqno">(4)<a class="headerlink" href="#equation-eq-weertman-sliding" title="Permalink to this equation">¶</a></span>\[\mathbf{u}_s = \frac{2 A_s \beta_c (\rho g H)^{n}}{N - P} |\nabla h|^{n-1} \nabla h.\]</div>
+<span class="eqno">(5)<a class="headerlink" href="#equation-eq-weertman-sliding" title="Permalink to this equation">¶</a></span>\[\mathbf{u}_s = \frac{2 A_s \beta_c (\rho g H)^{n}}{N - P} |\nabla h|^{n-1} \nabla h.\]</div>
 <table class="colwidths-given docutils align-default" id="tab-weertman-notation">
-<caption><span class="caption-number">Table 12 </span><span class="caption-text">Notation used in <a class="reference internal" href="#equation-eq-weertman-sliding">(4)</a></span><a class="headerlink" href="#tab-weertman-notation" title="Permalink to this table">¶</a></caption>
+<caption><span class="caption-number">Table 13 </span><span class="caption-text">Notation used in <a class="reference internal" href="#equation-eq-weertman-sliding">(5)</a></span><a class="headerlink" href="#tab-weertman-notation" title="Permalink to this table">¶</a></caption>
 <colgroup>
 <col style="width: 10%" />
 <col style="width: 90%" />
@@ -265,7 +420,7 @@ set to <span class="math notranslate nohighlight">\(1\)</span> in this implement
 </tbody>
 </table>
 <p>We assume that the basal water pressure is a given constant fraction of the overburden
-pressure: <span class="math notranslate nohighlight">\(P = k N\)</span>. This simplifies <a class="reference internal" href="#equation-eq-weertman-sliding">(4)</a> to</p>
+pressure: <span class="math notranslate nohighlight">\(P = k N\)</span>. This simplifies <a class="reference internal" href="#equation-eq-weertman-sliding">(5)</a> to</p>
 <div class="math notranslate nohighlight">
 \[\mathbf{u}_s = \frac{2 A_s}{1 - k} ( \rho g H\, |\nabla h| )^{n-1} \nabla h.\]</div>
 <p>This parameterization is used for grounded ice <em>where the base of the ice is temperate</em>.</p>
@@ -274,7 +429,18 @@ ice velocity) or <code class="option docutils literal notranslate"><span class="
 as a sliding law with the deformational flow modeled using the SIA model.</p>
 <p>Use configuration parameters <a class="reference internal" href="../../parameters/index.html#config-stress_balance.weertman_sliding.k"><code class="docutils literal notranslate"><span class="pre">stress_balance</span></code>&shy;<code class="docutils literal notranslate"><span class="pre">.weertman_sliding</span></code>&shy;<code class="docutils literal notranslate"><span class="pre">.k</span></code></a> and
 <a class="reference internal" href="../../parameters/index.html#config-stress_balance.weertman_sliding.A"><code class="docutils literal notranslate"><span class="pre">stress_balance</span></code>&shy;<code class="docutils literal notranslate"><span class="pre">.weertman_sliding</span></code>&shy;<code class="docutils literal notranslate"><span class="pre">.A</span></code></a> tot set <span class="math notranslate nohighlight">\(k\)</span> and <span class="math notranslate nohighlight">\(A_s\)</span>, respectively. Default
-values come from <span id="id13">[<a class="reference internal" href="../../../zzz_references_html.html#id412"><span>62</span></a>]</span>.</p>
+values come from <span id="id26">[<a class="reference internal" href="../../../zzz_references_html.html#id420"><span>65</span></a>]</span>.</p>
+<p class="rubric">Footnotes</p>
+<dl class="footnote brackets">
+<dt class="label" id="semi-coarsening"><span class="brackets"><a class="fn-backref" href="#id19">1</a></span></dt>
+<dd><p>Horizontal coordinates of grid points are the same in all grids in a
+hierarchy, i.e. each grid is “extruded” from PISM’s 2D grid with
+uniform spacing in <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span> directions.</p>
+</dd>
+<dt class="label" id="bp-fem"><span class="brackets"><a class="fn-backref" href="#id14">2</a></span></dt>
+<dd><p>See <a class="reference internal" href="../../../technical/blatter-pattyn.html#sec-blatter-details"><span class="std std-ref">Blatter stress balance solver: technical details</span></a>.</p>
+</dd>
+</dl>
 </div>
 </div>
 
@@ -362,10 +528,10 @@ values come from <span id="id13">[<a class="reference internal" href="../../../z
       <div class="clearer"></div>
     </div>
     <div class="footer">
-      Git revision v1.0-1924-g6e2b3b712
+      Git revision v1.0-2279-g1b93be09b
       committed by Constantine Khrulev
-      on 2021-02-01 12:40:57 -0900 |
-      &copy; 2004--2020, the PISM authors.
+      on 2021-02-26 15:07:00 -0900 |
+      &copy; 2004--2021, the PISM authors.
       
     </div>
   </body>

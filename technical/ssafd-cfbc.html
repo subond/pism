@@ -133,7 +133,7 @@
 </div>
 <div class="section" id="id1">
 <h2><a class="toc-backref" href="#id8">Calving front stress boundary condition</a><a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
-<p>In the 3D case the calving front stress boundary condition (<span id="id2">[<a class="reference internal" href="../zzz_references_html.html#id144"><span>52</span></a>]</span>, equation
+<p>In the 3D case the calving front stress boundary condition (<span id="id2">[<a class="reference internal" href="../zzz_references_html.html#id152"><span>54</span></a>]</span>, equation
 (6.19)) reads</p>
 <div class="math notranslate nohighlight">
 \[\left.t\right|_{\text{cf}} \cdot \n = -\psw \n.\]</div>
@@ -150,12 +150,12 @@ vertically-integrated forms of the stresses <span class="math notranslate nohigh
 separately from the shear stresses <span class="math notranslate nohighlight">\(\td{xz},\td{yz}\)</span>, the third of the above equations can
 be omitted from the remaining analysis.</p>
 <p>Let <span class="math notranslate nohighlight">\(\pice=\rhoi g (h-z)\)</span>. In the hydrostatic approximation, <span class="math notranslate nohighlight">\(t_{zz}=-\pice\)</span>
-(<span id="id3">[<a class="reference internal" href="../zzz_references_html.html#id144"><span>52</span></a>]</span>, equation (5.59)). Next, since <span class="math notranslate nohighlight">\(\td{}\)</span> has trace zero,</p>
+(<span id="id3">[<a class="reference internal" href="../zzz_references_html.html#id152"><span>54</span></a>]</span>, equation (5.59)). Next, since <span class="math notranslate nohighlight">\(\td{}\)</span> has trace zero,</p>
 <div class="math notranslate nohighlight">
 \[ \begin{align}\begin{aligned}p &amp;= p - \td{xx} - \td{yy} - \td{zz}\\&amp;= - t_{zz} - \td{xx} - \td{yy}\\&amp;= \pice - \td{xx} - \td{yy}.\end{aligned}\end{align} \]</div>
 <p>Thus</p>
 <div class="math notranslate nohighlight" id="equation-ssafd-cfbc-1">
-<span class="eqno">(36)<a class="headerlink" href="#equation-ssafd-cfbc-1" title="Permalink to this equation">¶</a></span>\[\begin{split}\begin{array}{rcrcl}
+<span class="eqno">(38)<a class="headerlink" href="#equation-ssafd-cfbc-1" title="Permalink to this equation">¶</a></span>\[\begin{split}\begin{array}{rcrcl}
   (2\td{xx} + \td{yy}) \nx &amp;+&amp; \td{xy} \ny &amp;=&amp; (\pice - \psw) \nx,\\
   \td{xy} \nx &amp;+&amp; (2\td{yy} + \td{xx}) \ny &amp;=&amp; (\pice - \psw) \ny.\\
 \end{array}\end{split}\]</div>
@@ -167,9 +167,9 @@ can define the membrane stress <span class="math notranslate nohighlight">\(N\)<
 <div class="math notranslate nohighlight">
 \[N_{ij} = \int_{b}^{h} t^{D}_{ij} dz = 2\, \bar \viscosity\, H\, D_{ij}.\]</div>
 <p>Here <span class="math notranslate nohighlight">\(\bar \viscosity\)</span> is the vertically-averaged effective viscosity.</p>
-<p>Integrating <a class="reference internal" href="#equation-ssafd-cfbc-1">(36)</a> with respect to <span class="math notranslate nohighlight">\(z\)</span>, we get</p>
+<p>Integrating <a class="reference internal" href="#equation-ssafd-cfbc-1">(38)</a> with respect to <span class="math notranslate nohighlight">\(z\)</span>, we get</p>
 <div class="math notranslate nohighlight" id="equation-ssafd-cfbc-3">
-<span class="eqno">(37)<a class="headerlink" href="#equation-ssafd-cfbc-3" title="Permalink to this equation">¶</a></span>\[\begin{split}\begin{array}{rcrcl}
+<span class="eqno">(39)<a class="headerlink" href="#equation-ssafd-cfbc-3" title="Permalink to this equation">¶</a></span>\[\begin{split}\begin{array}{rcrcl}
   (2N_{xx} + N_{yy}) \nx &amp;+&amp; N_{xy} \ny &amp;=&amp; \displaystyle \int_{b}^{h}(\pice - \psw) dz\, \nx,\\
   N_{xy} \nx &amp;+&amp; (2N_{yy} + N_{xx}) \ny &amp;=&amp; \displaystyle \int_{b}^{h}(\pice - \psw) dz\, \ny.
 \end{array}\end{split}\]</div>
@@ -178,7 +178,7 @@ can define the membrane stress <span class="math notranslate nohighlight">\(N\)<
 <h2><a class="toc-backref" href="#id9">Shallow shelf approximation</a><a class="headerlink" href="#shallow-shelf-approximation" title="Permalink to this headline">¶</a></h2>
 <p>The shallow shelf approximation written in terms of <span class="math notranslate nohighlight">\(N_{ij}\)</span> is</p>
 <div class="math notranslate nohighlight" id="equation-ssafd-cfbc-2">
-<span class="eqno">(38)<a class="headerlink" href="#equation-ssafd-cfbc-2" title="Permalink to this equation">¶</a></span>\[\begin{split}\begin{array}{rcrcl}
+<span class="eqno">(40)<a class="headerlink" href="#equation-ssafd-cfbc-2" title="Permalink to this equation">¶</a></span>\[\begin{split}\begin{array}{rcrcl}
   \D \diff{}{x}(2N_{xx} + N_{yy}) &amp;+&amp; \D \diff{N_{xy}}{y} &amp;=&amp; \D \rho g H \diff{h}{x},\\
   \D \diff{N_{xy}}{x} &amp;+&amp; \D \diff{}{y}(2N_{yy} + N_{xx}) &amp;=&amp; \D \rho g H \diff{h}{y}.
 \end{array}\end{split}\]</div>
@@ -186,9 +186,9 @@ can define the membrane stress <span class="math notranslate nohighlight">\(N\)<
 <div class="section" id="implementing-the-calving-front-boundary-condition">
 <h2><a class="toc-backref" href="#id10">Implementing the calving front boundary condition</a><a class="headerlink" href="#implementing-the-calving-front-boundary-condition" title="Permalink to this headline">¶</a></h2>
 <p>We use centered finite difference approximations in the discretization of the SSA
-<a class="reference internal" href="#equation-ssafd-cfbc-2">(38)</a>. Consider the first equation:</p>
+<a class="reference internal" href="#equation-ssafd-cfbc-2">(40)</a>. Consider the first equation:</p>
 <div class="math notranslate nohighlight" id="equation-ssafd-cfbc-4">
-<span class="eqno">(39)<a class="headerlink" href="#equation-ssafd-cfbc-4" title="Permalink to this equation">¶</a></span>\[\diff{}{x}(2N_{xx} + N_{yy}) + \D \diff{N_{xy}}{y} = \D \rho g H \diff{h}{x}.\]</div>
+<span class="eqno">(41)<a class="headerlink" href="#equation-ssafd-cfbc-4" title="Permalink to this equation">¶</a></span>\[\diff{}{x}(2N_{xx} + N_{yy}) + \D \diff{N_{xy}}{y} = \D \rho g H \diff{h}{x}.\]</div>
 <p>Let <span class="math notranslate nohighlight">\(\tilde F\)</span> be an approximation of <span class="math notranslate nohighlight">\(F\)</span> using a finite-difference scheme. Then the first
 SSA equation is approximated by</p>
 <div class="math notranslate nohighlight">
@@ -196,13 +196,13 @@ SSA equation is approximated by</p>
 \frac1{\dy}\left(\partII_{i,j+\frac12} - \partII_{i,j-\frac12}\right) =
 \rho g H \frac{h_{i+\frac12,j} - h_{i-\frac12,j}}{\dx}.\]</div>
 <p>Now, assume that the cell boundary (face) at <span class="math notranslate nohighlight">\(i+\frac12,j\)</span> is at the
-calving front. Then <span class="math notranslate nohighlight">\(\n = (1,0)\)</span> and from <a class="reference internal" href="#equation-ssafd-cfbc-3">(37)</a> we have</p>
+calving front. Then <span class="math notranslate nohighlight">\(\n = (1,0)\)</span> and from <a class="reference internal" href="#equation-ssafd-cfbc-3">(39)</a> we have</p>
 <div class="math notranslate nohighlight" id="equation-ssafd-cfbc-vertintbdry">
-<span class="eqno">(40)<a class="headerlink" href="#equation-ssafd-cfbc-vertintbdry" title="Permalink to this equation">¶</a></span>\[2N_{xx} + N_{yy} = \int_{b}^{h}(\pice - \psw) dz.\]</div>
-<p>We call the right-hand side of <a class="reference internal" href="#equation-ssafd-cfbc-vertintbdry">(40)</a> the “pressure difference term.”</p>
-<p>In forming the matrix approximation of the SSA <span id="id4">[<a class="reference internal" href="../zzz_references_html.html#id23"><span>9</span></a>]</span>,
-<span id="id5">[<a class="reference internal" href="../zzz_references_html.html#id444"><span>16</span></a>]</span>, instead of assembling a matrix row corresponding to the
-generic equation <a class="reference internal" href="#equation-ssafd-cfbc-4">(39)</a> we use</p>
+<span class="eqno">(42)<a class="headerlink" href="#equation-ssafd-cfbc-vertintbdry" title="Permalink to this equation">¶</a></span>\[2N_{xx} + N_{yy} = \int_{b}^{h}(\pice - \psw) dz.\]</div>
+<p>We call the right-hand side of <a class="reference internal" href="#equation-ssafd-cfbc-vertintbdry">(42)</a> the “pressure difference term.”</p>
+<p>In forming the matrix approximation of the SSA <span id="id4">[<a class="reference internal" href="../zzz_references_html.html#id31"><span>9</span></a>]</span>,
+<span id="id5">[<a class="reference internal" href="../zzz_references_html.html#id452"><span>16</span></a>]</span>, instead of assembling a matrix row corresponding to the
+generic equation <a class="reference internal" href="#equation-ssafd-cfbc-4">(41)</a> we use</p>
 <div class="math notranslate nohighlight">
 \[\frac1{\dx}\left(\left[\int_{b}^{h}(\pice - \psw) dz\right]_{i+\frac12,j} - \partI_{i-\frac12,j}\right) +
 \frac1{\dy}\left(\partII_{i,j+\frac12} - \partII_{i,j-\frac12}\right) =
@@ -258,6 +258,7 @@ right-hand side, we get</p>
 <li class="toctree-l1"><a class="reference internal" href="../manual/index.html">PISM User’s Manual</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../climate_forcing/index.html">Climate forcing</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">Technical notes</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="release_checklist.html">Release checklist</a></li>
 <li class="toctree-l2"><a class="reference internal" href="cf-standard-names.html">CF standard names used by PISM</a></li>
 <li class="toctree-l2"><a class="reference internal" href="vertchange.html">On the vertical coordinate in PISM, and a critical change of variable</a></li>
 <li class="toctree-l2"><a class="reference internal" href="bed_roughness.html">Using Schoof’s parameterized bed roughness technique in PISM</a></li>
@@ -270,8 +271,8 @@ right-hand side, we get</p>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="bombproof.html">BOMBPROOF, PISM’s numerical scheme for conservation of energy</a></li>
 <li class="toctree-l2"><a class="reference internal" href="steady-hydrology.html">Computing steady-state subglacial water flux</a></li>
-<li class="toctree-l2"><a class="reference internal" href="release_checklist.html">Release checklist</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ocean-th.html">Three-equation ocean model (implementation details)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="blatter-pattyn.html">Blatter stress balance solver: technical details</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../contributing/index.html">Contributing to PISM</a></li>
@@ -295,10 +296,10 @@ right-hand side, we get</p>
       <div class="clearer"></div>
     </div>
     <div class="footer">
-      Git revision v1.0-1924-g6e2b3b712
+      Git revision v1.0-2279-g1b93be09b
       committed by Constantine Khrulev
-      on 2021-02-01 12:40:57 -0900 |
-      &copy; 2004--2020, the PISM authors.
+      on 2021-02-26 15:07:00 -0900 |
+      &copy; 2004--2021, the PISM authors.
       
     </div>
   </body>

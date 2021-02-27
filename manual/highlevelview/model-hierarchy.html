@@ -16,7 +16,7 @@
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="Evolutionary versus diagnostic modeling" href="evolutionary-vs-diagnostic.html" />
-    <link rel="prev" title="Two stress balance models: SIA and SSA" href="stress-balance-models.html" />
+    <link rel="prev" title="Stress balance models: SIA, SSA, and the First Order Approximation" href="stress-balance-models.html" />
    
   <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
   
@@ -63,7 +63,7 @@ also needs pre-determined location of ice sheet margin</p></td>
 </td>
 </tr>
 <tr class="row-odd"><td><p><em>balance velocities</em></p></td>
-<td><p><em>steady state</em>; ice flows down surface gradient <span id="id1">[<a class="reference internal" href="../../zzz_references_html.html#id222"><span>56</span></a>]</span></p></td>
+<td><p><em>steady state</em>; ice flows down surface gradient <span id="id1">[<a class="reference internal" href="../../zzz_references_html.html#id230"><span>56</span></a>]</span></p></td>
 <td><p><em>same as above, plus:</em></p>
 <ul class="simple">
 <li><p>surface mass balance</p></li>
@@ -72,12 +72,12 @@ also needs pre-determined location of ice sheet margin</p></td>
 </td>
 </tr>
 <tr class="row-even"><td><p>isothermal SIA</p></td>
-<td><p>non-sliding lubrication flow, fixed softness <span id="id2">[<a class="reference internal" href="../../zzz_references_html.html#id27"><span>57</span></a>]</span>, <span id="id3">[<a class="reference internal" href="../../zzz_references_html.html#id96"><span>58</span></a>]</span></p></td>
+<td><p>non-sliding lubrication flow, fixed softness <span id="id2">[<a class="reference internal" href="../../zzz_references_html.html#id35"><span>57</span></a>]</span>, <span id="id3">[<a class="reference internal" href="../../zzz_references_html.html#id104"><span>58</span></a>]</span></p></td>
 <td><p><em>same as above, but time-dependence is allowed</em></p></td>
 </tr>
 <tr class="row-odd"><td><p>thermo-coupled SIA</p></td>
-<td><p>non-sliding lubrication flow, temperature-dependent softness <span id="id4">[<a class="reference internal" href="../../zzz_references_html.html#id22"><span>15</span></a>]</span>,
-<span id="id5">[<a class="reference internal" href="../../zzz_references_html.html#id95"><span>11</span></a>]</span></p></td>
+<td><p>non-sliding lubrication flow, temperature-dependent softness <span id="id4">[<a class="reference internal" href="../../zzz_references_html.html#id30"><span>15</span></a>]</span>,
+<span id="id5">[<a class="reference internal" href="../../zzz_references_html.html#id103"><span>11</span></a>]</span></p></td>
 <td><p><em>same as above, plus:</em></p>
 <ul class="simple">
 <li><p>surface temperature</p></li>
@@ -87,12 +87,12 @@ also needs pre-determined location of ice sheet margin</p></td>
 </tr>
 <tr class="row-even"><td><p>polythermal SIA</p></td>
 <td><p>allows liquid water fraction in temperate ice; conserves energy better
-<span id="id6">[<a class="reference internal" href="../../zzz_references_html.html#id20"><span>21</span></a>]</span>, <span id="id7">[<a class="reference internal" href="../../zzz_references_html.html#id139"><span>41</span></a>]</span></p></td>
+<span id="id6">[<a class="reference internal" href="../../zzz_references_html.html#id28"><span>21</span></a>]</span>, <span id="id7">[<a class="reference internal" href="../../zzz_references_html.html#id147"><span>43</span></a>]</span></p></td>
 <td><p><em>same as above</em></p></td>
 </tr>
 <tr class="row-odd"><td><p>SIA + SSA hybrid</p></td>
-<td><p>SSA as a sliding law for thermo-coupled SIA <span id="id8">[<a class="reference internal" href="../../zzz_references_html.html#id23"><span>9</span></a>]</span>,
-<span id="id9">[<a class="reference internal" href="../../zzz_references_html.html#id444"><span>16</span></a>]</span>; polythermal by default</p></td>
+<td><p>SSA as a sliding law for thermo-coupled SIA <span id="id8">[<a class="reference internal" href="../../zzz_references_html.html#id31"><span>9</span></a>]</span>,
+<span id="id9">[<a class="reference internal" href="../../zzz_references_html.html#id452"><span>16</span></a>]</span>; polythermal by default</p></td>
 <td><p><em>same as above, plus:</em></p>
 <ul class="simple">
 <li><p>model for subglacial water</p></li>
@@ -100,9 +100,10 @@ also needs pre-determined location of ice sheet margin</p></td>
 </ul>
 </td>
 </tr>
-<tr class="row-even"><td><p><em>Blatter-Pattyn</em></p></td>
-<td><p>“higher-order”, bridging stresses <span id="id10">[<a class="reference internal" href="../../zzz_references_html.html#id46"><span>53</span></a>]</span>, <span id="id11">[<a class="reference internal" href="../../zzz_references_html.html#id317"><span>54</span></a>]</span>,
-<span id="id12">[<a class="reference internal" href="../../zzz_references_html.html#id380"><span>59</span></a>]</span></p></td>
+<tr class="row-even"><td><p>First Order Approximation</p></td>
+<td><p>pressure within the ice is hydrostatic; <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span> derivatives of the
+vertical velocity component are small compared to <span class="math notranslate nohighlight">\(z\)</span> derivatives of horizontal
+components <span id="id10">[<a class="reference internal" href="../../zzz_references_html.html#id54"><span>40</span></a>]</span>, <span id="id11">[<a class="reference internal" href="../../zzz_references_html.html#id325"><span>41</span></a>]</span>, <span id="id12">[<a class="reference internal" href="../../zzz_references_html.html#id388"><span>59</span></a>]</span></p></td>
 <td><p><em>same as above</em></p></td>
 </tr>
 </tbody>
@@ -163,7 +164,7 @@ stresses, and the final output is a three-dimensional velocity field within the 
 <li class="toctree-l1 current"><a class="reference internal" href="../index.html">PISM User’s Manual</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../std-greenland/index.html">Getting started: a Greenland ice sheet example</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="index.html">Ice dynamics, the PISM view</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="stress-balance-models.html">Two stress balance models: SIA and SSA</a></li>
+<li class="toctree-l3"><a class="reference internal" href="stress-balance-models.html">Stress balance models: SIA, SSA, and the First Order Approximation</a></li>
 <li class="toctree-l3 current"><a class="current reference internal" href="#">A hierarchy of simplifying assumptions for grounded ice flow</a></li>
 <li class="toctree-l3"><a class="reference internal" href="evolutionary-vs-diagnostic.html">Evolutionary versus diagnostic modeling</a></li>
 <li class="toctree-l3"><a class="reference internal" href="climate-inputs.html">Climate inputs, and their interface with ice dynamics</a></li>
@@ -203,10 +204,10 @@ stresses, and the final output is a three-dimensional velocity field within the 
       <div class="clearer"></div>
     </div>
     <div class="footer">
-      Git revision v1.0-1924-g6e2b3b712
+      Git revision v1.0-2279-g1b93be09b
       committed by Constantine Khrulev
-      on 2021-02-01 12:40:57 -0900 |
-      &copy; 2004--2020, the PISM authors.
+      on 2021-02-26 15:07:00 -0900 |
+      &copy; 2004--2021, the PISM authors.
       
     </div>
   </body>
