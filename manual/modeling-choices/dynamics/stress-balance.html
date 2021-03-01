@@ -108,10 +108,10 @@ non-sliding SIA.</p></td>
 The number of vertical “levels” in this grid is controlled by
 <a class="reference internal" href="../../parameters/index.html#config-stress_balance.blatter.Mz"><code class="docutils literal notranslate"><span class="pre">stress_balance</span></code>&shy;<code class="docutils literal notranslate"><span class="pre">.blatter</span></code>&shy;<code class="docutils literal notranslate"><span class="pre">.Mz</span></code></a>.</p>
 <p>The non-linear system resulting from the discretization of PDEs corresponding to Blatter’s
-stress balance model<a class="footnote-reference brackets" href="#bp-fem" id="id14">2</a> is much harder to solve than the one corresponding to the SSA system
-(<span id="id15">[<a class="reference internal" href="../../../zzz_references_html.html#id66"><span>55</span></a>]</span>, <span id="id16">[<a class="reference internal" href="../../../zzz_references_html.html#id7"><span>62</span></a>]</span>) and (at this point) experimentation
-with preconditioner choices seems inevitable. We use PETSc’s command-line options to
-control these choices.</p>
+stress balance model<a class="footnote-reference brackets" href="#bp-fem" id="id14">2</a> is much harder to solve than the one corresponding to the
+SSA system (<span id="id15">[<a class="reference internal" href="../../../zzz_references_html.html#id66"><span>55</span></a>]</span>, <span id="id16">[<a class="reference internal" href="../../../zzz_references_html.html#id7"><span>62</span></a>]</span>) and (at this point)
+experimentation with preconditioner choices seems inevitable. We use PETSc’s command-line
+options to control these choices.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>The Blatter solver uses the <code class="docutils literal notranslate"><span class="pre">-bp_</span></code> command-line option prefix.</p>
@@ -121,10 +121,10 @@ control these choices.</p>
 </div>
 <p>to see the complete list of PETSc option controlling this solver.</p>
 </div>
-<p>The multigrid preconditioner using semi-coarsening in the vertical direction followed by
-further (horizontal) coarsening using algebraic multigrid methods appears to be effective
-<span id="id17">[<a class="reference internal" href="../../../zzz_references_html.html#id7"><span>62</span></a>]</span>. The option combination</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>-bp_pc_type mg -bp_pc_mg_levels M -bp_mg_coarse_pc_type gamg
+<p>The multigrid (MG) preconditioner using semi-coarsening in the vertical direction followed
+by further (horizontal) coarsening using algebraic multigrid methods appears to be
+effective <span id="id17">[<a class="reference internal" href="../../../zzz_references_html.html#id7"><span>62</span></a>]</span>. The option combination</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>-bp_pc_type mg -bp_pc_mg_levels N -bp_mg_coarse_pc_type gamg
 </pre></div>
 </div>
 <p>roughly corresponds to this approach. (Unlike <span id="id18">[<a class="reference internal" href="../../../zzz_references_html.html#id7"><span>62</span></a>]</span>, who used a purely
@@ -135,23 +135,32 @@ multigrid preconditioners.)</p>
 <p><em>External PETSc packages</em> such as Hypre or ML may be useful here, but we have not
 compared their performance to GAMG built into PETSc.</p>
 </div>
-<p>Here <code class="docutils literal notranslate"><span class="pre">-bp_pc_type</span> <span class="pre">mg</span></code> selects the geometric multigrid (MG) preconditioner using
-semi-coarsening in the vertical direction. This method requires building a hierarchy of
-grids, the finest of which is selected using <a class="reference internal" href="../../parameters/index.html#config-grid.Mx"><code class="docutils literal notranslate"><span class="pre">grid</span></code>&shy;<code class="docutils literal notranslate"><span class="pre">.Mx</span></code></a>, <a class="reference internal" href="../../parameters/index.html#config-grid.My"><code class="docutils literal notranslate"><span class="pre">grid</span></code>&shy;<code class="docutils literal notranslate"><span class="pre">.My</span></code></a>,
-<a class="reference internal" href="../../parameters/index.html#config-stress_balance.blatter.Mz"><code class="docutils literal notranslate"><span class="pre">stress_balance</span></code>&shy;<code class="docutils literal notranslate"><span class="pre">.blatter</span></code>&shy;<code class="docutils literal notranslate"><span class="pre">.Mz</span></code></a>.<a class="footnote-reference brackets" href="#semi-coarsening" id="id19">1</a></p>
-<p>To create this hierarchy, PISM starts with the finest grid and builds the next one by
-dividing the number of vertical <em>spaces</em> by a coarsening factor <span class="math notranslate nohighlight">\(C\)</span> (see
-<a class="reference internal" href="../../parameters/index.html#config-stress_balance.blatter.coarsening_factor"><code class="docutils literal notranslate"><span class="pre">stress_balance</span></code>&shy;<code class="docutils literal notranslate"><span class="pre">.blatter</span></code>&shy;<code class="docutils literal notranslate"><span class="pre">.coarsening_factor</span></code></a>). The number of vertical grid levels
-<span class="math notranslate nohighlight">\(N_k\)</span> in the grid number <span class="math notranslate nohighlight">\(k\)</span> in the hierarchy is</p>
-<div class="math notranslate nohighlight">
-\[ \begin{align}\begin{aligned}N_{1} &amp;= \mathtt{stress\_balance.blatter.Mz},\\N_{k} &amp;= (N_{k-1} - 1)\, /\, C + 1.\end{aligned}\end{align} \]</div>
-<p>Then the newly-created grid is coarsened and this process is continued, stopping when the
-desired number <span class="math notranslate nohighlight">\(M\)</span> of grids (MG levels, set using <code class="docutils literal notranslate"><span class="pre">-bp_pc_mg_levels</span> <span class="pre">M</span></code>) is reached.</p>
-<p>For this to work the number of vertical grid levels on the finest grid in the hierarchy
-has to have the form</p>
+<p>To use a multigrid preconditioner the user has to specify</p>
+<ul class="simple">
+<li><p>the number of MG levels <span class="math notranslate nohighlight">\(N\)</span> using <code class="docutils literal notranslate"><span class="pre">-bp_pc_mg_levels</span> <span class="pre">N</span></code>,</p></li>
+<li><p>the coarsening factor <span class="math notranslate nohighlight">\(C\)</span> by setting <a class="reference internal" href="../../parameters/index.html#config-stress_balance.blatter.coarsening_factor"><code class="docutils literal notranslate"><span class="pre">stress_balance</span></code>&shy;<code class="docutils literal notranslate"><span class="pre">.blatter</span></code>&shy;<code class="docutils literal notranslate"><span class="pre">.coarsening_factor</span></code></a>, and</p></li>
+<li><p>the vertical grid size <span class="math notranslate nohighlight">\(M_z\)</span> (<a class="reference internal" href="../../parameters/index.html#config-stress_balance.blatter.Mz"><code class="docutils literal notranslate"><span class="pre">stress_balance</span></code>&shy;<code class="docutils literal notranslate"><span class="pre">.blatter</span></code>&shy;<code class="docutils literal notranslate"><span class="pre">.Mz</span></code></a>).</p></li>
+</ul>
+<p>The values of these parameters have to be compatible. Specifically, <span class="math notranslate nohighlight">\(M_z\)</span> has to have the
+form</p>
 <div class="math notranslate nohighlight" id="equation-eq-bp-vertical-grid-size">
-<span class="eqno">(4)<a class="headerlink" href="#equation-eq-bp-vertical-grid-size" title="Permalink to this equation">¶</a></span>\[\mathtt{stress\_balance.blatter.Mz} = A\cdot C^{M - 1} + 1\]</div>
-<p>for some integer <span class="math notranslate nohighlight">\(A\)</span>.</p>
+<span class="eqno">(4)<a class="headerlink" href="#equation-eq-bp-vertical-grid-size" title="Permalink to this equation">¶</a></span>\[M_z = A\cdot C^{N - 1} + 1\]</div>
+<p>for some positive integer <span class="math notranslate nohighlight">\(A\)</span>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>PISM stops with an error message if <a class="reference internal" href="#equation-eq-bp-vertical-grid-size">(4)</a> is not satisfied.</p>
+</div>
+<p>To set up a multigrid preconditioner PISM needs to build a hierarchy of vertical grids<a class="footnote-reference brackets" href="#semi-coarsening" id="id19">1</a> with <span class="math notranslate nohighlight">\(M_z\)</span> points on the finest grid.. Starting with this grid, PISM
+creates the next one by dividing the number of vertical <em>spaces</em> by the coarsening factor
+<span class="math notranslate nohighlight">\(C\)</span>. Then the newly-created grid is coarsened and this process is continued, stopping when
+the desired number <span class="math notranslate nohighlight">\(N\)</span> of grids (MG levels) reached.</p>
+<p>Overall, the number of points <span class="math notranslate nohighlight">\(M_{z}^k\)</span> in the vertical grid number <span class="math notranslate nohighlight">\(k\)</span> in the hierarchy
+is</p>
+<div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}M_{z}^1 &amp;= M_z,\\M_{z}^k &amp;= (M_{k-1} - 1)\, /\, C + 1.\end{aligned}\end{align} \]</div>
+<p>This process explains the compatibility condition <a class="reference internal" href="#equation-eq-bp-vertical-grid-size">(4)</a>: the
+number of <strong>spaces</strong> in all vertical grids in the hierarchy <em>except for the coarsest one</em>
+has to be divisible by <span class="math notranslate nohighlight">\(C\)</span>.</p>
 <table class="colwidths-given docutils align-default" id="tab-blatter-mg-levels">
 <caption><span class="caption-number">Table 10 </span><span class="caption-text">Some vertical grid hierarchies</span><a class="headerlink" href="#tab-blatter-mg-levels" title="Permalink to this table">¶</a></caption>
 <colgroup>
@@ -199,23 +208,10 @@ application increases with the number of MG levels, so the first hierarchy (<spa
 less effective preconditioner, requiring more Krylov iterations and increasing the
 computational cost. Again, one may have to experiment to find settings that work best in a
 particular setup.</p>
-<p>Picking the number of vertical levels from <a class="reference internal" href="#tab-blatter-mg-levels"><span class="std std-numref">Table 10</span></a> can be a
-hassle. As an alternative, PISM can <em>increase</em> the number of vertical levels to the
-smallest number that is greater than or equal to <a class="reference internal" href="../../parameters/index.html#config-stress_balance.blatter.Mz"><code class="docutils literal notranslate"><span class="pre">stress_balance</span></code>&shy;<code class="docutils literal notranslate"><span class="pre">.blatter</span></code>&shy;<code class="docutils literal notranslate"><span class="pre">.Mz</span></code></a> and
-has the form <a class="reference internal" href="#equation-eq-bp-vertical-grid-size">(4)</a>.</p>
-<p>Set</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>-bp_pc_type mg <span class="se">\</span>
--bp_pc_mg_levels M <span class="se">\</span>
--blatter_n_levels M <span class="se">\</span>
--blatter_coarsening_factor C <span class="se">\</span>
--blatter_Mz N
-</pre></div>
-</div>
-<p>to enable this mechanism. In this case PISM will use a fine grid with <em>at least</em> <span class="math notranslate nohighlight">\(N\)</span>
-vertical levels and build a grid hierarchy with <span class="math notranslate nohighlight">\(M\)</span> levels and the coarsening factor <span class="math notranslate nohighlight">\(C\)</span>.</p>
-<p>The coarsest grid in a hierarchy should be as small as possible. Two levels is the minimum
-achievable in the context of the finite element method used to discretize the system (this
-corresponds to a mesh that is just one element thick).</p>
+<p>The coarsest grid in a hierarchy should be as small as possible (corresponding to <span class="math notranslate nohighlight">\(A = 1\)</span>
+in <a class="reference internal" href="#equation-eq-bp-vertical-grid-size">(4)</a>); two levels is the minimum achievable in the context of
+the finite element method used to discretize the system (this corresponds to a mesh that
+is just one element thick).</p>
 <p>Note, though, that the multigrid preconditioner, even if it is effective in terms of
 reducing the number of Krylov iterations, may not be the cheapest one <span id="id20">[<a class="reference internal" href="../../../zzz_references_html.html#id10"><span>63</span></a>]</span>:
 there is a trade off between the number of iterations and the cost of a single iteration.
@@ -245,7 +241,6 @@ to enable it.</p>
 <li><p><a class="reference internal" href="../../parameters/index.html#config-stress_balance.blatter.enhancement_factor"><code class="docutils literal notranslate"><span class="pre">enhancement_factor</span></code></a> (1) Flow enhancement factor for the Blatter stress balance flow law</p></li>
 <li><p><a class="reference internal" href="../../parameters/index.html#config-stress_balance.blatter.enhancement_factor_interglacial"><code class="docutils literal notranslate"><span class="pre">enhancement_factor_interglacial</span></code></a> (1) Flow enhancement factor for Blatter stress balance solver (<em>not implemented</em>)</p></li>
 <li><p><a class="reference internal" href="../../parameters/index.html#config-stress_balance.blatter.flow_law"><code class="docutils literal notranslate"><span class="pre">flow_law</span></code></a> (<code class="docutils literal notranslate"><span class="pre">gpbld</span></code>) The flow law used by the Blatter-Pattyn stress balance model</p></li>
-<li><p><a class="reference internal" href="../../parameters/index.html#config-stress_balance.blatter.n_levels"><code class="docutils literal notranslate"><span class="pre">n_levels</span></code></a> (0) Choose the number of vertical levels <span class="math notranslate nohighlight">\(M_z\)</span> so that <span class="math notranslate nohighlight">\(M_z \ge\)</span> <a class="reference internal" href="../../parameters/index.html#config-stress_balance.blatter.Mz"><code class="docutils literal notranslate"><span class="pre">stress_balance</span></code>&shy;<code class="docutils literal notranslate"><span class="pre">.blatter</span></code>&shy;<code class="docutils literal notranslate"><span class="pre">.Mz</span></code></a> and allows for this many multigrid levels with the coarsening factor <a class="reference internal" href="../../parameters/index.html#config-stress_balance.blatter.coarsening_factor"><code class="docutils literal notranslate"><span class="pre">stress_balance</span></code>&shy;<code class="docutils literal notranslate"><span class="pre">.blatter</span></code>&shy;<code class="docutils literal notranslate"><span class="pre">.coarsening_factor</span></code></a></p></li>
 <li><p><a class="reference internal" href="../../parameters/index.html#config-stress_balance.blatter.use_eta_transform"><code class="docutils literal notranslate"><span class="pre">use_eta_transform</span></code></a> (no) Use the <span class="math notranslate nohighlight">\(\eta\)</span> transform to improve the accuracy of the surface gradient approximation near grounded margins (see <span id="id22">[<a class="reference internal" href="../../../zzz_references_html.html#id35"><span>57</span></a>]</span> for details).</p></li>
 </ol>
 </div>
@@ -528,9 +523,9 @@ uniform spacing in <span class="math notranslate nohighlight">\(x\)</span> and <
       <div class="clearer"></div>
     </div>
     <div class="footer">
-      Git revision v1.0-2279-g1b93be09b
+      Git revision v1.0-2285-g711dd320b
       committed by Constantine Khrulev
-      on 2021-02-26 15:07:00 -0900 |
+      on 2021-03-01 13:22:29 -0900 |
       &copy; 2004--2021, the PISM authors.
       
     </div>

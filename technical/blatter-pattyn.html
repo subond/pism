@@ -83,7 +83,7 @@
 <li><p><a class="reference internal" href="#iceberg-elimination" id="id60">Iceberg elimination</a></p></li>
 <li><p><a class="reference internal" href="#preconditioning" id="id61">Preconditioning</a></p>
 <ul>
-<li><p><a class="reference internal" href="#padding-the-vertical-grid-to-support-coarsening" id="id62">Padding the vertical grid to support coarsening</a></p></li>
+<li><p><a class="reference internal" href="#vertical-grid-sizes-compatible-with-coarsening" id="id62">Vertical grid sizes compatible with coarsening</a></p></li>
 <li><p><a class="reference internal" href="#controlling-using-petsc-options" id="id63">Controlling using PETSc options</a></p></li>
 <li><p><a class="reference internal" href="#additional-code-needed-to-support-geometric-multigrid" id="id64">Additional code needed to support geometric multigrid</a></p></li>
 </ul>
@@ -576,22 +576,20 @@ direct solver, which is PETSc’s default.)</p>
 <p>In addition to this, we follow <span id="id29">[<a class="reference internal" href="../zzz_references_html.html#id66"><span>55</span></a>]</span> in ordering unknowns so that
 columns are contiguous (and <span class="math notranslate nohighlight">\(u\)</span> and <span class="math notranslate nohighlight">\(v\)</span> are interleaved), allowing ILU factorization to
 compute a good approximation of ice velocities in areas where SIA applicable.</p>
-<div class="section" id="padding-the-vertical-grid-to-support-coarsening">
-<span id="sec-bp-pc-grid-padding"></span><h4><a class="toc-backref" href="#id62">Padding the vertical grid to support coarsening</a><a class="headerlink" href="#padding-the-vertical-grid-to-support-coarsening" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="vertical-grid-sizes-compatible-with-coarsening">
+<span id="sec-bp-pc-grid-coarsening"></span><h4><a class="toc-backref" href="#id62">Vertical grid sizes compatible with coarsening</a><a class="headerlink" href="#vertical-grid-sizes-compatible-with-coarsening" title="Permalink to this headline">¶</a></h4>
 <p>Ideally, the coarsest mesh in the hierarchy should have 2 nodes in the <span class="math notranslate nohighlight">\(z\)</span> direction, i.e.
 be <em>one element thick</em>. If <span class="math notranslate nohighlight">\(N\)</span> is the coarsening factor, the total number of vertical
 levels (<span class="math notranslate nohighlight">\(M_z\)</span>) has to have the form</p>
 <div class="math notranslate nohighlight" id="equation-eq-bp-mz">
-<span class="eqno">(84)<a class="headerlink" href="#equation-eq-bp-mz" title="Permalink to this equation">¶</a></span>\[M_z = N^k + 1\]</div>
-<p>so that the mesh hierarchy containing <span class="math notranslate nohighlight">\(k\)</span> levels will include levels with</p>
+<span class="eqno">(84)<a class="headerlink" href="#equation-eq-bp-mz" title="Permalink to this equation">¶</a></span>\[M_z = A\cdot N^k + 1\]</div>
+<p>for some positive integer <span class="math notranslate nohighlight">\(A\)</span> (ideally <span class="math notranslate nohighlight">\(A=1\)</span>), so that the mesh hierarchy containing <span class="math notranslate nohighlight">\(k\)</span>
+levels will include levels with</p>
 <div class="math notranslate nohighlight">
-\[1 + 1,\, N + 1,\, N^2 + 1,\, \dots,\, N^k + 1\]</div>
+\[A + 1,\, A\cdot N + 1,\, A\cdot N^2 + 1,\, \dots,\, A\cdot N^k + 1\]</div>
 <p>nodes in the <span class="math notranslate nohighlight">\(z\)</span> direction.</p>
 <p>This means that for a given <a class="reference internal" href="../manual/parameters/index.html#config-stress_balance.blatter.coarsening_factor"><code class="docutils literal notranslate"><span class="pre">stress_balance</span></code>&shy;<code class="docutils literal notranslate"><span class="pre">.blatter</span></code>&shy;<code class="docutils literal notranslate"><span class="pre">.coarsening_factor</span></code></a> and number
-of multigrid levels <code class="docutils literal notranslate"><span class="pre">-bp_pc_mg_levels</span> <span class="pre">k</span></code> the value of <span class="math notranslate nohighlight">\(M_z\)</span> cannot be chosen at random.
-If the parameter <a class="reference internal" href="../manual/parameters/index.html#config-stress_balance.blatter.n_levels"><code class="docutils literal notranslate"><span class="pre">stress_balance</span></code>&shy;<code class="docutils literal notranslate"><span class="pre">.blatter</span></code>&shy;<code class="docutils literal notranslate"><span class="pre">.n_levels</span></code></a> is set, PISM will choose the
-smallest number <span class="math notranslate nohighlight">\(M_z\)</span> exceeding <a class="reference internal" href="../manual/parameters/index.html#config-stress_balance.blatter.Mz"><code class="docutils literal notranslate"><span class="pre">stress_balance</span></code>&shy;<code class="docutils literal notranslate"><span class="pre">.blatter</span></code>&shy;<code class="docutils literal notranslate"><span class="pre">.Mz</span></code></a> what has the form
-<a class="reference internal" href="#equation-eq-bp-mz">(84)</a>.</p>
+of multigrid levels <code class="docutils literal notranslate"><span class="pre">-bp_pc_mg_levels</span> <span class="pre">k</span></code> the value of <span class="math notranslate nohighlight">\(M_z\)</span> cannot be chosen at random.</p>
 </div>
 <div class="section" id="controlling-using-petsc-options">
 <span id="sec-bp-pc-options"></span><h4><a class="toc-backref" href="#id63">Controlling using PETSc options</a><a class="headerlink" href="#controlling-using-petsc-options" title="Permalink to this headline">¶</a></h4>
@@ -613,7 +611,7 @@ command-line options.</p>
 </div>
 <p>An “aggressive” (i.e. greater than 2) coarsening factor may work well. Use
 <a class="reference internal" href="../manual/parameters/index.html#config-stress_balance.blatter.coarsening_factor"><code class="docutils literal notranslate"><span class="pre">stress_balance</span></code>&shy;<code class="docutils literal notranslate"><span class="pre">.blatter</span></code>&shy;<code class="docutils literal notranslate"><span class="pre">.coarsening_factor</span></code></a> to set it.</p>
-<p>See <a class="reference internal" href="#sec-bp-pc-grid-padding"><span class="std std-ref">Padding the vertical grid to support coarsening</span></a> for the discussion of the relationship between the
+<p>See <a class="reference internal" href="#sec-bp-pc-grid-coarsening"><span class="std std-ref">Vertical grid sizes compatible with coarsening</span></a> for the discussion of the relationship between the
 number of vertical levels, number of multigrid levels, and the coarsening factor.</p>
 <p>Set</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>-bp_mg_coarse_pc_type gamg
@@ -1013,9 +1011,9 @@ one to use “geometric” coarsening.</p>
       <div class="clearer"></div>
     </div>
     <div class="footer">
-      Git revision v1.0-2279-g1b93be09b
+      Git revision v1.0-2285-g711dd320b
       committed by Constantine Khrulev
-      on 2021-02-26 15:07:00 -0900 |
+      on 2021-03-01 13:22:29 -0900 |
       &copy; 2004--2021, the PISM authors.
       
     </div>
