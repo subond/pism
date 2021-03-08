@@ -238,7 +238,7 @@ balance below <span class="math notranslate nohighlight">\(\h{min}\)</span> to <
 </dd>
 </dl>
 <p>The default PDD model used by PISM, turned on by option <code class="option docutils literal notranslate"><span class="pre">-surface</span> <span class="pre">pdd</span></code>, is based on
-<span id="id2">[<a class="reference internal" href="../zzz_references_html.html#id78"><span>137</span></a>]</span> and EISMINT-Greenland intercomparison (see <span id="id3">[<a class="reference internal" href="../zzz_references_html.html#id366"><span>132</span></a>]</span>).</p>
+<span id="id2">[<a class="reference internal" href="../zzz_references_html.html#id79"><span>138</span></a>]</span> and EISMINT-Greenland intercomparison (see <span id="id3">[<a class="reference internal" href="../zzz_references_html.html#id367"><span>133</span></a>]</span>).</p>
 <p>Our model computes the solid (snow) precipitation rate using the air temperature threshold
 with a linear transition. All precipitation during periods with air temperatures above
 <a class="reference internal" href="../manual/parameters/index.html#config-surface.pdd.air_temp_all_precip_as_rain"><code class="docutils literal notranslate"><span class="pre">surface</span></code>&shy;<code class="docutils literal notranslate"><span class="pre">.pdd</span></code>&shy;<code class="docutils literal notranslate"><span class="pre">.air_temp_all_precip_as_rain</span></code></a> (default of <span class="math notranslate nohighlight">\(2^\circ C\)</span>) is interpreted as
@@ -265,9 +265,9 @@ deviation of near-surface air temperature in variable <code class="variable docu
 corresponding time coordinate in variable <code class="variable docutils literal notranslate"><span class="pre">time</span></code>. If <code class="docutils literal notranslate"><span class="pre">-pdd_sd_file</span></code> is not set,
 PISM uses a constant value for standard deviation, which is set by the
 configuration parameter <a class="reference internal" href="../manual/parameters/index.html#config-surface.pdd.std_dev"><code class="docutils literal notranslate"><span class="pre">surface</span></code>&shy;<code class="docutils literal notranslate"><span class="pre">.pdd</span></code>&shy;<code class="docutils literal notranslate"><span class="pre">.std_dev</span></code></a>. The default value is <span class="math notranslate nohighlight">\(5.0\)</span> degrees
-<span id="id4">[<a class="reference internal" href="../zzz_references_html.html#id366"><span>132</span></a>]</span>. However, this approach is not recommended as it induces significant
+<span id="id4">[<a class="reference internal" href="../zzz_references_html.html#id367"><span>133</span></a>]</span>. However, this approach is not recommended as it induces significant
 errors in modeled surface mass balance in both ice-covered and ice-free regions
-<span id="id5">[<a class="reference internal" href="../zzz_references_html.html#id374"><span>138</span></a>]</span>, <span id="id6">[<a class="reference internal" href="../zzz_references_html.html#id401"><span>139</span></a>]</span>.</p>
+<span id="id5">[<a class="reference internal" href="../zzz_references_html.html#id375"><span>139</span></a>]</span>, <span id="id6">[<a class="reference internal" href="../zzz_references_html.html#id402"><span>140</span></a>]</span>.</p>
 <p>Over ice-covered grid cells, daily variability can also be parameterized as a linear
 function of near-surface air temperature <span class="math notranslate nohighlight">\(\sigma = a \cdot T + b\)</span> using the
 <a class="reference internal" href="../manual/parameters/index.html#config-surface.pdd.std_dev_use_param"><code class="docutils literal notranslate"><span class="pre">surface</span></code>&shy;<code class="docutils literal notranslate"><span class="pre">.pdd</span></code>&shy;<code class="docutils literal notranslate"><span class="pre">.std_dev_use_param</span></code></a> configuration flag, and the corresponding
@@ -276,12 +276,12 @@ parameters <a class="reference internal" href="../manual/parameters/index.html#c
 deviation values over glacierized grid cells as defined by the <code class="variable docutils literal notranslate"><span class="pre">mask</span></code> variable (see
 <a class="reference internal" href="../manual/parameters/index.html#config-geometry.ice_free_thickness_standard"><code class="docutils literal notranslate"><span class="pre">geometry</span></code>&shy;<code class="docutils literal notranslate"><span class="pre">.ice_free_thickness_standard</span></code></a>). Default values for the slope <span class="math notranslate nohighlight">\(a\)</span> and
 intercept <span class="math notranslate nohighlight">\(b\)</span> were derived from the ERA-40 reanalysis over the Greenland ice sheet
-<span id="id7">[<a class="reference internal" href="../zzz_references_html.html#id402"><span>140</span></a>]</span>.</p>
+<span id="id7">[<a class="reference internal" href="../zzz_references_html.html#id403"><span>141</span></a>]</span>.</p>
 <p>The number of positive degree days is computed as the magnitude of the temperature
 excursion above <span class="math notranslate nohighlight">\(0\!\phantom{|}^\circ \text{C}\)</span> multiplied by the duration (in days)
 when it is above zero.</p>
 <p>In PISM there are two methods for computing the number of positive degree days. The first
-computes only the expected value, by the method described in <span id="id8">[<a class="reference internal" href="../zzz_references_html.html#id78"><span>137</span></a>]</span>. This is
+computes only the expected value, by the method described in <span id="id8">[<a class="reference internal" href="../zzz_references_html.html#id79"><span>138</span></a>]</span>. This is
 the default when a PDD is chosen (i.e. option <code class="option docutils literal notranslate"><span class="pre">-surface</span> <span class="pre">pdd</span></code>). The second is a Monte
 Carlo simulation of the white noise itself, chosen by adding the option <code class="option docutils literal notranslate"><span class="pre">-pdd_method</span>
 <span class="pre">random_process</span></code>. This Monte Carlo simulation adds the same daily variation at every point,
@@ -311,9 +311,9 @@ yearly cycle such as <code class="docutils literal notranslate"><span class="pre
 <a class="reference internal" href="atmosphere.html#sec-atmosphere-searise-greenland"><span class="std std-ref">SeaRISE-Greenland</span></a>), but it is not restricted to parameterizations
 like these.</p>
 <p>This code also implements latitude- and mean July temperature dependent ice and snow
-factors using formulas (6) and (7) in <span id="id9">[<a class="reference internal" href="../zzz_references_html.html#id116"><span>128</span></a>]</span>; set <code class="option docutils literal notranslate"><span class="pre">-pdd_fausto</span></code> to enable.
+factors using formulas (6) and (7) in <span id="id9">[<a class="reference internal" href="../zzz_references_html.html#id117"><span>129</span></a>]</span>; set <code class="option docutils literal notranslate"><span class="pre">-pdd_fausto</span></code> to enable.
 The default standard deviation of the daily variability (option <code class="option docutils literal notranslate"><span class="pre">-pdd_std_dev</span></code>) is
-2.53 degrees when <code class="option docutils literal notranslate"><span class="pre">-pdd_fausto</span></code> is set <span id="id10">[<a class="reference internal" href="../zzz_references_html.html#id116"><span>128</span></a>]</span>. See also configuration
+2.53 degrees when <code class="option docutils literal notranslate"><span class="pre">-pdd_fausto</span></code> is set <span id="id10">[<a class="reference internal" href="../zzz_references_html.html#id117"><span>129</span></a>]</span>. See also configuration
 parameters with the <code class="docutils literal notranslate"><span class="pre">surface.pdd.fausto</span></code> prefix.</p>
 <p>Note that when used with periodic climate data (air temperature and precipitation) that is
 read from a file (see section <a class="reference internal" href="atmosphere.html#sec-atmosphere-given"><span class="std std-ref">Reading boundary conditions from a file</span></a>), use of
@@ -352,10 +352,10 @@ individual components:</p>
 <dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">pism::surface::PIK</span></code></p>
 </dd>
 </dl>
-<p>This surface model component implements the setup used in <span id="id11">[<a class="reference internal" href="../zzz_references_html.html#id285"><span>51</span></a>]</span>. The
+<p>This surface model component implements the setup used in <span id="id11">[<a class="reference internal" href="../zzz_references_html.html#id286"><span>51</span></a>]</span>. The
 <code class="variable docutils literal notranslate"><span class="pre">climatic_mass_balance</span></code> is read from an input (<code class="docutils literal notranslate"><span class="pre">-i</span></code>) file; the ice surface
 temperature is computed as a function of latitude (variable <code class="variable docutils literal notranslate"><span class="pre">lat</span></code>) and surface
-elevation (dynamically updated by PISM). See equation (1) in <span id="id12">[<a class="reference internal" href="../zzz_references_html.html#id285"><span>51</span></a>]</span>.</p>
+elevation (dynamically updated by PISM). See equation (1) in <span id="id12">[<a class="reference internal" href="../zzz_references_html.html#id286"><span>51</span></a>]</span>.</p>
 </div>
 <div class="section" id="scalar-temperature-offsets">
 <span id="sec-surface-delta-t"></span><h2><a class="toc-backref" href="#id20">Scalar temperature offsets</a><a class="headerlink" href="#scalar-temperature-offsets" title="Permalink to this headline">¶</a></h2>
@@ -638,9 +638,9 @@ updates. PISM may take longer time-steps if the adaptive scheme allows it, thoug
       <div class="clearer"></div>
     </div>
     <div class="footer">
-      Git revision v1.0-2285-g711dd320b
+      Git revision v1.0-2293-g0967760b5
       committed by Constantine Khrulev
-      on 2021-03-01 13:22:29 -0900 |
+      on 2021-03-08 12:33:38 -0900 |
       &copy; 2004--2021, the PISM authors.
       
     </div>
